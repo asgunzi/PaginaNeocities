@@ -1,0 +1,346 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+ <link rel="icon" href="Figuras/favicon.ico">
+  
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="estilo_menu.css" />
+
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+
+
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 40%;
+  padding: 10px;
+}
+
+.column img {
+  margin-top: 12px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+
+</style>
+</head>
+
+
+<body>
+
+
+<div class="menu" id="top"></div>
+
+
+<a href = "index.html"> <p id="Logo"></p> </a>
+
+
+<h1>Seja bem-vindo ao Forgotten Math - Laboratório de Matemática</h1>
+
+
+<p><a href = "teorianumeros.html">Teoria dos Números Visual</a> </p>
+
+<p><a href = "ferramentas.html">Ferramentas Interativas</a></p>
+
+<p><a href = "artigos.html">Artigos </a></p>
+
+<p><a href = "inteligenciaartificial.html">Inteligência Artificial</a></p>
+<!--
+<p><a href = "codigos_index.html">Snippets de códigos</a></p>
+-->
+<br>
+<hr>
+<h1>Galeria de Arte Matemática</h1>
+<form>
+	<button type = "button"  onclick="Recarregar()">Recarregar</button>  		
+</form>
+
+
+<div class="row">
+  <div class="column" id="col1">
+  </div>
+  <div class="column"  id="col2">
+	
+	
+  </div>
+</div>
+
+
+<br>
+<form>
+	<button type = "button"  onclick="Recarregar()">Recarregar</button>  		
+</form>
+
+<p>Obs. Todas as imagens no painel acima foram geradas pelas ferramentas disponíveis neste site ou como apoio a algum artigo.</p>
+<hr>
+
+<p>Este site foi criado para conduzir o leitor a uma jornada alucinante de ideias novas e antigas, provocar e assim tornar este mundo mais questionador.</p>
+<br>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/04/fotopomi.jpg">
+
+<h2>Arnaldo Satoru Gunzi</h2>
+
+<p>Trabalho com projetos em Advanced Analytics &ndash; AI &ndash; Pesquisa Operacional.</p>
+
+<p>Sou apaixonado pelo ramo nascente de Quantum Computing.</p>
+
+<p>Tenho vasta experi&ecirc;ncia pr&aacute;tica, com 200+ projetos executados: modelos de planejamento florestal, trim de m&aacute;quina de papel, log&iacute;stica florestal, g&ecirc;meo digital da cadeia de abastecimento, forecast de pre&ccedil;os e demanda, gest&atilde;o de estoques, entre outros.</p>
+
+<p>Tenho s&oacute;lida forma&ccedil;&atilde;o acad&ecirc;mica:<br>
+&bull; Engenheiro de Infra-Estrutura Aeron&aacute;utica &ndash; Instituto Tecnol&oacute;gico de Aeron&aacute;utica<br>
+&bull; Mestre em Engenharia Eletr&ocirc;nica &ndash; Univ. Federal do Rio de Janeiro<br>
+&bull; MBA em Ger&ecirc;ncia de Projetos &ndash; Funda&ccedil;&atilde;o Get&uacute;lio Vargas<br>
+&bull; Especializa&ccedil;&atilde;o em Quantum Computing Algorithms for Cybersecurity, Chemistry, and Optimization &ndash; MITx Pro<br>
+&bull; Medalha de bronze na XIX Olimp&iacute;ada Brasileira de Matem&aacute;tica</p>
+
+<p>Professor (de vez em quando algu&eacute;m insano o suficiente me convida para palestrar ou dar aulas) e Escritor.</p>
+
+<p>Visite os meus blogs:</p>
+
+<p>Ideias t&eacute;cnicas com uma pitada de filosofia <a href="https://ideiasesquecidas.com">https://ideiasesquecidas.com</a><br>
+Excel VBA: <a href="https://ferramentasexcelvba.wordpress.com/">https://ferramentasexcelvba.wordpress.com/</a><br>
+Matem&aacute;tica Visual: <a href="https://asgunzi.neocities.org/">https://asgunzi.neocities.org/</a><br>
+Computa&ccedil;&atilde;o Qu&acirc;ntica: <a href="https://informacaoquantica.wordpress.com/">https://informacaoquantica.wordpress.com/</a></p>
+
+
+<br>
+
+<script>
+	let lst1=[];
+	
+	//Alimenta a lista
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/01/sequenciaprimos.png");
+	lst1.push("Figuras/circulo-listrado-01.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/12/circulo-listrado-02.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/01/sequenciaprimos2.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/12/losango-listrado02.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/12/losango-listrado.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/12/losango-list-vertical.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/12/circ-listrados-01.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/12/circ-listrado-02.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/12/pol-listrado02.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/12/pol-listrado01.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/12/galileu6.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/12/soma135.jpg");	
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/12/seq-galileu.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2020/10/sequencia05.jpg");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/01/25-fator-5.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/01/15-fator-3-5.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/09/capa09.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/09/capa01.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/09/capa02.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/09/capa02_1.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/09/capa03.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/09/capa05.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/09/capa08.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/09/montecarlo05.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2015/09/pitagoras4.jpg");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/02/triangulo-pascal-4-camadas.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/02/triangulopascal.png");
+	lst1.push("Figuras/ArteRetag.png");
+	lst1.push("Figuras/RandomWalkFig.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/01/randomwalk02.gif");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/12/numeros-quadrados-e-oblongos.jpeg");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/01/teonumeros04.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/01/teonumeros03.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/01/teonumeros10.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2021/11/image007.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2021/11/espiralmusical03.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2021/11/espiralmusical04.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2020/12/espiralarquimedes.jpg");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/07/screenshot-2022-07-03-022032.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/07/screenshot-2022-07-03-022043.png	");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/07/screenshot-2022-07-03-022056.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/07/espiralcirculos01.gif");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/07/espiralcirculos02.gif");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/11/caminhoretangular.gif");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/11/caminho02.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/11/caminhoseno.gif");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/11/caminhoseno.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/10/somacubos05.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/10/somacubos04.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2020/12/somaimparesconsec-2.jpg");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/02/eudoxo.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/02/mdc03.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/02/mdc02.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/02/mdc05.png");
+	lst1.push("Figuras/EspiralArquimedes.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2020/12/pontosgirando.jpg");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2020/12/pontos.jpg");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2021/09/fermat01.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2021/09/fermat02-1.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2021/09/fermat03.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2021/09/contraprovafermat03.png");
+	lst1.push("Figuras/EspiralArquimedes.gif");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2021/03/euclides01-1.jpg");
+	lst1.push("Figuras/mdcVisual00.png");
+	lst1.push("Figuras/espiralMusical001.png");
+	lst1.push("Figuras/EspiralMusical002.png");
+	lst1.push("Figuras/EspiralMusical003.png");
+	lst1.push("Figuras/MonteCarloPi.gif");
+	lst1.push("Figuras/MonteCarloPi02.png");
+	lst1.push("Figuras/PadraoCircN01.png");
+	lst1.push("Figuras/PadraoCircN02.png");
+	lst1.push("Figuras/PadraoCircN03.png");
+	lst1.push("Figuras/PadraoCircN04.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/05/circulos01.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/05/circulos03.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/05/circulos04.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/05/circulos05.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/05/circulos06.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/05/circulos07.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/05/circulos08.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/05/circulos09.png");
+	lst1.push("Figuras/colmeiaPrimos02.gif");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/04/colmeia2camadas.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/04/colmeia4camadas.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/04/colmeia7camadas.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/04/colmeia25camadas.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/04/colmeia50camadas.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/01/fatorial-x-25en.png");
+	lst1.push("Figuras/FiboGif.gif");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/12/prova-visual-combinatoria-01-arnaldo-gunzi.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/12/comb07.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/12/comb06.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2022/12/comb01.png");
+	lst1.push("Figuras/somaPA01.png");
+	lst1.push("Figuras/somaPA02.png");
+	lst1.push("Figuras/somaPA03.png");
+	lst1.push("Figuras/EspiralUlam.gif");
+	lst1.push("Figuras/randomTiling01.png");
+	lst1.push("Figuras/randomTiling02.png");
+	lst1.push("Figuras/randomTiling03.png");
+	lst1.push("Figuras/randomTiling04.png");
+	lst1.push("Figuras/NormalSimulation.gif");
+	lst1.push("Figuras/UniformSimulation.gif");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2020/05/quadrado06.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2020/05/quadrado07-1.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2020/05/quadrado12.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2020/05/quadrado13-1.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2020/05/quadrado17.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2020/05/quadrado21.png");
+	lst1.push("Figuras/ArteCirculos.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/02/artecirculos01.gif");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/02/artecirculos02.gif");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/02/artecirculos01.gif");
+	lst1.push("Figuras/CardLinhas01.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/02/artecirculosr1.gif");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/02/artecirculosr2.gif");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/02/cardioide01.gif");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/02/cardioide02.gif");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/02/cardioide03.gif");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/02/cardioide04.gif");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/02/cardioide_001.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/02/cardioide_002.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/02/cardioide_003.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/02/cardioide_004.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/02/cardioide_005.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/02/hextiling01.gif");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/02/hextiling02.gif");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/02/hextiling04.gif");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/02/hextiling05.gif");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/02/hextiling06.gif");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/02/hextilingart01.jpeg");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/02/hextilingart02.jpeg");
+	lst1.push("Figuras/QuarterTess01.gif");
+	lst1.push("Figuras/QuarterTess02.gif");
+	lst1.push("Figuras/QuarterTess03.gif");
+	lst1.push("Figuras/QuarterTess04.gif");
+	lst1.push("Figuras/QuarterTess05.gif");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/03/tiletiling02.png");
+	lst1.push("https://miro.medium.com/v2/resize:fit:750/1*5HawmSdqxVOP56GFkO4lwg.gif");
+	lst1.push("https://miro.medium.com/v2/resize:fit:750/1*vhXsRu2JbL_PW2aNRCHXXg.gif");
+	lst1.push("https://miro.medium.com/v2/resize:fit:750/1*GUjQlMW5dQ_3_HhLqq8PPA.gif");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/02/cardlinha01.gif");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/02/cardlinha02.gif");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/02/cardlinha03.gif");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2018/09/ccard01.jpg");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2018/09/cardiodlin.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2018/09/cardexp01.jpg");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2018/09/cardexp02.jpg");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2018/09/cardexp03.jpg");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2018/09/cardexp04.jpg");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2018/09/cardexp05.jpg");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2018/09/ccard02.jpg");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2018/09/ccard03.jpg");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/03/octtiling01.gif");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/03/octtiling01.png");
+	lst1.push("https://asgunzi.neocities.org/Figuras/octTiling03.gif");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/03/octtiling02.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/03/octtiling03.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/04/visual_pi0.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/04/visual_e.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/04/visual_phi.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/04/pi-visual-02.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/04/visuale.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/04/visualphi.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/07/bezier01.jpeg");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/07/bezier02.jpeg");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/07/bezier03.jpeg");
+	lst1.push("Figuras/arvorePitagoras.png");	
+	lst1.push("Figuras/Estrelas.gif");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/07/sierptriang.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/07/sierptriang02.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/07/sierptriang03.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/07/sierpretang01.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/07/sierpretang02.png");
+	lst1.push("https://ideiasesquecidas.files.wordpress.com/2023/07/sierpretang03.png");
+	lst1.push("Figuras/cantor01.png");
+	lst1.push("Figuras/Jogoluzes.png");
+	//lst1.push("");
+	//lst1.push("");
+	//lst1.push("");
+	//lst1.push("");
+	//lst1.push("");
+	//lst1.push("");
+	
+	
+	
+	
+Recarregar();
+ 
+function Recarregar()
+{
+
+	shuffle(lst1);
+
+	d3.select("#col1").selectAll("*").remove();
+	d3.select("#col2").selectAll("*").remove();
+	
+	for (let i = 0; i<8;i++)
+	{
+		d3.select("#col1").append("img").attr("src", lst1[i]).attr("width", "100%");
+		d3.select("#col2").append("img").attr("src", lst1[10+i]).attr("width", "100%");
+	}
+	
+	 location.href = "#top";
+}
+
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+
+</script>
+<script src="criaMenu.js"></script>
+
+<script src = "LogoMath.js">		</script>
+
+</body>
+</html>

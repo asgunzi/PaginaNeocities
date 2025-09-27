@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+<body>
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+<h1>Padrões em Círculos</h1>
+
+  <label for="myRange">Raio:</label>
+ <div class="slidecontainer" onchange= "Desenhar()">
+  <input type="range" min="1" max="100" value="25" class="slider" id="myRange">
+</div>
+   <label for="colorpicker">Cor 1:</label>
+   <input type="color" id="colorpicker"  onchange= "Desenhar()" value="#0000ff">
+   
+   <label for="colorpicker2">Cor 2:</label>
+   <input type="color" id="colorpicker2" onchange= "Desenhar()" value="#ff0000">
+
+<p id ="svgPadroes"></p>
+
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+<script type = "text/javascript">
+    var svg = d3.select("#svgPadroes")
+        .append("svg")
+        .attr("width", 1520)
+        .attr("height", 800);
+		
+	Desenhar();
+
+	function Desenhar()
+	{
+	svg.selectAll("*").remove();
+
+	//---------------------------------------------------------------
+	var i;
+	var j;
+	var cx =[];
+	var cy=[];
+	var cor =[];
+	var raio =[];
+	var cor1;
+	var cor2;
+
+	var r0 = d3.select("#myRange").property("value");	
+
+	cor1= d3.select("#colorpicker").property("value");	
+	cor2= d3.select("#colorpicker2").property("value");	
+	
+	//Plota o quociente
+	for (i=0; i<70; i++)
+		{
+		for (j=0; j<70; j++)
+			{
+				cx.push(-50 +j*40);
+				cy.push(-50 +i*40);		
+				if ((i+j) % 2 ==0)
+				{
+					cor.push(cor1);
+					raio.push(r0*0.9);
+				}
+				else
+				{
+					cor.push(cor2);
+					raio.push(r0*1.1);
+				}
+			}
+		}
+		
+		
+	svg.selectAll("circle")
+			.data(cx)
+			.enter()
+			.append("circle")
+		  .attr("cx", function(d,i){return cx[i]})
+		  .attr("cy", function(d,i){return cy[i]})
+		  .attr("r", function(d,i){return raio[i]})
+		  .attr("stroke", function(d,i){return cor[i]})
+		  .attr("stroke-width", 1.5)
+		  .attr("fill", "transparent")
+		  //.attr("fill", function(d,i){return cor[i]})
+	}
+  </script>
+  
+</body>
+</html>

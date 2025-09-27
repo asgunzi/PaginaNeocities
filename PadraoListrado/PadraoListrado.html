@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+ <title>Padrões Listrados</title>
+ 
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+
+<style>
+.slider{
+width:500px;
+}
+</style>
+</head>
+
+
+
+<body>
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+
+<h1>Padrões listrados</h1>
+
+<h2> Abaixo, alguns padrões listrados que dão um efeito super bacana. Deslize a barrinha para mudar o espaçamento das listras.  </h2> 
+
+
+<h3> Círculo Listrado  </h3> 
+<div class="slidecontainer" onchange= "DesenharCirculo()">
+Espaçamentos das listras  <input type="range" min="1" max="100" value="50" class="slider" id="myRangeCirculo">
+</div>
+
+<p id = "svgCirculo"> </p>
+
+
+
+<h3> Losango Listrado  </h3> 
+
+<div class="slidecontainer" onchange= "DesenharLosango()">
+Espaçamentos das listras  <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+</div>
+
+<p id = "svgLosango"> </p>
+
+
+<h3> Losango Listrado Vertical </h3> 
+
+<div class="slidecontainer" onchange= "DesenharLosangoVert()">
+Espaçamentos das listras  <input type="range" min="1" max="100" value="50" class="slider" id="myRangeVert">
+</div>
+
+<p id = "svgLosangoVert"> </p>
+
+
+
+<h3>Círculos aleatórios </h3> 
+
+<div class="slidecontainer" onchange= "DesenharCircRnd()">
+Espaçamentos das listras  <input type="range" min="1" max="100" value="50" class="slider" id="myRangeCircRnd">
+</div>
+
+<p id = "svgCircRnd"> </p>
+
+
+<h3>Hexágono e outros polígonos</h3> 
+
+<div class="slidecontainer" onchange= "DesenharHex()">
+Espaçamentos das listras  <input type="range" min="1" max="100" value="50" class="slider" id="myRangeHex">
+</div>
+
+<form>
+Número de lados do polígono
+		  <select onchange = "DesenharHex()" name="PontosHex" id="SelectPontosHex">
+		    
+		    <option value="3" >3</option>
+		    <option value="4">4</option>
+		    <option value="5">5</option>
+		    <option value="6" selected>6</option>
+		    <option value="7">7</option>
+		    <option value="8">8</option>
+		    <option value="9">9</option>
+		    <option value="10">10</option>			
+		  </select>		  
+</form>
+
+<p id = "svgHex"> </p>
+
+
+</Body>   
+</Html>  
+
+<script src= "D3ListradoCirculo.js">
+</script>
+
+<script src= "D3losango.js" >
+</script>
+
+<script src= "D3losangoVert.js">
+</script>
+
+<script src= "D3CircRnd.js">
+</script>
+
+<script src= "D3Hex.js">
+</script>
+</body>
+</html>
+
+
+
+<br>
+<hr>
+
+<p>Veja também: <a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a> </p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+ 
+ 

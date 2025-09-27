@@ -1,0 +1,441 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+<body>
+	<h1>Quadrados mágicos de qualquer tamanho. Teoria <a href="https://ideiasesquecidas.com/2020/05/08/como-criar-um-quadrado-magico-de-qualquer-tamanho/">aqui</a> </h1>
+	
+	<table style = "width:50%">
+    <tr>
+    <td>
+    
+	  <form>
+		  <label for="fname">Tamanho do lado:</label><br>
+		  <input type="text" id="SelectPontos" name="Círculos" value="3"><br>
+		  <input type="button" onclick="Desenha()" value="Gerar!">
+	  </form> 
+	</td>
+	</tr>
+	</table>
+<p id = "svgQuadr">	</p>
+	
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+ <script type = "text/javascript">
+
+        var svg = d3.select("#svgQuadr").append("svg");
+
+        var limX = 800;
+        var limY = 800;
+        
+        //Define dimensions of svg
+        svg.attr("width", limX)
+        .attr("height",limY);
+
+		
+		function quad_impar(N){
+			
+			var tabuleiro = new Array(N);
+			// Loop to create 2D array using 1D array 
+			for (var i = 0; i < tabuleiro.length; i++) { 
+				tabuleiro[i] = new Array(N); 
+			} 
+			// Loop to initilize 2D array elements. 
+			for (var i = 0; i < N; i++) { 
+				for (var j = 0; j < N; j++) { 
+					tabuleiro[i][j] = 0; 
+				} 
+			} 
+			  
+			var idxCol = parseInt(((N+1)/2)-1);
+			var idxLin = 0;
+			var idxCol2 =0;
+			tabuleiro[idxLin][idxCol] = 1;
+						
+			//Iteracoes
+			for (var i = 2; i< Math.pow(N,2)+1 ; i++)
+			{
+					if (idxCol+1>=N)
+					{
+						idxCol2 =0;
+					}
+					else
+					{
+						idxCol2 = idxCol+1;
+					}
+				
+					if (idxLin - 1 < 0)
+					{
+						idxLin2 = N-1;
+					}
+					else
+					{
+						idxLin2 = idxLin-1;
+					}
+					
+					//#Verifica se a posicao já está ocupada
+					if (tabuleiro[idxLin2][idxCol2]>0)
+					{
+						if (idxLin+1 >= N)
+						{
+							idxLin2 = 0;
+						}
+						else
+						{
+							idxLin2 = idxLin + 1;
+						}
+				
+						idxCol2 = idxCol;
+					}	
+						
+					//Preenche tabuleiro e vai para a próxima  
+					tabuleiro[idxLin2][idxCol2]=i;
+					
+					idxLin = idxLin2;
+					idxCol = idxCol2;
+				}	
+				return(tabuleiro);				
+		}
+		
+	
+
+	function quad4n(N){
+		//#Da forma 4*n	
+    	var tabuleiro = new Array(N);
+
+		// Loop to create 2D array using 1D array 
+		for (var i = 0; i < tabuleiro.length; i++) { 
+			tabuleiro[i] = new Array(N); 
+		} 
+		// Loop to initilize 2D array elements. 
+		for (var i = 0; i < N; i++) { 
+			for (var j = 0; j < N; j++) { 
+				tabuleiro[i][j] = 0; 
+			} 
+		} 
+			
+		var count = 0;
+		var padrao1 = false;
+    
+		for (var i =0; i< N;i++)
+		{
+			if (i % 4 ==0 || i % 4 ==3)
+			{
+			padrao1=true;
+			}
+			else{
+			padrao1=false;
+			}
+        
+			for (var j =0; j< N; j++)
+			{
+				count+=1;
+				if (j % 4 == 0 || j % 4 == 3)
+				{
+					if (padrao1)
+					{
+						tabuleiro[i][j] = N*N - count +1;
+					}
+					else
+					{
+						tabuleiro[i][j] = count;
+					}
+				}
+				else
+				{
+					if (padrao1)
+					{
+						tabuleiro[i][j] = count;
+					}
+					else
+					{
+						tabuleiro[i][j] = N*N - count +1;
+					}
+				}
+			}
+		}
+		return(tabuleiro);
+		}
+   
+	function quad4n1(N){
+	    //Forma 4n+1
+		//Método LUX
+		var tabuleiro = new Array(N);
+
+		// Loop to create 2D array using 1D array 
+		for (var i = 0; i < tabuleiro.length; i++) { 
+			tabuleiro[i] = new Array(N); 
+		} 
+		// Loop to initilize 2D array elements. 
+		for (var i = 0; i < N; i++) { 
+			for (var j = 0; j < N; j++) { 
+				tabuleiro[i][j] = 0; 
+			} 
+		}
+		
+		m = parseInt((N-2)/4);
+
+		//aux1 = np.zeros((2*m+1, 2*m+1), dtype = np.int16)    
+		//aux2 = np.zeros((2*m+1, 2*m+1), dtype = np.int16)    
+		var aux1 = new Array(2*m+1);
+
+		// Loop to create 2D array using 1D array 
+		for (var i = 0; i < aux1.length; i++) { 
+			aux1[i] = new Array(2*m+1); 
+		}
+		//Inicializar
+		for (var i = 0; i < 2*m+1; i++) { 
+			for (var j = 0; j < 2*m+1; j++) { 
+				aux1[i][j] = 0; 
+			} 
+		}
+
+		var aux2 = new Array(2*m+1);
+
+		// Loop to create 2D array using 1D array 
+		for (var i = 0; i < aux2.length; i++) { 
+			aux2[i] = new Array(2*m+1); 
+		} 		
+
+		//inicial
+		for (var i = 0; i < 2*m+1; i++) { 
+			for (var j = 0; j < 2*m+1; j++) { 
+				aux2[i][j] = 0; 
+			} 
+		}
+		//m+1 rows of Ls,
+		for (var i=0; i<(m+1); i++){
+			for (var j=0; j< (2*m+1); j++)
+			{
+				aux1[i][j] = 1; //"L"
+				}
+			}
+      
+		//1 row of U
+		for (var j= 0; j<(2*m+1);j++)
+		{
+			aux1[m+1][j] = 0; //"U"
+		}
+		
+		//n-1 rows of X
+		for (var i =m+2; i < 2 * m + 1; i++){
+			for (var j =0; j <2*m+1; j++)
+			{
+				aux1[i][j] = -1; //"X"
+			}
+		}
+		
+    //exchange the U in the middle with the L above it. 
+    aux1[m,m]= 0; //#"U"
+    aux1[m+1,m]= 1; //#"L"
+      
+    tam2 = 2 * m + 1;
+    
+    //Posicao inicial, centro superior
+    posX = parseInt( (tam2 + 1) / 2 -1);
+    posY = 0; 
+    
+    for (var i=0; i <(tam2 *tam2); i++)
+	{
+        aux2[posY][posX] = i+1;
+        
+        if (aux1[posY][posX] == 1) // "L"            
+		{
+            tabuleiro[2 * (posY ) + 0 ][ 2 * (posX ) + 1] = 4 * (i) + 1;
+            tabuleiro[2 * (posY ) + 1 ][ 2 * (posX ) + 0] = 4 * (i) + 2;
+            tabuleiro[2 * (posY ) + 1 ][ 2 * (posX ) + 1] = 4 * (i) + 3;
+            tabuleiro[2 * (posY ) + 0 ][ 2 * (posX ) + 0] = 4 * (i ) + 4;
+         }   
+        else if (aux1[posY][posX] ==0) // #"U"
+		{
+            tabuleiro[2 * (posY ) + 0][ 2 * (posX ) + 0] = 4 * (i) + 1;
+            tabuleiro[2 * (posY ) + 1][ 2 * (posX ) + 0] = 4 * (i ) + 2;
+            tabuleiro[2 * (posY ) + 1][2 * (posX ) + 1] = 4 * (i ) + 3;
+            tabuleiro[2 * (posY) + 0][2 * (posX ) + 1] = 4 * (i ) + 4;
+		}
+        else   //#aux[posY, posX] == "X":
+		{
+            tabuleiro[2 * (posY ) + 0][ 2 * (posX ) + 0] = 4 * (i ) + 1;
+            tabuleiro[2 * (posY ) + 1][ 2 * (posX ) + 1] = 4 * (i ) + 2;
+            tabuleiro[2 * (posY ) + 1][ 2 * (posX ) + 0] = 4 * (i ) + 3;
+            tabuleiro[2 * (posY ) + 0][ 2 * (posX ) + 1] = 4 * (i) + 4;
+        }
+            
+        if (posY ==0)
+		{
+            posYtest = tam2-1;
+		}
+        else
+        {
+			posYtest = posY - 1;
+		}
+		
+        if (posX== tam2-1)
+		{
+            posXtest = 0;
+		}
+        else
+        {
+			posXtest = posX + 1;
+		}
+        
+    
+        if (aux2[posYtest][ posXtest] == 0)
+         {
+			posY = posYtest;
+            posX = posXtest;
+		}
+        else
+       {
+			posY = posY + 1;
+	   }
+        
+    }
+    return(tabuleiro);
+	}
+
+	function Desenha()
+        {
+        
+        //Clear svg
+		svg.selectAll("*").remove();
+
+        //dados e definicoes macro
+        var N = parseInt(d3.select("#SelectPontos").property("value"));
+		
+        var corR = Math.floor(25) ;
+        var corG = Math.floor(255) ;
+        var corB = Math.floor(200) ;
+
+		var cx0 = 200;
+		var cy0 = 100;
+		var tamMax = 600;
+		var tamBloco =0;
+		var tabela;
+		var correcao= 0;
+		
+		
+		if (N % 2 ==0)
+		{
+			if (N % 4 == 0)
+			{
+				tabela = quad4n(N);
+			}
+			else
+			{
+				tabela = quad4n1(N);
+			}
+		}
+		else
+		{
+			tabela = quad_impar(N);
+		}
+		
+        //Traça SVG
+        var i;
+        var cx1 =[];
+        var cy1 =[];
+		
+		var label1 =[];
+        var theta;
+		
+		var vetorG=[];
+		tamBloco = parseInt(tamMax / N );
+		
+        //Cria o array de dados
+        for (i = 0; i< N; i++)
+        {
+			for (j = 0; j<N;j++)
+			{
+				cx1.push(cx0 + j*tamBloco);
+				cy1.push(cy0 + i*tamBloco);
+				label1.push(tabela[i][j]);
+				vetorG.push("rgb(" + corR + "," + parseInt(tabela[i][j]/(N*N)*255) + "," + corB + ")");				
+			}
+        }
+
+
+		<!-- //Cria as formas -->		
+        var rect1 = svg.selectAll("rect")
+        	.data(cx1)
+        	.enter()
+        	.append("rect");
+
+        rect1.attr("x", function(d,i){
+        			return cx1[i];
+        		})
+        		.attr("y", function(d,i){
+        			return cy1[i];
+        		})
+        		.attr("width", tamBloco)
+        		.attr("height", tamBloco)
+        		.attr("fill", function(d,i){
+        			return vetorG[i];
+        		})
+				.attr("fill-opacity",".5")
+        		.attr("stroke","rgb(" + 255 + "," + 255 + "," + 255 + ")")
+        		.attr("stroke-width","3")
+        		;
+	var text1 = svg.selectAll("text")
+        	.data(cx1)
+        	.enter()
+        	.append("text");
+			
+		text1.attr('x', function(d,i){
+					correcao = Math.log(label1[i])/2.30258;
+        			return cx1[i]+tamBloco/2-6*correcao;
+        		})
+                .attr('y', function(d,i){
+					correcao = Math.log(label1[i])/2.30258;
+        			return cy1[i]+tamBloco/2+7;
+        		})
+                .attr('fill', 'black')
+				.attr('font-size',  function(d,i){
+				
+					var tam = parseInt(25 - 6*Math.log(N)/2.3025);
+					
+					return (tam + "px");
+					}
+				
+					)
+				.text(function(d,i){
+					return label1[i];
+					});
+        }	
+
+        Desenha();
+
+		</script>
+		
+		
+</body>
+</html>

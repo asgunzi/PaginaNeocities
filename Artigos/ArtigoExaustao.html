@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+<h1>O método da exaustão para encontrar a área do círculo</h1>
+<p></p>
+<p>O método da exaustão foi desenvolvido nos tempos de Eudoxo e Arquimedes. Este post visa mostrar a ideia geral do método. Os gregos antigos tinham uma noção bastante forte de geometria, e por isso, é bastante lúdico entender o raciocínio.</p>
+<p></p>
+<p>Como calcular a área de um círculo, ou de alguma outra forma complicada? Uma resposta é aproximar por algo mais simples, como um triângulo ou um quadrado.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/05/exaustao01.jpg">
+<p></p>
+<p>O maior quadrado possível que cabe dentro de um círculo é o quadrado inscrito.</p>
+<p></p>
+<p>O menor quadrado possível em que o círculo cabe dentro é o quadrado circunscrito.</p>
+<p></p>
+<p>Assumindo que o raio é igual a 1, para facilitar, a área do círculo vai estar entre 2 e 3,31 (demonstração nos capítulos seguintes abaixo).</p>
+<p></p>
+<p>Mas o quadrado é muito diferente do círculo. Não dá para melhorar?</p>
+<p></p>
+
+<p>Que tal utilizar um pentágono?</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/05/exaustao02.jpg">
+<p></p>
+<p>A aproximação melhorou um pouco, entre 2,38 e 3,25 (hoje sabemos que a área é pi*r^2, se o raio é 1, a área é pi = 3.1415…)</p>
+<p></p>
+<p>Podemos continuar crescendo o número de lados do polígono.</p>
+<p></p>
+<p>Digamos, 6 lados (hexágono):</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/05/exaustao03.jpg">
+<p></p>
+<p>10 lados:</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/05/exaustao04.jpg">
+<p></p>
+<p>15 lados:</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/05/exaustao05.jpg">
+<p></p>
+<p>Quanto maior o número de lados, o polígono regular é mais parecido com o círculo.</p>
+<p></p>
+<p>Repetindo o procedimento, até a exaustão (daí o nome), podemos chegar ao valor de pi com a precisão desejada.</p>
+<p></p>
+<p>Os gregos utilizaram técnica semelhante para calcular área de diversas outras formas, e também o volume de esferas e outros sólidos.</p>
+<p></p>
+<p>O método acima tem pouca álgebra e muita geometria e é uma espécie de precursor do cálculo integral.</p>
+<p></p>
+<p>Mexa na versão web em <a href="https://asgunzi.neocities.org/ArteMatematica/FerramentaExaustao">https://asgunzi.neocities.org/ArteMatematica/FerramentaExaustao</a></p>
+<p></p>
+
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+</body>
+</html>

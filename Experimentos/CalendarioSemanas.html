@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+<h1>Calculadora de semanas</h1>
+
+<label for="data">Data de nascimento:</label>
+<input type="date" id="data">
+
+<p id  = "Resultado"></p>
+		
+<p id  = "svg01"></p>
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+<script type = "text/javascript">
+    var svg = d3.select("#svg01")
+        .append("svg")
+        .attr("width", 1820)
+        .attr("height", 1500);
+   
+	
+	
+	function Retangulo(x,y, ladoX, ladoY,strColor, delayInMilli)
+	{
+		setTimeout(function() {
+
+		svg.append("rect")
+		  .attr("x", x)
+		  .attr("y", y)
+		  .attr("width", ladoX)
+		  .attr("height", ladoY)
+		  .attr("stroke", "black")
+		  .attr("fill", strColor);
+		 }, delayInMilli);
+	}
+	
+	// Select the SVG container
+
+	function Label(x0,y0,texto)
+	{
+	svg.append("text") // Append a text element to the SVG container
+	   .attr("x", x0) // Set the x position of the label
+	   .attr("y", y0) // Set the y position of the label
+	   .attr("fill", "black") // Set the text color
+	   .style("font-size", "8px") // Set the font size
+	   .text(texto); // Set the text of the label
+	}
+	
+	function Desenhar(idadeSemanas)
+	{
+	svg.selectAll("*").remove();
+
+	//---------------------------------------------------------------
+	
+	var x0;
+	var y0;
+	var ladoX;
+	var ladoY;
+	var ano;
+	var mesAno;
+	var weekRef;
+	var week;
+	var weekRestante;
+	var resultTxt = document.getElementById('Resultado');
+	
+	x0 = 15;
+	y0 = 15;
+	ladoX =8;
+	ladoY =5;
+	
+	
+	weekRef = Math.round(idadeSemanas);
+	weekRestante =90*52-weekRef;
+	
+	resultTxt.textContent = "Já se passaram " + weekRef + " semanas, você ainda tem " + weekRestante + " semanas (ou menos)";
+
+	Label(0,20, "Ano");
+	Label(15,12, "Semana do ano");
+	
+	
+	//Label ano
+	for (ano=1; ano<=9; ano++)
+	{
+		Label(5,y0+ladoY*10*(ano),ano*10)
+	}
+
+	//Label mes
+	for (mesAno=1; mesAno<=5; mesAno++)
+	{
+		Label(x0+ladoX*((mesAno)*10-1), 12, (mesAno)*10)
+	}
+	
+	for (ano=1; ano<=90; ano++)
+	{
+		for (mesAno=1; mesAno<=52; mesAno++)
+			{
+				week = ((ano-1)*52+mesAno);
+				if (week<= weekRef)
+					{
+					Retangulo(x0+ladoX*(mesAno-1),y0+ladoY*(ano-1), ladoX,ladoY, 'gray',.2*week);
+					}
+					else
+					{
+					Retangulo(x0+ladoX*(mesAno-1),y0+ladoY*(ano-1), ladoX,ladoY, 'green',.2*week);
+					}					
+			}						
+	}
+	
+	}
+
+
+	document.addEventListener('DOMContentLoaded', function () {
+	    var seletorDeData = document.getElementById('data');
+	
+	    // Atualiza a exibição da data quando uma nova data é selecionada
+	    seletorDeData.addEventListener('change', function () {
+		var data = new Date(this.value);
+		
+		    const hoje = new Date();
+
+		    // Calcula a diferença em milissegundos
+		    const diferencaTempo = hoje - data;
+
+		    // Converte a diferença de milissegundos para dias
+		    const diferencaDias = diferencaTempo / (1000 * 3600 * 24);
+			//Converte para semanas
+			const diferencaSemanas=diferencaDias/7;
+
+		Desenhar(diferencaSemanas);
+					
+	    });
+	});
+
+
+	
+  </script>
+
+
+</body>
+</html>

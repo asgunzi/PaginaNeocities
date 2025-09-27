@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="estilo_menu.css" />
+
+
+<style>
+p {
+  padding-left: 20px;
+}
+</style>
+
+</head>
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "index.html"> <p id="Logo"></p> </a>
+
+<h1>Artigos sobre Inteligência Artificial</h1>
+
+<p id="idArtigosIA"></p>
+
+
+
+<br>
+<hr>
+
+<p>Veja também: <a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a> </p>
+
+
+<script>
+let arr1 =[];
+
+arr1.push([["AI/Turcomecanico.html"],["O Turco Mecânico"]]);
+arr1.push([["AI/InvernoPrimaveraAI.html"],["O inverno e a primavera da Inteligência Artificial"]]);
+arr1.push([["AI/MarcoIA.html"],["Estamos vivenciando um marco na história da IA"]]);
+arr1.push([["AI/IAcompnatural.html"],["IA e Computação Natural"]]);
+arr1.push([["AI/FerramentasAISuper.html"],["Ferramentas de AI para conseguir superpoderes no seu trabalho"]]);
+arr1.push([["AI/ZebraListras.html"],["Como a zebra sabe pintar as listras de preto e branco?"]]);
+arr1.push([["AI/singlemccullockpitts.html"],["Um neurônio de McCulloch-Pitts"]]);
+arr1.push([["AI/FabulaPardais.html"],["A fábula inacabada dos pardais"]]);
+arr1.push([["AI/EasyAI.html"],["Easy AI e Explainable AI"]]);
+arr1.push([["AI/Pessoanaoexiste.html"],["Essa pessoa não existe"]]);
+arr1.push([["AI/ArteModelagem.html"],["Sobre a arte de modelar problemas"]]);
+//arr1.push([["AI/"],[""]]);
+//arr1.push([["AI/"],[""]]);
+//arr1.push([["AI/"],[""]]);
+
+
+shuffle(arr1);
+
+
+for (var k=0; k<arr1.length; k++)
+{
+d3.select("#idArtigosIA	").append("p").append("a").attr("href", arr1[k][0]).text(arr1[k][1]);
+}
+
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+
+</script>
+
+
+<script src="criaMenu.js"></script>
+<script src = "LogoMath.js">		</script>
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+<h1>Contraprova visual do Pequeno Teorema de Fermat</h1>
+<p></p>
+<p>Em post anterior, vimos uma prova visual do Pequeno Teorema de Fermat.</p>
+<p></p>
+<p>Neste post, vamos ilustrar o mesmo raciocínio, mas para mostrar porque o mesmo teorema não funciona quando os números envolvidos não são primos entre si.</p>
+<p></p>
+<p>O teorema diz que p | n^p – n, para p primo.</p>
+<p></p>
+<br>
+<p>Exemplo. n = 3 e p = 5.</p>
+<p>n^p – n = 3^5 – 3 = 240, e 240 é divisível por 5.</p>
+<br>
+<p></p>
+<p>Contra exemplo. n = 2 e p = 4.</p>
+<p>n^p – n = 2^4 – 2 = 14, e 14 não é divisível por 4 (para o teorema funcionar, p deve ser primo em relação a n).</p>
+<br>
+<p></p>
+<p>Vamos visualizar o caso n =2 e p =4.</p>
+<p></p>
+<p>Há duas combinações de cor única:</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2021/09/contraprovafermat01.png">
+
+<p></p>
+<p>Há quatro combinações com 1 azul e 3 brancos. Note o mesmo comportamento descrito anteriormente, de poder fazer um colar e ir girando a cada conta. A repetição só se dá quando girar todas as contas.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2021/09/contraprovafermat02.png">
+<p></p>
+<p>De modo similar, há quatro combinações com 3 azuis e 1 branco.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2021/09/contraprovafermat04.png">
+<p></p>
+<p>Porém, com 2 azuis e 2 brancos, há uma diferença.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2021/09/contraprovafermat03.png">
+<p></p>
+<p>O primeiro grupo de 4 forma um colar que precisa de 4 giros para retornar ao início.</p>
+<p></p>
+<p>Porém, o grupo da direita precisa de apenas 2 giros para retornar à mesma posição. Isso porque há repetição do padrão de cores, e há repetição porque 2 (cores) e 4 (posições) têm divisor comum (2).</p>
+<p></p>
+<p>Isso “quebra” a formação de grupos de 4, demonstrando o motivo do pequeno Teorema de Fermat não ser válido para n e p com divisores comuns.</p>
+<p></p>
+<p>Portanto, essa é a forma de visualizar o importante Pequeno Teorema de Fermat.</p>
+
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+ <title>Prova Visual do Teorema de Pitágoras</title>
+ 
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>
+</style>	
+</head>
+
+
+<body>
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+
+<h1>Prova Visual do Teorema de Pitágoras</h1>
+
+
+<p id = "svgConteiner"> </p>
+
+<script type = "text/javascript">
+    var svg = d3.select("#svgConteiner")
+        .append("svg")
+        .attr("width", 1520)
+        .attr("height", 1100);
+
+	svg.selectAll("*").remove();
+
+function triangulo(points)
+{svg.append("polygon")
+  .attr("points", points.map(d => d.join(",")).join(" "))
+  .attr("fill", "none")
+  .attr("stroke", "black")
+  .attr("stroke-width", 1);
+}
+
+function textoHor(tt,  x, y)
+{
+svg.append("text")
+  .attr("x", x) // Posição x do texto
+  .attr("y", y) // Posição y do texto
+  .attr("font-size", "18px") // Tamanho da fonte
+  .attr("fill", "black") // Cor do texto
+  .text(tt); // Conteúdo do texto
+}
+
+var escala = 0.5;
+var dini = 15;
+
+const points1 = [ [dini+0, dini+0],   [dini+400*escala, dini+0],   [dini+0, dini+300*escala] ] ;
+const points2 = [ [dini+400*escala, dini+0],   [dini+700*escala, dini+0],   [dini+700*escala, dini+400*escala] ] ;
+const points3 = [ [dini+700*escala, dini+400*escala],   [dini+700*escala, dini+700*escala],   [dini+300*escala, dini+700*escala] ] ;
+const points4 = [ [dini+300*escala, dini+700*escala],   [dini+0, dini+700*escala],   [dini+0, dini+300*escala] ] ;
+
+// Adiciona o triângulo ao SVG
+triangulo(points1);
+triangulo(points2);
+triangulo(points3);
+triangulo(points4);
+
+//Labels
+textoHor("a",  95, 12);
+textoHor("b",  3,85);
+textoHor("c",  95, 92);
+ 
+textoHor("b",  280, 12);
+textoHor("a",  370, 98);
+textoHor("c",  270, 120);
+
+
+textoHor("b",  85, 380);
+textoHor("a",  3, 285);
+textoHor("c",  95, 262);
+
+
+textoHor("a",  280, 380);
+textoHor("b",  370, 300);
+textoHor("c",  250, 280);
+
+</script>
+
+
+<br>
+<hr>
+
+<p>Veja também: <a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a> </p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+	
+</body>   
+</html>  
+
+
+
+	

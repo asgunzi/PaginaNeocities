@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Visualizador Mod</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://unpkg.com/mathjs/lib/browser/math.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+
+<style>
+input[type=text] {
+  width: 5%;
+}  
+</style>
+
+</head>
+
+<body>
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+
+<h1>Visualizador Módulo</h1>
+
+
+<form>
+	a:
+	<input type="text" id="idA" onchange="Desenhar()" value="18">
+	<p> </p>
+	b:
+	<input type="text" id="idB" onchange="Desenhar()" value="20">
+	<p> </p>
+	m:
+	<input type="text" id="idM" onchange="Desenhar()" value="5">
+
+	<button type = "button"  onclick="Desenhar()" tabindex = "0">Rodar</button>  
+		
+</form>
+
+
+<div id = "visMod"></div>
+<br>
+<hr>
+
+<p>Veja também: <a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a> </p>
+
+
+<script type = "text/javascript">
+	'use strict';
+
+    var svg = d3.select("#visMod")
+        .append("svg")
+        .attr("width", 1200)
+        .attr("height", 1000);
+
+
+
+    Desenhar();
+	
+	function Desenhar()
+	{
+	svg.selectAll("*").remove();
+
+	let a =parseInt(d3.select("#idA").property("value"));
+	let b =parseInt(d3.select("#idB").property("value"));
+	let m =parseInt(d3.select("#idM").property("value"));
+	
+	let d;
+	let resto;
+	let i;
+	let j;
+	let inicio;
+	let raio;
+	let deltaIni1;
+	let deltaIni2;
+	
+	//Calcula tamanho do raio
+	raio = Math.min(20, 500/(2.5*m));
+	
+	if (a>b)
+	{
+	 deltaIni1 = 0;
+	 deltaIni2 = Math.ceil(a / m) - Math.ceil(b / m);
+	}
+	else
+	{
+	 deltaIni1 = Math.ceil(b / m) - Math.ceil(a / m);
+	 deltaIni2 = 0;
+	}
+
+	 
+	//Plota primeiro bloco
+	d = Math.floor(a / m);
+	resto = a % m;
+	
+	
+	//Plota o resto
+	inicio=50 + deltaIni1*(2.5*raio);
+	
+	for (i =0; i<resto; i++)
+	{
+	svg.append("circle")
+	  .attr("cx", i*(2.5*raio)+50)
+	  .attr("cy", inicio)
+	  .attr("r", raio)		  
+	  .attr("stroke", "black")
+	  .attr("fill", "goldenrod");
+	}
+	
+	resto > 0 ? inicio = 50+(2.5*raio) : inicio = 50;
+	
+	inicio += deltaIni1*(2.5*raio);
+	
+	//Plota a divisao
+	for (i =0; i<m; i++)
+	{
+		for(j =0; j< d;j++)
+		{
+			svg.append("circle")
+			  .attr("cx", i*(2.5*raio)+50)
+			  .attr("cy", j*(2.5*raio)+inicio)
+			  .attr("r", raio)		  
+			  .attr("stroke", "black")
+			  .attr("fill", "goldenrod");
+		}
+	}
+	
+	//Plota segundo bloco	
+	d = Math.floor(b / m);
+	resto = b % m;
+	
+	inicio = 50  + deltaIni2*(2.5*raio);;
+
+	//Plota o resto
+	for (i =0; i<resto; i++)
+	{
+	svg.append("circle")
+	  .attr("cx", i*(2.5*raio)+600)
+	  .attr("cy", inicio)
+	  .attr("r", raio)		  
+	  .attr("stroke", "black")
+	  .attr("fill", "darkblue");
+	}
+
+	resto > 0 ? inicio = 50 +(2.5*raio) : inicio = 50;
+	
+	inicio +=  deltaIni2*(2.5*raio);
+	//Plota a divisao
+	for (i =0; i<m; i++)
+	{
+		for(j =0; j< d;j++)
+		{
+			svg.append("circle")
+			  .attr("cx", i*(2.5*raio)+600)
+			  .attr("cy", j*(2.5*raio)+inicio)
+			  .attr("r", raio)		  
+			  .attr("stroke", "black")
+			  .attr("fill", "darkblue");
+		}
+	}
+	
+	}
+	
+</script>
+
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+
+</body>
+</html>

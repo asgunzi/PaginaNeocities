@@ -1,0 +1,233 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+<p>Núm. voltas:</p>
+<form>
+		  <select onchange = "Desenhar()" name="Camadas" id="SelectCamadas">
+		    
+		    <option value="1">1</option>
+		    <option value="2" >2</option>
+		    <option value="3">3</option>
+		    <option value="4">4</option>
+		    <option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+		    <option value="15" selected>15</option>
+		    <option value="50">50</option>
+		    <option value="100">100</option>			
+			<option value="150">150</option>			
+		    <option value="200">200</option>			
+		    
+		  </select>		  
+</form>
+		
+<p id  = "svgUlam"></p>
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+<script type = "text/javascript">
+    var svg = d3.select("#svgUlam")
+        .append("svg")
+        .attr("width", 1820)
+        .attr("height", 1500);
+   
+	Desenhar();
+	
+	function Retangulo(x,y, lado,strColor, delayInMilli)
+	{
+		setTimeout(function() {
+
+		svg.append("rect")
+		  .attr("x", x)
+		  .attr("y", y)
+		  .attr("width", lado)
+		  .attr("height", lado)
+		  .attr("stroke", "gray")
+		  .attr("fill", strColor);
+		 }, delayInMilli);
+
+	}
+	
+    function sieve(n)
+    {
+    var arrSieve = [];
+	nmax = Math.floor(Math.sqrt(n));
+	
+	//Preenche tudo com 1
+	  for (i=1; i <= n;i++)
+	{
+	arrSieve.push(1);
+	}
+    
+    for (i=2; i <= nmax+1;i++)
+	{
+        if (arrSieve[i] ==1)
+		{
+            imax = Math.ceil(n/i);
+            for (k=2; k< imax; k++)
+			{
+                arrSieve[k*i] = 0;
+			}
+		}
+    }
+
+		
+	return(arrSieve);
+    }
+
+
+	function Desenhar()
+	{
+	svg.selectAll("*").remove();
+
+	//---------------------------------------------------------------
+	
+	var x;
+	var y;
+	var raio;
+	var count =0;
+	var sequencia=[];
+	var maxStep=1;
+	var count;
+	var direcao = 0;
+	var i; 
+	var k;
+	var delayInMilliseconds;
+	var p;
+	
+	x =550;
+	y = 550;
+	
+	sequencia.push("direita");
+	sequencia.push("baixo");
+	sequencia.push("esquerda");
+	sequencia.push("cima");
+
+	numCamadas =d3.select("#SelectCamadas").property("value");
+
+	raio = 25 - 15*numCamadas/200;
+	
+	//Plot initial hexagon
+	Retangulo(x,y, raio, 'gray');
+	count =2;
+	
+	arrSieve = sieve(10110); //Numero suficientemente grande
+	
+	for (i=1; i<=numCamadas; i++)
+	{
+		switch(sequencia[direcao]) {
+			  case "direita":
+				// code block
+				for (k = 1; k <=maxStep; k++)
+				{
+					x += raio;				
+					if (arrSieve[count] ==0)
+					{
+						Retangulo(x,y, raio, 'gray', 5*(i*maxStep+k));
+					}
+					else
+					{
+						Retangulo(x,y, raio, 'goldenrod', 5*(i*maxStep+k));
+					}					
+				      count = count + 1;
+				}			
+				break;
+			  case "baixo":
+				for (k = 1; k <=maxStep; k++)
+				{
+					y += raio;				
+					if (arrSieve[count] ==0)
+					{
+						Retangulo(x,y, raio, 'gray', 5*(i*maxStep+k));
+					}
+					else
+					{
+						Retangulo(x,y, raio, 'goldenrod', 5*(i*maxStep+k));
+					}					
+				      count = count + 1;
+				}
+				break;
+			  case "esquerda":
+				for (k = 1; k <=maxStep; k++)
+				{
+					x -= raio;				
+					if (arrSieve[count] ==0)
+					{
+						Retangulo(x,y, raio, 'gray', 5*(i*maxStep+k));
+					}
+					else
+					{
+						Retangulo(x,y, raio, 'goldenrod', 5*(i*maxStep+k));
+					}					
+				      count = count + 1;
+				}
+					break;
+				case "cima":
+				for (k = 1; k <=maxStep; k++)
+				{
+					y -= raio;				
+					if (arrSieve[count] ==0)
+					{
+						Retangulo(x,y, raio, 'gray', 5*(i*maxStep+k));
+					}
+					else
+					{
+						Retangulo(x,y, raio, 'goldenrod', 5*(i*maxStep+k));
+					}					
+				      count = count + 1;
+				}
+			}
+			direcao = i % 4;
+			
+			if (i %2 ==0)
+			{
+				maxStep +=1;
+				
+			}
+			
+			if (i==numCamadas-1)
+			{ //Para corrigir o último quadrado
+				maxStep-=1;
+			}
+			
+	}
+	
+	}
+
+
+	
+  </script>
+
+
+</body>
+</html>

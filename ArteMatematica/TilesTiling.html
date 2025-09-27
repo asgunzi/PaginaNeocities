@@ -1,0 +1,257 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+<div class="slidecontainer" onchange= "Desenhar()">
+<form>
+
+Espessura: 
+  <input type="range" min="50" max="100" value="70" class="slider" id="myRange">
+
+    <label for="headColor">Cor 1</label>
+    <input type="color" id="headColor" name="headColor"
+           value="#80aaff">
+
+    <label for="headColor">Cor 2</label>
+    <input type="color" id="Cor2" name="Cor2"
+           value="#80aaff">
+
+</form>
+
+</div>
+
+<p id="svgRef"></p>
+
+
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+<script>
+// Defina as propriedades do hexágono
+var width = 1000; // largura do contêiner SVG
+var height = 800; // altura do contêiner SVG
+
+
+// Crie um contêiner SVG
+var svg = d3.select("#svgRef")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+
+function Desenhar()
+{
+	var x;
+	var y;
+	var R;
+	var dx0;
+	var arrRnd=[];
+	var idxi;
+	var idxj;
+	var delayInMilliseconds =0;
+	var par1;
+	var par2;
+	
+	R = parseInt(d3.select("#myRange").property("value"));
+	x=100;
+	y=100;
+
+	svg.selectAll("*").remove();
+
+	for (i=0; i< 50; i++)
+		for (j=0; j< 50; j++)
+			arrRnd.push(i + 50*j);
+	
+	//shuffle(arrRnd);
+
+	for (i =0; i <50; i++)
+		for (j=0;j<50; j++)
+		{
+
+		idxi = arrRnd[i +50*j] % 50;
+		idxj = Math.floor(arrRnd[i +50*j] / 50);
+	
+			delayInMilliseconds +=5;
+				par1 = idxi*R;
+				par2 = idxj*R;
+				
+				setTimeout(Tiras.bind(null,par1,par2,R), delayInMilliseconds,par1,par2,R);	  
+			
+			}	
+				
+		
+}
+
+function shuffle(array) {
+	for (let i = array.length - 1; i > 0; i--) {
+		let j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
+		[array[i], array[j]] = [array[j], array[i]];
+	}
+}
+
+function Tiras(xi,yi,Ri,ncolors)
+	{
+		//Posicao xi, yi
+		//Raio Ri
+		//Número de pontos n
+		//var cor1 =d3.schemeCategory20c[Math.floor(Math.random() * ncolors)];
+		var cor1 = d3.select("#headColor").property("value");
+		var cor2 = d3.select("#Cor2").property("value");
+		
+		if (Math.random()>0.5)
+		{	
+			svg.append("rect")
+		  .attr("x", xi)
+		  .attr("y", yi+8)
+		  .attr("width", Ri)
+		  .attr("height", Ri-16)
+		  .attr("stroke", cor1)
+		  .attr("stroke-width", 1)
+		  .attr("fill", cor1);
+
+			svg.append("rect")
+		  .attr("x", xi)
+		  .attr("y", yi+7)
+		  .attr("width", Ri)
+		  .attr("height", 2)
+		  .attr("stroke", "black")
+		  .attr("stroke-width", 1)
+		  .attr("fill", "black");
+
+
+			svg.append("rect")
+		  .attr("x", xi)
+		  .attr("y", yi+7+Ri-16)
+		  .attr("width", Ri)
+		  .attr("height", 2)
+		  .attr("stroke", "black")
+		  .attr("stroke-width", 1)
+		  .attr("fill", "black");
+
+			//Traço no outro sentido
+			svg.append("rect")
+		  .attr("x", xi+8)
+		  .attr("y", yi)
+		  .attr("width", Ri-16)
+		  .attr("height", Ri)
+		  .attr("stroke", cor2)
+		  .attr("stroke-width", 1)
+		  .attr("fill", cor2);
+		  
+		  svg.append("rect")
+		  .attr("x", xi+7)
+		  .attr("y", yi)
+		  .attr("width", 2)
+		  .attr("height", Ri)
+		  .attr("stroke", "black")
+		  .attr("stroke-width", 1)
+		  .attr("fill", "black");
+
+
+			svg.append("rect")
+		  .attr("x", xi+7+Ri-16 )
+		  .attr("y", yi)
+		  .attr("width", 2)
+		  .attr("height", Ri)
+		  .attr("stroke", "black")
+		  .attr("stroke-width", 1)
+		  .attr("fill", "black");
+		}
+		else 
+		{	
+			svg.append("rect")
+		  .attr("x", xi+8)
+		  .attr("y", yi)
+		  .attr("width", Ri-16)
+		  .attr("height", Ri)
+		  .attr("stroke", cor2)
+		  .attr("stroke-width", 1)
+		  .attr("fill", cor2)
+
+			svg.append("rect")
+		  .attr("x", xi+7)
+		  .attr("y", yi)
+		  .attr("width", 2)
+		  .attr("height", Ri)
+		  .attr("stroke", "black")
+		  .attr("stroke-width", 1)
+		  .attr("fill", "black");
+
+			svg.append("rect")
+		  .attr("x", xi+7+Ri-16)
+		  .attr("y", yi)
+		  .attr("width", 2)
+		  .attr("height", Ri)
+		  .attr("stroke", "black")
+		  .attr("stroke-width", 1)
+		  .attr("fill", "black");
+
+		//Outro sentido
+			svg.append("rect")
+		  .attr("x", xi)
+		  .attr("y", yi+8)
+		  .attr("width", Ri)
+		  .attr("height", Ri-16)
+		  .attr("stroke", cor1)
+		  .attr("stroke-width", 1)
+		  .attr("fill", cor1)
+
+		  svg.append("rect")
+		  .attr("x", xi)
+		  .attr("y", yi +7)
+		  .attr("width", Ri)
+		  .attr("height", 2)
+		  .attr("stroke", "black")
+		  .attr("stroke-width", 1)
+		  .attr("fill", "black");
+
+		  svg.append("rect")
+		  .attr("x", xi)
+		  .attr("y", yi+7+Ri-16)
+		  .attr("width", Ri)
+		  .attr("height", 2)
+		  .attr("stroke", "black")
+		  .attr("stroke-width", 1)
+		  .attr("fill", "black");
+
+		}
+		
+		  
+	}
+
+Desenhar();
+       		 
+		 
+</script>
+
+</body>
+</html>

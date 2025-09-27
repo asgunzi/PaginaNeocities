@@ -1,0 +1,239 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css"/>
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+<h1>A curva de Bézier</h1>
+
+<p>Arraste as bolinhas para uma nova curva</p>
+
+<div class="slidecontainer" onchange= "Desenhar()">
+  N. Pontos
+  <input type="range" min="5" max="30" value="15" class="slider" id="rngPontos">
+  
+  Velocidade
+  <input type="range" min="100" max="5000" value="500" class="slider" id="rngVelocidade">
+  
+</div>
+
+<p id = "svgBezier"></p>
+
+<br>
+<hr>
+<p>By: Arnaldo Gunzi</p>
+
+<p>Colaboração: Ernee Kozyreff</p>
+
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+<script>
+
+    var svg = d3.select("#svgBezier")
+        .append("svg")
+        .attr("width", 1200)
+        .attr("height", 800);
+   
+	svg.selectAll("*").remove();
+
+	//Desenha circulos
+	var x1 = 100; 
+	var y1 = 40;
+	var x2 = 250; 
+	var y2 = 290;
+	var x3 = 690; 
+	var y3 = 24;
+	var x4 = 800; 
+	var y4 = 350;
+	
+	//Círculos para marcar
+	var p1 = svg.append('circle').attr('class', 'circles2').attr('id','p1').attr('cx', x1).attr('cy', y1).attr('r', 10).attr('stroke', 'darkblue').attr('fill', 'darkblue');
+
+	var p2 = svg.append('circle').attr('class', 'circles2').attr('id','p2').attr('cx', x2)
+			.attr('cy', y2).attr('r', 10).attr('stroke', "darkblue").attr('fill', "darkblue");
+    
+	var p3 = svg.append('circle').attr('class', 'circles2').attr('id','p3').attr('cx', x3)
+			.attr('cy', y3).attr('r', 10).attr('stroke', "darkblue").attr('fill', "darkblue");
+	var p4 = svg.append('circle').attr('class', 'circles2').attr('id','p4').attr('cx', x4)
+			.attr('cy', y4).attr('r', 10).attr('stroke', "darkblue").attr('fill', "darkblue");
+
+	var drag_handler = d3.drag()
+	.on("drag", function(d) {
+	  d3.select(this)
+		.attr("cx", d3.event.x)
+		.attr("cy", d3.event.y);
+		Desenhar();
+		});
+  
+	//drag_handler("#circle");
+	drag_handler(svg.selectAll(".circles2"));
+
+	Desenhar();
+	
+	function desenhaCirculo(x, y,cor,tamanho,d)
+	{
+		svg.append('circle')
+		.attr('class', 'apoio')
+		.transition()
+		.delay(d)
+		.attr('cx', x)
+		.attr('cy', y)
+		.attr('r', tamanho)
+		.attr('stroke', cor)
+		.attr('fill', cor);
+	}
+	
+	function desenhaReta(xa,ya,xb,yb,cor, width)
+	{
+		svg.append('line')		  
+		  .attr('x1', xa)
+		  .attr('y1', ya)
+		  .attr('x2', xb)
+		  .attr('y2', yb)
+		  .attr('class', 'apoio')
+		  .attr('stroke', cor)
+		  .attr('fill', cor)
+		  .attr('stroke-width', width);
+	}
+
+	function colocaTexto(xa, ya, strTexto,dx)
+	{
+	svg.append("text")
+	.text(strTexto)
+	.attr('class', 'apoio')
+	.attr("x", parseInt(xa)+parseInt(dx))
+	.attr("y",  parseInt(ya) +5);
+	}
+
+	function Desenhar()
+	{
+	
+	var i;
+	var j;
+		
+	var p;
+	
+	var xreta1;
+	var yreta1;
+
+	var xreta2;
+	var yreta1;
+
+	var xbez;
+	var ybez;
+	
+	var ndivisoes;
+	var delayInMilliseconds=0;
+	var retaAux;
+	
+	var deltaX, deltaY;
+	var teste1;
+
+	var x1plus; 
+	var y1plus;
+	var x2plus; 
+	var y2plus;
+	var x3plus; 
+	var y3plus;
+	var x4plus; 
+	var y4plus;
+	
+	
+	svg.selectAll(".apoio").remove();
+
+
+	x1plus = parseInt(document.getElementById('p1').getAttribute("cx"));
+	y1plus = parseInt(document.getElementById('p1').getAttribute("cy"));
+	x2plus = parseInt(document.getElementById('p2').getAttribute("cx"));
+	y2plus = parseInt(document.getElementById('p2').getAttribute("cy"));
+	x3plus = parseInt(document.getElementById('p3').getAttribute("cx"));
+	y3plus = parseInt(document.getElementById('p3').getAttribute("cy"));
+	x4plus = parseInt(document.getElementById('p4').getAttribute("cx"));
+	y4plus = parseInt(document.getElementById('p4').getAttribute("cy"));
+	
+	colocaTexto(x1plus,y1plus,"P1", -30);
+	colocaTexto(x2plus,y2plus,"P2",-30);
+	colocaTexto(x3plus,y3plus,"P3",12);
+	colocaTexto(x4plus,y4plus,"P4",12);
+
+
+	//Plota retas
+	desenhaReta(x1plus,y1plus,x2plus,y2plus,"darkblue",3);
+	desenhaReta(x3plus,y3plus,x4plus,y4plus,"darkblue",3);
+	
+	var tempomax = (5000 -parseInt(d3.select("#rngVelocidade").property("value")));
+	var ndivisoes = parseInt(d3.select("#rngPontos").property("value"));
+
+	//Plota pontos do Beziers	
+	
+	
+	for (p = 0; p <ndivisoes+1; p++)
+	{	
+		xreta1 = x1plus + p*(x2plus-x1plus)/ndivisoes;
+		yreta1 = y1plus + p*(y2plus-y1plus)/ndivisoes;
+		
+		xreta2 = x4plus + p*(x3plus-x4plus)/ndivisoes;
+		yreta2 = y4plus + p*(y3plus-y4plus)/ndivisoes;
+	
+		if (p==0)
+		{
+		retaAux = svg.append('line')
+		  .attr('x1', xreta1)
+		  .attr('y1', yreta1)
+		  .attr('x2', xreta2)
+		  .attr('y2', yreta2)
+		  .attr('class', 'apoio')
+		  .attr('id','retaAux')
+		  .attr('stroke', 'black')
+		  .attr('fill', 'black')
+		  .attr('stroke-width', 0.5);
+
+		}
+		else
+		{
+		retaAux.transition()
+		.delay(tempomax*(p)/(ndivisoes))
+		.attr('x1', xreta1)
+		.attr('y1', yreta1)
+		.attr('x2', xreta2)
+		.attr('y2', yreta2);
+		}
+		xbez = xreta1+ p*(xreta2-xreta1)/ndivisoes;
+		ybez = yreta1+ p*(yreta2-yreta1)/ndivisoes;
+				
+		if (p>0 && p<ndivisoes)
+		{
+			desenhaCirculo(xbez, ybez,"red",3, tempomax*(p)/(ndivisoes));
+		}
+	}
+	
+	}
+
+</script>
+</body>
+</html>

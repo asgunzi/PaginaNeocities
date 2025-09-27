@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+<h1>Gerador de Random Walk</h1>
+<form>
+	<button type = "button"  onclick="Desenhar()" tabindex = "0">Rodar</button>  		
+</form>
+
+
+<p id="destino"></p>
+
+
+<br>
+<hr>
+
+<p>Veja também: <a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a> </p>
+
+<script type = "text/javascript">
+    var svg = d3.select("#destino")
+        .append("svg")
+        .attr("width", 1200)
+        .attr("height", 900)
+
+	Desenhar();
+
+	function Desenhar()
+	{
+	svg.selectAll("*").remove();
+
+	//---------------------------------------------------------------
+	let raio =30;
+	let angulo;
+	let  i;
+	let x1 = 600;
+	let y1 = 450;
+	let x2;
+	let y2;
+	var delayInMilliseconds=0;
+
+
+	for (i=0; i<500;i++)
+	{
+	delayInMilliseconds +=50;
+	setTimeout(function() {
+		//Angulo aleatório
+		angulo = Math.random()*2*3.14159;
+	 
+		x2  = x1 + raio*Math.cos(angulo);
+		y2  = y1 + raio*Math.sin(angulo);
+		svg.append("line")
+		  .attr("x1", x1)
+		  .attr("y1", y1)
+		  .attr("x2", x2)
+		  .attr("y2", y2)		  
+		  .attr("stroke", "black")
+		  .attr("stroke-width", 1)
+		  x1 = x2;
+		  y1 = y2;
+		 }, delayInMilliseconds);
+	}
+	
+
+	}
+	
+  </script>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+</body>
+</html>

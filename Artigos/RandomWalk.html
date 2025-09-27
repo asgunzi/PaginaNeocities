@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+code{
+ font-size: 16px;
+}
+img {
+  padding-left: 20px;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+
+
+<h1> Passeios aleatórios e bêbados errantes </h1> 
+
+<p>Imagine um bêbado andando numa praça. Ele está sob forte efeito etílico... por isso, a partir de sua posição, pode andar para qualquer direção. Os passos seguintes seguem o mesmo padrão: um passo numa direção aleatória, com qualquer ângulo com a mesma probabilidade. Por conta disso, esse tipo de caminho é chamado de random walk.</p>
+
+<p>Fiz um simuladorzinho de Random Walk, disponível aqui:</p>
+
+<form>
+	<button type = "button"  onclick="Desenhar()" tabindex = "0">Rodar</button>  		
+</form>
+
+<p id="destino"></p>
+
+<p>Uma foto da visualização aqui:</p>
+
+<img src="../Figuras/RandomWalkFig.png">
+
+<p>Este tipo de modelo pode ser utilizado no mercado financeiro (afinal, como saber se uma ação vai subir ou não?), modelos biológico (como o movimento de formigas), e modelos como de partículas num gás - o movimento Browniano. </p>
+
+<p>O domínio mostrado nas figuras é o 2D. De forma similar, é possível pensar em random walk em uma dimensão (imagine o bêbado num ponto onde ele pode só ir para frente ou para trás), duas dimensões, três, etc...</p>
+
+<p>Uma pergunta especialmente interessante é "o problema do andar do bêbado". Será que, se ele andar o suficiente, um dia vai voltar exatamente à posição inicial? Já que ele sempre tem a mesma probabilidade de ir para a direita ou esquerda, para cima ou para baixo, parece razoável supor que sim: se o número de passos tender a infinito, cedo ou tarde o nosso amigo cachaceiro volta ao ponto de partida.</p>
+
+<p>Na verdade, quando o número de passos tende a infinito, a probabilidade do bêbado alcançar qualquer posição (não apenas a posição inicial) tende a 1 - isso no plano 2D.</p>
+
+<p>Gif da simulação de random walk.</p>
+
+<img src="https://ideiasesquecidas.files.wordpress.com/2023/01/randomwalk02.gif">
+
+<p>No caso 3D, o número de alternativas cresce tanto que o nosso herói pode sim se perder, e nunca mais retornar ao início, mesmo com infinitos passos. Essa probabilidade é de 34% (vide links abaixo).</p>
+
+<p>Há algumas obras de arte utilizando random walks, só que eu nunca achei muito bonitas. Então, pedi para o Dall-E criar um bêbado andando aleatoriamente, ao estilo de Van Gogh, e temos a figura a seguir.</p>
+
+<img src="https://ideiasesquecidas.files.wordpress.com/2023/01/random-van-gogh.png">
+
+<p>Há dois livros bem interessantes sobre "random walk":</p>
+
+
+<h2>1 - A random walk down Wall Street - Burton Malkiel</h2>
+
+
+<p>Investir é difícil. O autor defende que o mercado acionário se comporta como um random walk. Por isso, é extremamente difícil escolher uma ação que vai bombar, e também saber qual será o mico (como no caso das Americanas, recentemente).</p>
+
+<p>Você não consegue bater o mercado. Uma boa estratégia é investir em fundos que acompanham o índice de ações, porque dilui o risco e captura o crescimento médio do mercado como um todo.</p>
+
+<p>Link da Amazon: <a href ="https://amzn.to/3D4HDmK">https://amzn.to/3D4HDmK</a></p>
+
+<img src="https://ideiasesquecidas.files.wordpress.com/2023/01/randomwalkdownstreet.jpg">
+
+
+<h2>2 - O andar do bêbado - Leonard Mlodinow</h2>
+
+<p>Olhando a vida como um random walk, ocorrem inúmeros aspectos randômicos que poderiam ter mudado nossa vida.</p>
+
+<p>Não temos ação sobre a sorte, a fortuna. Os vencedores que louvamos não são apenas competentes, também tiveram sorte na vida.</p>
+
+<p>Olhe para o processo. Pelo que as pessoas são, pelos princípios, pelo que elas fazem, e não pelos resultados.</p>
+
+<p>Voltando ao tema das Americanas, muita gente admirava os 3 bilionários do 3G pelos resultados. Mas, olhando pelo processo em suas empresas, tinha muita coisa questionável, no mínimo: espremer fornecedores até quase acabar com eles, longas jornadas e cobrança nos funcionários, muita agressividade em todos os movimentos (como cortes de custos, desinvestimentos), e, agora, até maquiagem contábil (talvez não tenha sido eles, mas essa cultura agressiva não ajuda).</p>
+
+<p>Link da Amazon: <a href="https://amzn.to/3wo08Pz">https://amzn.to/3wo08Pz</a></p>
+
+<img src="https://ideiasesquecidas.files.wordpress.com/2023/01/andar-bebado.jpg">
+
+<hr>
+
+
+<p>Por fim, já que estamos falando de bêbados aleatórios, segue a trilha sonora deste post.</p>
+
+<p>Trilha Sonora: O bêbado e o equilibrista - Elis Regina</p>
+
+<p><a href = "https://www.youtube.com/watch?v=6kVBqefGcf4">https://www.youtube.com/watch?v=6kVBqefGcf4</a></p>
+
+
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://mathworld.wolfram.com/RandomWalk2-Dimensional.html">https://mathworld.wolfram.com/RandomWalk2-Dimensional.html</a></p>
+
+<p><a href="https://www.wolframalpha.com/input/?i=random+walk%E2%80%943-dimensional">https://www.wolframalpha.com/input/?i=random+walk%E2%80%943-dimensional</a></p>
+
+
+<p><a href="https://ideiasesquecidas.com/2020/01/18/iludidos-pelo-acaso/">https://ideiasesquecidas.com/2020/01/18/iludidos-pelo-acaso/</a></p>
+
+<p><a href="https://asgunzi.neocities.org/">Forgotten Math</a></p>
+
+
+<br>
+<hr>
+
+<p>Veja também: <a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a> </p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+<script type = "text/javascript">
+    var svg = d3.select("#destino")
+        .append("svg")
+        .attr("width", 1200)
+        .attr("height", 900)
+
+	Desenhar();
+
+	function Desenhar()
+	{
+	svg.selectAll("*").remove();
+
+	//---------------------------------------------------------------
+	let raio =30;
+	let angulo;
+	let  i;
+	let x1 = 600;
+	let y1 = 450;
+	let x2;
+	let y2;
+	var delayInMilliseconds=0;
+
+
+	for (i=0; i<500;i++)
+	{
+	delayInMilliseconds +=50;
+	setTimeout(function() {
+		//Angulo aleatório
+		angulo = Math.random()*2*3.14159;
+	 
+		x2  = x1 + raio*Math.cos(angulo);
+		y2  = y1 + raio*Math.sin(angulo);
+		svg.append("line")
+		  .attr("x1", x1)
+		  .attr("y1", y1)
+		  .attr("x2", x2)
+		  .attr("y2", y2)		  
+		  .attr("stroke", "black")
+		  .attr("stroke-width", 1)
+		  x1 = x2;
+		  y1 = y2;
+		 }, delayInMilliseconds);
+	}
+	
+
+	}
+	
+  </script>
+
+</body>
+</html>

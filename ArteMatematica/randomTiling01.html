@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+<h1> Random Tiling - V1 </h1>
+  
+  <form>
+		N. cores:
+		  <select onchange = "Desenhar()" name="Pontos" id="SelectPontos">
+		    
+		    <option value="1">1</option>
+		    <option value="2"selected>2</option>
+		    <option value="3">3</option>
+		    <option value="4">4</option>
+		    <option value="5">5</option>
+		    <option value="6">6</option>
+		    <option value="7">7</option>
+		    <option value="8">8</option>			
+			<option value="9">9</option>			
+			<option value="10">10</option>			
+		  </select>		  
+		</form>
+
+  <div class="slidecontainer" onchange= "Desenhar()">
+  Zoom:
+  <input type="range" min="30" max="100" value="50" class="slider" id="myRange">
+	<button type = "button"  onclick="Desenhar()" tabindex = "0">Gerar</button>  
+
+</div>
+	<br>
+	
+    <p><svg id="sgvRndTiling" width="800" height="800"></svg></p>
+
+
+
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+
+    <script>
+      var svg = d3.select("#sgvRndTiling"),
+        width = +svg.attr("width"),
+        height = +svg.attr("height");
+
+	function Desenhar()
+	{
+	var escala = parseInt(d3.select("#myRange").property("value"));	
+	var r = escala/3;	
+	var ncores = parseInt(d3.select("#SelectPontos").property("value"));	
+	
+	svg.append("rect")
+		  .attr("x", 0)
+		  .attr("y", 0)
+		  .attr("width", 800)
+		  .attr("height", 800)
+		  .attr("stroke", "0")
+		  .attr("fill", "lightgray");
+		  
+	for (i =0; i <50; i++)
+		for (j=0;j<50; j++)
+			svg.append("circle")
+		  .attr("cx", i*escala)
+		  .attr("cy", j*escala)
+		  .attr("r", r)
+		  .attr("stroke", "black")
+		  .attr("stroke-width", 1)
+		  .attr("fill", function(d) {
+          return d3.schemeCategory10[Math.floor(Math.random() * ncores)];
+        });
+
+
+	for (i =0; i <50; i++)
+		for (j=0;j<50; j++)
+			svg.append("rect")
+		  .attr("x", -r/2+i*escala)
+		  .attr("y", -2*r+j*escala)
+		  .attr("width", r)
+		  .attr("height", r)
+		  .attr("stroke", "black")
+		  .attr("stroke-width", 1)
+		  .attr("fill", function(d) {
+          return d3.schemeCategory10[Math.floor(Math.random() * ncores)];
+        });
+
+	for (i =0; i <50; i++)
+		for (j=0;j<50; j++)
+			svg.append("rect")
+		  .attr("x", -2*r+i*escala)
+		  .attr("y", -r/2+j*escala)
+		  .attr("width", r)
+		  .attr("height", r)
+		  .attr("stroke", "black")
+		  .attr("stroke-width", 1)
+		  .attr("fill", function(d) {
+          return d3.schemeCategory10[Math.floor(Math.random() * ncores)];
+        });
+	}
+	
+	Desenhar();
+    </script>
+
+</body>
+</html>

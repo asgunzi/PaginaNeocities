@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+
+<h1>Fractal Sierpinski Triângulo</h1>
+
+
+
+<form>
+  Profundidade do fractal
+  <select onchange = "Desenhar()" id="SelectProfund">
+    
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3" selected >3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+  </select>   
+</form>
+
+<p id = "svg01"></p>
+
+
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+<script>
+    var svg = d3.select("#svg01")
+        .append("svg")
+        .attr("width", 1500)
+        .attr("height", 800);
+      
+	Desenhar();
+
+	function Triangulo(x,y,h)
+	{
+		//Posicao x, y do ponto superior
+		//Altura h
+
+		var pontos;
+		var i;
+		var angulo;
+		
+		angulo=30*Math.PI/180;
+		pontos= x + "," + y + " ";
+
+		//Adiciona ponto inferior direito
+		pontos += (x + Math.tan(angulo)*h)+ "," + (y+h) + " "; 
+
+		//Adiciona ponto inferior esquerdo
+		pontos += (x - Math.tan(angulo)*h)+ "," + (y+h) + " "; 
+		 
+		svg.append("polygon")
+		  .attr("points", pontos)   
+		  .attr("stroke", "black")
+		  .attr("fill", "transparent");       
+	}
+
+	function Sierp(x0,y0,h,profundidade)
+	{
+	//Cria um triângulo em (x0,y0), com altura h
+	Triangulo(x0,y0, h);
+	
+	//Chama mais três vezes a função, agora para os subtriângulos superior, inferior direita e inferior esquerda
+	
+	//Isso se a profundidade permitir
+	if (profundidade>0)
+	{
+		Sierp(x0,y0, h/2, profundidade-1);	
+		Sierp(x0 + h*Math.tan(30*Math.PI/180)/2, y0 + h/2, h/2, profundidade-1);	
+		Sierp(x0 - h*Math.tan(30*Math.PI/180)/2, y0 + h/2, h/2, profundidade-1);	
+	}
+	
+	}
+
+	function Desenhar()
+	{
+	svg.selectAll("*").remove();
+
+	//---------------------------------------------------------------
+	var profundidade;
+	
+	profundidade = parseInt(d3.select("#SelectProfund").property("value"));
+		
+		
+	var x0 = 400;
+	var y0 = 0;
+	
+	Sierp(x0,y0, 400, profundidade);
+	
+	}
+	
+	
+
+</script>
+
+</body>
+</html>

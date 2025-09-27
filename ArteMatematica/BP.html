@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+<p id = "svg1"> </p>
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+<script>
+
+    var svg = d3.select("#svg1")
+        .append("svg")
+        .attr("width", 1200)
+        .attr("height", 800);
+
+   
+	Desenhar();
+
+	function Desenhar()
+	{
+	
+	var i;
+	var j;
+	var delayInMilliseconds=0;
+	
+	svg.selectAll("*").remove();
+		
+	for (i=0; i< 30; i++)
+	{
+	
+		
+	delayInMilliseconds +=5;
+	//setTimeout(function (){elo(i)}, delayInMilliseconds,i);
+	setTimeout(elo.bind(null,i), delayInMilliseconds,i);	  
+	}
+	}
+	
+	function elo(i,j,Naleat)
+	{
+	
+	var r = 150;
+	var x0 = 500;
+	var y0 = 300;
+	var R = 120;
+	
+		svg.append("circle")
+		  .attr("cx", x0 + R*Math.cos(2*3.14159*i/30) )
+		  .attr("cy", y0 + R*Math.sin(2*3.14159*i/30) )
+		  .attr("r", r)
+		  .attr("stroke", "black")
+		  .attr("stroke-width", 1)
+		  .attr("fill", "transparent");
+
+		}
+	
+</script>
+
+
+</body>
+</html>

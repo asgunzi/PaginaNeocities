@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+<h1>Visualização de distribuição Gaussiana aleatória</h1>
+<form>
+    <input type="radio" name="choice" value="Linear" id="choice-lin" onchange="Desenhar()" > 
+    <label for="choice-lin">Uniforme</label>
+    <input type="radio" name="choice" value="Normal" id="choice-gauss"  onchange="Desenhar()" checked>
+    <label for="choice-log">Normal</label>
+
+	<button type = "button"  onclick="Desenhar()" tabindex = "0">Rodar</button>  
+</form>
+	
+<p id= "svgGauss"></p>
+
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+<script>
+var svg = d3.select("#svgGauss")
+        .append("svg")
+        .attr("width", 1000)
+        .attr("height", 800);
+   
+   Desenhar();
+
+function Desenhar()
+{
+	svg.selectAll("*").remove();
+
+	var i;
+	var x;
+	var y;
+	var delayInMilliseconds=0;
+	var p;
+	var bin;
+	var ybin = [600,600,600,600,600,600,600,600];
+	var radiolin = document.getElementById("choice-lin").checked;
+	var radiogauss = document.getElementById("choice-gauss").checked;
+	
+	//Plota guias verticais
+	for (p = 0; p <= 800; p  =p+100)
+	svg.append("line").attr("x1", p).attr("y1", 0).attr("x2", p).attr("y2", 630).attr("stroke", "black").attr("stroke-dasharray","10 10");
+
+
+	svg.append("line").attr("x1", 0).attr("y1", 600).attr("x2", 800).attr("y2", 600).attr("stroke", "black");
+
+	//Plota 1000 pontos segundo uma distribuição gaussiana em x e narrow band em y
+	for (i=0; i<250;i++)
+		{
+		delayInMilliseconds +=5;
+		
+		setTimeout(function() {
+		
+			if (radiogauss) 
+			{
+				x = randomGaussian()*800;
+			}
+			else
+			{
+				x = Math.random()*800;
+			}
+			y = Math.random()*200;
+
+			
+			svg.append("circle")		
+			  .attr("cx", x)
+			  .attr("cy", y)
+			  .attr("stroke", "black")
+			  .attr("r", 3)
+			  .attr("fill", "darkblue");
+			
+			bin = Math.floor(x/100);
+			ybin[bin] -= 2;
+
+			svg.append("rect").attr("x", bin*100).attr("y", ybin[bin]).attr("width", 100).attr("height", 2).attr("stroke", "goldenrod").attr("fill", "goldenrod");
+			  
+			 }, delayInMilliseconds);
+
+
+		}
+}
+
+
+function randomGaussian() {
+  let u = 0, v = 0;
+  while(u === 0) u = Math.random(); //Converting [0,1) to (0,1)
+  while(v === 0) v = Math.random();
+  let num = Math.sqrt( -2.0 * Math.log( u ) ) * Math.cos( 2.0 * Math.PI * v );
+  num = num / 10.0 + 0.5; // Translate to 0 -> 1
+  if (num > 1 || num < 0) return randomGaussian(); // resample between 0 and 1
+  return num;
+}
+</script>
+
+</body>
+</html>

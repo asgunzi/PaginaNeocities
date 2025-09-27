@@ -1,0 +1,183 @@
+	<!doctype html>
+	<html>
+	<head>
+	<meta charset="utf-8"/>
+
+	 <title>Teoria dos Números - Divisão</title>
+	 
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+	<style>
+	input[type=text] {
+	  width: 5%;
+	}
+
+	</style>	
+	</head>
+
+
+	<body>
+
+
+	<div class="menu"></div>
+
+	<a href = "../index.html"> <p id="Logo"></p> </a>
+
+
+	<hr>
+
+	<h1>  Divisão entre dois números</h1>
+
+
+<p>Definição. Se a e b são inteiros, dizemos que a divide b, denotando por a|b, se existir um inteiro c tal que b = a*c.</p>
+
+<p>Por exemplo, 12 dividido por 4 = 3, pode ser interpretado por 12 bolinhas, dispostas em 4 colunas, cada coluna com 3 bolinhas de altura.</p>
+
+	<img src="divisao01.png">
+
+
+
+	<p>Convido o leitor a rodar o algoritmo abaixo:</p>
+
+	<form>
+		Numerador:
+		<input type="text" id="idA" onchange="Desenhar()" value="18">
+		<p> </p>
+
+		Denominador:
+		<input type="text" id="idM" onchange="Desenhar()" value="5">
+
+		<button type = "button"  onclick="Desenhar()" tabindex = "0">Rodar</button>  
+			
+	</form>
+
+	<p id= "conteinerDiv"</p>
+
+
+
+	<p><br></p>
+	
+	
+<h2>Definição: O algoritmo da divisão.</h2>
+
+<p>Dados dois inteiros a e b, b>0, existe um único par de inteiros q e r tais que:</p>
+
+<p>a = q*b+r,</p>
+
+<p>com 0<= r < b</p>
+
+<p>q é chamado de quociente e r de resto da divisão de a por b.</p>
+
+<p>Outro exemplo: 8 dividido por 2 = 2 colunas com 4 bolinhas de altura (o quociente). No caso, o resto da divisão é zero.</p>
+
+	<img src="divisao02.png">
+
+	<p>Vejamos um caso com resto na divis&atilde;o.</p>
+	<p>Para o caso 13 / 4, n&atilde;o consigo arrumar 13 bolinhas em 4 colunas. Consigo arrumar 4 colunas com 3 bolinhas de altura (quociente), e vai &ldquo;sobrar&rdquo; uma linha com uma bolinha. Essa &ldquo;sobra&rdquo; &eacute; o resto da divis&atilde;o.</p>
+	<p>13 = 4*3 + 1</p>
+	<p>(numerador = denominador*quociente + resto)</p>
+
+	<img src="divisao03.png">
+
+	<p>Neste caso, &eacute; dito que 13 n&atilde;o &eacute; divis&iacute;vel por 4.</p>
+
+
+	<p>O algoritmo da divis&atilde;o &eacute; base de todo o resto do livro, e d&aacute; para chegar &agrave; conclus&otilde;es bastante complexas construindo o racioc&iacute;nio, pouco a pouco.</p>
+
+
+
+
+
+	<p>Refer&ecirc;ncia: Introdu&ccedil;&atilde;o &agrave; Teoria dos N&uacute;meros, Jos&eacute; Pl&iacute;nio de Oliveira Santos, Instituto Nacional de Matem&aacute;tica Pura e Aplicada.</p>
+	<p><br></p>
+	<p><br></p>
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+
+
+
+	<script type = "text/javascript">
+		'use strict';
+
+		var svg = d3.select("#conteinerDiv")
+			.append("svg")
+			.attr("width", 1000)
+			.attr("height", 500);
+
+
+		Desenhar();
+		
+		function Desenhar()
+		{
+		svg.selectAll("*").remove();
+
+		let a =parseInt(d3.select("#idA").property("value"));
+		let m =parseInt(d3.select("#idM").property("value"));
+		
+		let d;
+		let resto;
+		let i;
+		let j;
+		let inicio;
+		let raio;
+		let deltaIni1;
+		let deltaIni2;
+		
+		//Calcula tamanho do raio
+		raio = Math.min(20, 950/(2.5*m), 450/(2.5*Math.ceil(a / m)));
+		
+		 
+		//Plota primeiro bloco
+		d = Math.floor(a / m);
+		resto = a % m;
+		
+		
+		//Plota o resto
+		inicio=50;
+		
+		for (i =0; i<resto; i++)
+		{
+		svg.append("circle")
+		  .attr("cx", i*(2.5*raio)+50)
+		  .attr("cy", inicio)
+		  .attr("r", raio)		  
+		  .attr("stroke", "black")
+		  .attr("fill", "goldenrod");
+		}
+		
+		resto > 0 ? inicio = 50+(2.5*raio) : inicio = 50;
+			
+		//Plota a divisao
+		for (i =0; i<m; i++)
+		{
+			for(j =0; j< d;j++)
+			{
+				svg.append("circle")
+				  .attr("cx", i*(2.5*raio)+50)
+				  .attr("cy", j*(2.5*raio)+inicio)
+				  .attr("r", raio)		  
+				  .attr("stroke", "black")
+				  .attr("fill", "goldenrod");
+			}
+		}
+		
+		
+		}
+		
+	</script>
+
+	<script src="../criaMenuL1.js"></script>
+	<script src = "../LogoMath.js">		</script>
+
+
+	</body>   
+	</html>  
+
+
+
+		

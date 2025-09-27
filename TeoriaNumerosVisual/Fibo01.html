@@ -1,0 +1,189 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+
+<h1>A Espiral de Fibonacci</h1>
+
+<button type = "button"  onclick="Desenhar()" tabindex = "0">Rodar</button>  
+
+<p id = "svgFibo"></p>
+
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+
+<script>
+    var svg = d3.select("#svgFibo")
+        .append("svg")
+        .attr("width", 1400)
+        .attr("height", 1000);
+   
+	Desenhar();
+
+	function Desenhar()
+	{
+		let delayInMilliseconds ;
+		let x0;
+		let y0;
+		let xini;
+		let yini;
+		let i;
+		let escala = 15;
+		let rotacaoIni;
+		let rotacaoFim;
+		let ladoatual;
+		let ladoprev;
+		let ladoprevprev;
+		
+		svg.selectAll("*").remove();
+
+		
+		delayInMilliseconds =0;
+
+		xini = 400;
+		yini = 250;
+		x0 =0;
+		y0 = 0;
+		
+
+		
+		//Insere o primeiro quadrado
+		svg.append("rect")
+			  .attr("x", xini +x0*escala)
+			  .attr("y", yini + y0*escala)
+			  .attr("width", 1*escala)
+			  .attr("height", 1*escala)
+			  .attr("stroke", "black")
+			  .attr("stroke-width", "2")		  
+			  .attr("fill", "transparent");
+		
+		insereArco(xini + x0*escala+1*escala, yini + y0*escala, escala, 180, 270);
+		
+		ladoprev =1;
+
+		for (i  =2;i<11;i++)
+		{
+		delayInMilliseconds +=50;
+		
+		setTimeout(function(i) {
+		if (i==2)
+		{	
+			ladoatual = 1;
+			ladoprev =1;
+			ladoprevprev =0;
+		}
+		else
+		{
+			ladoatual= ladoprev+ladoprevprev;
+		}
+		
+		switch ((i-1) % 4)
+		{
+		case 0: //Para baixo	
+			x0 =  x0;
+			y0 = y0 + ladoprev;
+		   rotacaoIni = 180;
+		   rotacaoFim = 270;
+		   dx0 = ladoatual;
+		   dy0 = 0;
+           
+			break;
+		case 1: //Para direita
+		   x0 = x0 + ladoprev;
+           y0 = y0 - (ladoatual - ladoprev);
+           rotacaoIni = 90;
+		   rotacaoFim = 180;
+		   dx0 = 0;
+		   dy0 = 0;
+           
+			break;		
+		case 2: //Para cima
+			x0 = x0 - (ladoatual - ladoprev);
+           y0 = y0 - ladoatual;
+           rotacaoIni = 0;
+		   rotacaoFim = 90;
+		   dx0 = 0;
+		   dy0 = ladoatual;
+			break;
+			
+		case 3: //Para esquerda
+			
+			x0 = x0 - ladoatual;
+            y0 = y0;
+           rotacaoIni = -90;
+		   rotacaoFim = 0;
+		   dx0 = ladoatual;
+		   dy0 = ladoatual;
+
+		   break;
+		}
+			
+		svg.append("rect")
+			  .attr("x", xini + x0 * escala)
+			  .attr("y", yini + y0 * escala)
+			  .attr("width", ladoatual*escala)
+			  .attr("height", ladoatual*escala)
+			  .attr("stroke", "black")
+			  .attr("stroke-width", "2")		  
+			  .attr("fill", "transparent");
+		
+	//Insere o arco
+		insereArco(xini + (x0+ dx0)*escala, yini + (y0+ dy0)*escala, ladoatual*escala, rotacaoIni,rotacaoFim);
+	
+		ladoprevprev = ladoprev;
+		ladoprev= ladoatual;
+	
+		}.bind(null,i), delayInMilliseconds,i);	
+		}
+
+	}
+	
+	function insereArco(x1, x2, raio, start, end)
+	{
+		var arc = d3.arc()
+	  .innerRadius(raio-1.5)
+	  .outerRadius(raio)
+	  .startAngle(start* (3.1415 / 180)) //converting from degs to radians
+	  .endAngle(end* (3.1415 / 180)); //just radians
+
+	svg.append("path")
+	  .attr("d", arc)
+	  .attr("fill", "red")
+	  .attr("stroke-width", "2")		  
+	  .attr("transform", "translate(" + x1 + "," + x2 + ")");
+	  
+  }
+</script>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+</body>
+</html>

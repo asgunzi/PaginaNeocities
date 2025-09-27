@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+<h1>A Espiral musical V2</h1>
+<p>A “Espiral musical”, a figura abaixo, é construída somente com retas e uma regra simples de ângulos.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2021/11/image007.png">
+<p></p>
+<p>Ela é baseada num vídeo enviado pelo amigo @Mauricio de Carvalho Cota.</p>
+<p></p>
+<p>Comece com uma reta qualquer. Depois, trace uma nova reta, adicionando uma rotação com um ângulo.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2021/11/reta01.png">
+<p></p>
+<p>Continue a sequência, agora adicionando reta com 2*ângulo, depois 3*ângulo…</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2021/11/reta02.png">
+<p></p>
+<p>Na sexta iteração:</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2021/11/reta03.png">
+<p></p>
+<p>Com 100 iterações:</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2021/11/reta04.png">
+<p></p>
+<p>Implementei uma versão Javascript:
+
+<button type = "button"  onclick="Desenhar()" tabindex = "0">Rodar</button>  
+
+<p id="Espiralsvg"></p>
+
+
+<p>Ou aqui: <a href="https://asgunzi.neocities.org/ArteMatematica/FerramentaEspiralMusical">https://asgunzi.neocities.org/ArteMatematica/FerramentaEspiralMusical.</a></p></p>
+
+<p>É interativa. A cada vez que roda, uma nova figura aparece (variando o ângulo de referência e as cores).</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2023/01/espiral001.jpeg">
+<p>Alguns exemplos:</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2023/01/espiral002.jpeg">
+<p></p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2023/01/espiral003.jpeg">
+<p></p>
+<p>Trilha sonora: O Rancho das Flores, de Vinícius de Moraes e Johann Sebastian Bach</p>
+<p></p>
+
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+<script src ="../ArteMatematica/EspMusical.js">	</script>
+
+</body>
+</html>

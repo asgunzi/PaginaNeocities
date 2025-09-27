@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+<h1>A Espiral de Arquimedes</h1>
+<p></p>
+<p>A Espiral de Arquimedes é uma curva fácil de fazer.</p>
+<p></p>
+<p>Imagine que vou andando ao longo de uma reta, e marcando uma série de pontos a cada vez – é como se um raio r estivesse crescendo.</p> 
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/12/pontos.jpg">
+<p></p>
+<p>Imagine agora, que a reta está girando a uma velocidade constante – cada reta está num ângulo theta.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/12/pontosgirando.jpg">
+<p></p>
+
+<p>A localização dos pontos forma a Espiral de Arquimedes.</p>
+<p></p>
+<p>O raio e o ângulo theta vão crescendo a velocidade constante.</p>
+<p></p>
+<img src="../Figuras/EspiralArquimedes.gif">
+
+<p>As coordenadas de cada ponto são r*cos(theta) e r*sin(theta).</p>
+
+<img src="../Figuras/EspiralArquimedes.png">
+
+<p>Teste aqui:</p>
+
+<div onchange= "Desenhar()">
+  <input type="range" min="1" max="100" value="50"  id="slider01">
+</div>
+
+
+<p id="espiralSvg"></p>
+
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../ArteMatematica/EspArquimedes.js"></script>
+
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+</body>
+</html>

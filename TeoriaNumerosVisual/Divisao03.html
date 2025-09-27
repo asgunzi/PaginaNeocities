@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+<h1>Divisão (parte 3)</h1>
+
+<p>Mais visualizações via “álgebra de pedrinhas” para ajudar a explicar a Teoria dos Números.</p>
+
+<h2>Teorema: </h2>
+<p>1 | n</p>
+<p></p>
+<p>Basta imaginar que n bolinhas podem ficar em uma coluna, independente do tamanho de n.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/01/teonumeros06.png">
+<p></p>
+
+<h2>Teorema: </h2>
+<p>d | n -> a * d | a * n, com a inteiro</p>
+<p></p>
+<p>Digamos que n = 6 e d = 3,</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/01/teonumeros08.png">
+
+<p>Visualizando, é como copiar e colar esse bloco todo, a vezes, para a direita. Como d | n, não há bolinhas “sobrando”, e não haverá bolinhas sobrando, ao replicar o bloco a vezes.</p>
+<p></p>
+<p>Ex. n = 6, d = 3 e a = 2</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/01/teonumeros09.png">
+<p></p>
+
+<h2>Teorema: </h2>
+<p>a * d | a * n e a <> 0 -> d | n</p>
+<p></p>
+<p>Esse aqui é exatamente o inverso do anterior.</p>
+<p></p>
+<p>Ex. 6 | 18 pode ser representado no diagrama abaixo.</p>
+<p></p>
+<p>Mas é a mesma coisa que 3*2 | 3 * 6, ou seja, a = 3, d = 2 e n = 6.</p>
+<p></p>
+<p>Pintei os a = 3 bloquinhos de d = 2 e n = 6 de cores diferentes, para visualização.</p>
+
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/01/teonumeros10.png">
+<p></p>
+
+<h2>Teorema: </h2>
+<p>d | n e n <> 0 -> |d| <= |n|</p>
+<p></p>
+<p>Novamente, é útil pensar em pedrinhas colocadas em colunas.</p>
+<p></p>
+<p>Se d | n, e n <> 0, consigo colocar as n bolinhas em d colunas. Representando as fronteiras das d colunas como linhas, no diagrama abaixo.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/01/teonumeros11.png">
+<p></p>
+<p>Já se n < d, digamos n = 4 e d = 5, sempre vai “sobrar” uma ou mais casas vazias, de modo que não consigo preencher as todas colunas – e, portanto, d não divide n.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/01/teonumeros12.png">
+<p></p>
+<h2>Teorema: </h2>
+<p>d | n e n | d -> |d| = |n|</p>
+<p></p>
+<p>Essa afirmação é consequência do teorema acima. Se d | n, d <= n, por outro lado, se n | d, n <= d, e isso só é possível se |d| = |n| (em módulo porque os números podem ser negativos).</p>
+<p></p>
+<p>Exercício. Se eu tenho 13 pombos e 6 casas para comportá-los, mostre que pelo menos uma casa terá 3 pombos.</p>
+<p></p>
+<p>Resolução: pela visualização em álgebra de pedrinhas, fica evidente que consigo distribuir igualmente 12 pombos em 6 casas, duas de cada. Porém, ainda tem um pombo restante, de modo que uma casa terá pelo menos 3 pombos.</p>
+<p></p>
+<p>Esse é o “Princípio da Casa dos Pombos”.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/01/teonumeros13.png">
+<p></p>
+<p>Continue acompanhando a série “Teoria dos Números Visual”.</p>
+
+
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+</body>
+</html>

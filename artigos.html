@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="estilo_menu.css" />
+
+
+<style>
+p {
+  padding-left: 20px;
+}
+</style>
+
+</head>
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "index.html"> <p id="Logo"></p> </a>
+
+<h1>Artigos</h1>
+
+<p id="idArtigos"></p>
+
+
+
+<br>
+<hr>
+
+<p>Veja também: <a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a> </p>
+
+
+<script>
+let arr1 =[];
+
+arr1.push([["Artigos/ArteCrivo.html"],["Sobre o Crivo de Erastótenes"]]);
+arr1.push([["Artigos/regraBayes.html"],["Como interpretar a regra de Bayes? E o Paradoxo da Ferrari"]]);
+arr1.push([["Artigos/SequenciaGalileu.html"],["Prova Visual da Sequência de Galileu"]]);
+arr1.push([["Artigos/ArteRetangulos.html"],["Arte com Retângulos"]]);
+arr1.push([["Artigos/RandomWalk.html"],["Passeios aleatórios e bêbados errantes"]]);
+arr1.push([["Artigos/NumerosQuadradosOblongos.html"],["Números quadrados e oblongos"]]);
+arr1.push([["Artigos/Prova0igual1.html"],["Prova de que 0 = 1"]]);
+arr1.push([["Artigos/papaSmith.html"],["Papa = Mr. Smith"]]);
+arr1.push([["Artigos/TriangPascal.html"],["O Triângulo de Pascal"]]);
+arr1.push([["Artigos/SomaCubos.html"],["Prova Visual da Soma de Cubos"]]);
+arr1.push([["Artigos/EspiralArquimedes.html"],["A Espiral de Arquimedes"]]);
+arr1.push([["Artigos/Wolfskehl.html"],["Uma moça formosa, o último Teorema de Fermat e o Prêmio Wolfskehl"]]);
+arr1.push([["Artigos/LogaritmosNeperianos.html"],["Para que servem os Logaritmos?"]]);
+arr1.push([["Artigos/SomaSerieMeio.html"],["Prova visual da sequência 1/2 + 1/4 + 1/8 + … = 1"]]);
+arr1.push([["Artigos/CaminhoRetangulos.html"],["Caminho com retângulos"]]);
+arr1.push([["Artigos/EspiralMusicalv2.html"],["A Espiral Musical"]]);
+arr1.push([["Artigos/ArtigoEspiralCirculos.html"],["Espiral Interativa de Círculos"]]);
+arr1.push([["Artigos/ArtigoMonteCarloPi.html"],["Monte Carlo Pi"]]);
+arr1.push([["Artigos/ArtigoPadroesCirculos.html"],["Padrões em Círculos"]]);
+arr1.push([["Artigos/ArtigoExaustao.html"],["O método da exaustão para a área do círculo"]]);
+arr1.push([["Artigos/ArtigoColmeiaPrimos.html"],["A colmeia dos números primos"]]);
+arr1.push([["Artigos/nfatorial2n.html"],["Prova visual de n! > 2^n"]]);
+arr1.push([["Artigos/ArtigoEspiralUlam.html"],["A Espiral de Ulam"]]);
+arr1.push([["Artigos/NegativoNegativo.html"],["Negativo X Negativo = Positivo. Por quê?"]]);
+arr1.push([["Artigos/ArtigoQuadradoMagico.html"],["Crie quadrados mágicos de qualquer tamanho"]]);
+arr1.push([["Artigos/ArtigoArteCirculos.html"],["Faça arte com círculos"]]);
+arr1.push([["Artigos/ArtigoHexTiling.html"],["Random Hex Tiling"]]);
+arr1.push([["Artigos/ArtigoTilingTiras.html"],["Tiling de Tiras"]]);
+arr1.push([["Artigos/TioPetros.html"],["Tio Petros e a Conjectura de Goldbach"]]);
+arr1.push([["Artigos/ArtigoCardCirculares.html"],["Cardioides Circulares"]]);
+arr1.push([["Artigos/roman_opalka.html"],["Roman Opalka e o infinito"]]);
+//arr1.push([["Artigos/"],[""]]);
+//arr1.push([["Artigos/"],[""]]);
+//arr1.push([["Artigos/"],[""]]);
+
+
+
+
+shuffle(arr1);
+
+
+for (var k=0; k<arr1.length; k++)
+{
+d3.select("#idArtigos").append("p").append("a").attr("href", arr1[k][0]).text(arr1[k][1]);
+}
+
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+
+</script>
+
+
+<script src="criaMenu.js"></script>
+<script src = "LogoMath.js">		</script>
+
+</body>
+</html>

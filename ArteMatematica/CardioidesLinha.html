@@ -1,0 +1,197 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+<h1>Cardioides em linhas</h1>
+
+<div class="slidecontainer" onchange= "Desenhar()">
+N pontos: 
+  <input type="range" min="1" max="30" value="10" class="slider" id="myRange">
+
+Assimetria Y: 
+  <input type="range" min="1" max="10" value="5" class="slider" id="rngAssimetria">
+
+Assimetria X: 
+  <input type="range" min="1" max="10" value="5" class="slider" id="rngAssimetriax">
+
+    <label for="headColor">Cor</label>
+    <input type="color" id="headColor" name="headColor"
+           value="#172369">
+</div>
+
+<p id = "svgCirculos"></p>
+
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+<script>
+
+    var svg = d3.select("#svgCirculos")
+        .append("svg")
+        .attr("width", 1200)
+        .attr("height", 800);
+
+   
+	Desenhar();
+
+	function Desenhar()
+	{
+	
+	var i;
+	var j;
+	var delayInMilliseconds=0;
+	var Npontos = parseInt(d3.select("#myRange").property("value"))*2;
+	var assimetria = parseInt(d3.select("#rngAssimetria").property("value"));
+	var assimetriax = parseInt(d3.select("#rngAssimetriax").property("value"));
+	var x0;
+	var y0;
+	var r0;
+	var theta;
+	var cor = d3.select("#headColor").property("value");
+	var phi;
+	var delayInMilliseconds =0;
+	
+	svg.selectAll("*").remove();
+	var L1_x0 =300+ (assimetria-5)*50;
+	var L1_y0 =0 ;
+	var L1_x1 =300- (assimetria-5)*50;
+	var L1_y1 =600;
+	
+	var L2_x0 =0;
+	var L2_y0 =300+ (assimetriax-5)*50;
+	var L2_x1 =600;
+	var L2_y1 =300- (assimetriax-5)*50;
+	
+	
+		
+	//Insere Linha 1
+	svg.append("line")
+		  .attr("x1", L1_x0)
+		  .attr("y1", L1_y0)
+		  .attr("x2", L1_x1)
+		  .attr("y2", L1_y1)
+		  .attr("stroke", cor)
+		  .attr("stroke-width", 1);
+
+	//Insere Linha 2
+	svg.append("line")
+		  .attr("x1", L2_x0)
+		  .attr("y1", L2_y0)
+		  .attr("x2", L2_x1)
+		  .attr("y2", L2_y1)
+		  .attr("stroke", cor)
+		  .attr("stroke-width", 1);
+
+
+	//Insere pontos ao longo das linhas
+	for (i=0; i<= Npontos; i++)
+	{
+		
+	svg.append("circle")
+		  .attr("cx", L1_x0  + (L1_x1 - L1_x0)*i/Npontos)
+		  .attr("cy", L1_y0  + (L1_y1 - L1_y0)*i/Npontos)
+		  .attr("r", 2)
+		  .attr("stroke", cor)
+		  .attr("stroke-width", 1)
+		  .attr("fill", cor);
+	
+		svg.append("circle")
+		  .attr("cx", L2_x0  + (L2_x1 - L2_x0)*i/Npontos)
+		  .attr("cy", L2_y0  + (L2_y1 - L2_y0)*i/Npontos)
+		  .attr("r", 3)
+		  .attr("stroke", cor)
+		  .attr("stroke-width", 1)
+		  .attr("fill", cor);
+	}
+
+		//Insere linhas do cardioide
+	for (i=0; i<= Npontos/2; i++)
+	{
+		delayInMilliseconds +=30;
+
+	setTimeout(function(i) {
+
+	svg.append("line")
+		  .attr("x1", L1_x0  + (L1_x1 - L1_x0)*i/Npontos)
+		  .attr("y1", L1_y0  + (L1_y1 - L1_y0)*i/Npontos)
+		  .attr("x2", L2_x0  + (L2_x1 - L2_x0)*(Npontos/2-i)/Npontos)
+		  .attr("y2", L2_y0  + (L2_y1 - L2_y0)*(Npontos/2-i)/Npontos)
+		  .attr("stroke", cor)
+		  .attr("stroke-width", 1);
+
+	svg.append("line")
+		  .attr("x1", L1_x0  + (L1_x1 - L1_x0)*i/Npontos)
+		  .attr("y1", L1_y0  + (L1_y1 - L1_y0)*i/Npontos)
+		  .attr("x2", L2_x0  + (L2_x1 - L2_x0)*(Npontos/2+i)/Npontos)
+		  .attr("y2", L2_y0  + (L2_y1 - L2_y0)*(Npontos/2+i)/Npontos)
+		  .attr("stroke", cor)
+		  .attr("stroke-width", 1);
+		  
+		  
+		  		}.bind(null,i), delayInMilliseconds,i);	
+
+	}
+	for (i=Npontos/2+1; i<= Npontos; i++)
+	{
+		delayInMilliseconds +=20;
+
+	setTimeout(function(i) {
+
+	
+	svg.append("line")
+		  .attr("x1", L1_x0  + (L1_x1 - L1_x0)*i/Npontos)
+		  .attr("y1", L1_y0  + (L1_y1 - L1_y0)*i/Npontos)
+		  .attr("x2", L2_x0  + (L2_x1 - L2_x0)*(Npontos-(i-Npontos/2))/Npontos)
+		  .attr("y2", L2_y0  + (L2_y1 - L2_y0)*(Npontos-(i-Npontos/2))/Npontos)
+		  .attr("stroke", cor)
+		  .attr("stroke-width", 1);
+
+	svg.append("line")
+		  .attr("x1", L1_x0  + (L1_x1 - L1_x0)*i/Npontos)
+		  .attr("y1", L1_y0  + (L1_y1 - L1_y0)*i/Npontos)
+		  .attr("x2", L2_x0  + (L2_x1 - L2_x0)*((i-Npontos/2))/Npontos)
+		  .attr("y2", L2_y0  + (L2_y1 - L2_y0)*((i-Npontos/2))/Npontos)
+		  .attr("stroke", cor)
+		  .attr("stroke-width", 1);
+		  
+		  
+		  		}.bind(null,i), delayInMilliseconds,i);	
+
+	}
+
+	}
+	
+	
+		  
+		 
+</script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+<h1>Curvas cardioides</h1>
+
+<div class="slidecontainer" onchange= "Desenhar()">
+N pontos: 
+  <input type="range" min="1" max="150" value="30" class="slider" id="myRange">
+Step: 
+  <input type="range" min="1" max="10" value="2" class="slider" id="rngStep">
+
+    <label for="headColor">Cor</label>
+    <input type="color" id="headColor" name="headColor"
+           value="#172369">
+</div>
+
+<p id = "svgCirculos"></p>
+
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+<script>
+
+    var svg = d3.select("#svgCirculos")
+        .append("svg")
+        .attr("width", 1200)
+        .attr("height", 800);
+
+   
+	Desenhar();
+
+	function Desenhar()
+	{
+	
+	var i;
+	var j;
+	var delayInMilliseconds=0;
+	var Npontos = parseInt(d3.select("#myRange").property("value"))*2;
+	var Nsteps = parseInt(d3.select("#rngStep").property("value"));
+	var x0;
+	var y0;
+	var r0;
+	var theta;
+	var cor = d3.select("#headColor").property("value");
+	var phi;
+	var delayInMilliseconds =0;
+	
+	svg.selectAll("*").remove();
+	x0 =280;
+	y0 =280;
+	r0 = 250;
+	//cor =d3.schemeCategory10[Math.floor(Math.random() * 10)];
+
+		
+	//Insere círculo
+	svg.append("circle")
+		  .attr("cx", x0)
+		  .attr("cy", y0)
+		  .attr("r", r0)
+		  .attr("stroke", cor)
+		  .attr("stroke-width", 1)
+		  .attr("fill", "transparent");
+
+
+	//Insere pontos ao longo do círculo
+	for (i=0; i< Npontos; i++)
+	{
+	theta = 2*Math.PI*i/Npontos;
+		
+	svg.append("circle")
+		  .attr("cx", x0 + r0*Math.cos(theta))
+		  .attr("cy", y0+ r0*Math.sin(theta))
+		  .attr("r", 3)
+		  .attr("stroke", cor)
+		  .attr("stroke-width", 1)
+		  .attr("fill", cor);
+	}
+
+		//Insere linhas do cardioide
+	for (i=0; i< Npontos; i++)
+	{
+		delayInMilliseconds +=5;
+
+	setTimeout(function(i) {
+
+		theta = 2*Math.PI*i/Npontos;
+		phi = 2*Math.PI*(i*Nsteps+Npontos/2)/Npontos;
+
+	svg.append("line")
+		  .attr("x1", x0 + r0*Math.cos(theta))
+		  .attr("y1", y0 + r0*Math.sin(theta))
+		  .attr("x2", x0 + r0*Math.cos(phi))
+		  .attr("y2", y0 + r0*Math.sin(phi))
+		  .attr("stroke", cor)
+		  .attr("stroke-width", 1);
+		  		}.bind(null,i), delayInMilliseconds,i);	
+
+	}
+	
+	}
+	
+	
+		  
+		 
+</script>
+</body>
+</html>

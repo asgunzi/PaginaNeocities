@@ -1,0 +1,211 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+<h1>O inverno e a primavera da Inteligência Artificial</h1>
+<p></p>
+<p>Em 2006, fiz a cadeira de Redes Neurais da UFRJ, como parte do meu mestrado em Processamento Digital de Sinais, motivado pelas tais redes que imitavam o cérebro humano, aprendiam sozinhas e que poderiam nos superar um dia.</p>
+<p></p>
+<p></p>
+<p>Achei decepcionante, na época. As redes pareciam mais uma curiosidade, com pouca aplicação prática, do que algo realmente útil.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/07/redeneural.jpg">
+
+<p>Alguns motivos:</p>
+<p></p>
+<p>– Só conseguíamos criar redes de três, cinco camadas, com poucos neurônios por camada (shalow network)</p>
+<p></p>
+<p>– Aplicações restritas à interpolação de funções</p>
+<p></p>
+<p>– O software Estatística tinha algo pronto para redes pequenas. Qualquer aplicação mais complexa, seria necessário pegar toda a matemática e implementar do zero.</p>
+<p></p>
+<p>Os resultados frios e estéreis eram porque, em 2006, eu estava em pleno “Inverno da Inteligência Artificial”.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/07/vale01.jpg">
+
+<p></p>
+<p>Contudo, 10 anos depois, o campo era quente e fértil de inovações: redes de centenas de camadas (daí o termo deep neural network), milhares de neurônios por camada, reconhecimento de imagens, transcrição da linguagem falada, automação de tarefas rotineiras, humanos superados em jogos complexos como o Go…</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/07/vale02.jpg">
+<p></p>
+<p>A curva acima é chamada de “curva S da inovação”.</p>
+<p></p>
+<p>A maior parte dos conceitos, como o neurônio artificial, a função de ativação, backpropagation, já existia desde a década de 70, e não tinham mudado nada.</p>
+<p></p>
+<p>Como a IA saiu do inverno para a primavera que vivenciamos nos dias de hoje?</p>
+<p></p>
+<p>Aponto para três tópicos principais:</p>
+<p></p>
+<p>– Hardware</p>
+<p></p>
+<p>– Software</p>
+<p></p>
+<p>– Dados</p>
+<p></p>
+<h2>1 – Hardware</h2>
+<p>A evolução da capacidade computacional e o poder do processamento paralelo são dois itens importantes.</p>
+<p></p>
+<h3>1.1 – Lei de Moore</h3>
+<p>A Lei de Moore diz que o poder computacional dobra a cada 18 meses, para o mesmo custo. A unidade básica de computação é o transístor, basicamente uma chave que pode assumir o valor 0 ou o valor 1.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2014/12/moore.png">
+<p></p>
+<p>A Lei de Moore deve-se, basicamente, à miniaturização do transístor. Foi isso que permitiu celulares de bolso mais poderosos do que os supercomputadores mais avançados de décadas atrás.</p>
+<p></p>
+<p>Do computador que eu tinha em 2006 para 2018, 12 anos, houve um avanço de 256 vezes!</p>
+<p></p>
+<p>Imagine se o meu rendimento no banco fosse assim…</p>
+<p></p>
+<h3>1.2 – GPU</h3>
+<p>Outro fator é o processamento paralelo, principalmente devido à GPU (Graphic process unit). Não confundir com a CPU, que é o coração de um computador.</p>
+<p></p>
+<p>Com a evolução dos computadores, ocorreu uma exigência cada vez maior na parte gráfica, devido aos jogos. A solução foi criar unidades de processamento especializadas em processar gráficos, a GPU (ou seja, os gamers financiaram este avanço na área de IA).</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2016/12/gpu.jpg">
+<p></p>
+<p>A CPU é como um carro, que se move rápido, porém leva pouca gente. A GPU é como um trem. É mais devagar que a CPU, mas transporta muito mais informação. Se for para transportar milhares de pessoas, é melhor ir de metrô do que alocar vários carros.</p>
+<p></p>
+<p>A parte mais pesada da rede neural é o algoritmo de treinamento, o backpropagation. Os cientistas da computação criaram meios de ‘enganar’ a GPU: disfarçaram a informação como um gráfico, para ser processada e devolvida à rede.</p>
+<p></p>
+<p>Hoje em dia, temos até TPU (Tensor process unit). A ideia é a seguinte. A GPU é para computação gráfica, e estava sendo utilizada via gambiarra para processar informação. Que tal uma unidade especialmente projetada para processamento paralelo? É a TPU.</p>
+<p></p>
+<p>Isso sem contar que, hoje em dia, não precisamos nem comprar o hardware. Dá para utilizar via cloud, alugando o tempo gasto, e o provedor do serviço se encarrega de ter o melhor hardware possível.</p>
+<p></p>
+<h2>2 – Software</h2>
+<p>Além do hardware, ocorreu um avanço significativo em software.</p>
+<p></p>
+<p>Em 2019, Yoshua Bengio, Geoffrey Hinton e Yann LeCun ganharam o prêmio Turing, tipo o Nobel da computação, por terem fundado as bases para a IA sair do inverno.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/07/turingprize.jpg">
+<p></p>
+<p>Todo prêmio é injusto, no sentido de que deixa de fora dezenas de pessoas que contribuíram.</p>
+<p></p>
+<p>Destaco aqui três inovações importantes: erros numéricos, novos truques, pacotes open-source.</p>
+<p></p>
+<h3>2.1 – Erros numéricos</h3>
+<p>Um backpropagation com dezenas de camadas e milhares de neurônios causa o efeito do “vanishing gradient”. Basicamente, as correções acabam ficando tão pequenas que desaparecem.</p>
+<p></p>
+<p>Aqui, cabe destacar que houve um avanço nos pacotes de álgebra linear como um todo, possibilitando que a computação seja feita com menor erro numérico e viabilizando a o backpropagation em várias camadas.</p>
+<p></p>
+<h3>2.2 – Novos truques</h3>
+<p>Com o uso das redes neurais, um arsenal de novas técnicas foi sendo incorporado. Algumas:</p>
+<p></p>
+<p>– Convolutional neural network: é uma camada de rede neural que funciona como uma janela deslizante – esta técnica performou melhor que todos os algoritmos de classificação comuns da época em reconhecimento de escrita</p>
+<p></p>
+<p>– ReLu: é uma função de ativação extremamente simples, (= x se maior que zero, 0 se menor), porém, acrescenta uma não-linearidade interessante, que ajuda no problema do gradiente acima</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/07/relu.png">
+<p></p>
+<p>– Dropout: a fim de deixar a rede mais robusta, a cada rodada parte da informação é “jogada fora”. É como ler o mesmo livro várias vezes, porém a cada vez tirando algumas palavras por página – cada treinamento é mais difícil, porém a capacidade de generalização final acaba ficando maior.</p>
+<p></p>
+<p>Com o saco de truques maior, a própria arquitetura da rede passa a ser extremamente mais complexa. Combinar parte da rede convolucional, camadas com dropout, número de camadas, número de neurônios.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/07/sample-dense-neural-network-with-2-fully-connected-layers-2-dropout-layers-and-a.png?w=768">
+<p></p>
+<p>Há tantos hiperparâmetros que o desafio dos dias de hoje é descobrir a arquitetura ideal, não treinar a rede ou programar ela do zero.</p>
+<p></p>
+<h3>2.3 – Poderosos pacotes Open Source</h3>
+<p>O Google empacotou as inovações citadas acima e lançou o Tensor Flow em 2015. O Facebook fez algo semelhante, com o PyTorch, de 2016, e há outras alternativas existentes. Note o timing, exatamente 10 anos depois do começo da minha pesquisa.</p>
+<p></p>
+<p>Não há nada melhor para um pacote computacional do que ter uma base grande de usuários engajados na causa: pessoas que vão utilizar, encontrar erros, enviar sugestões etc.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/07/tensorflow.jpg">
+
+<p></p>
+<p>Todos os pacotes acima continuam em desenvolvimento e vão continuar enquanto a primavera da IA continuar.</p>
+<p></p>
+<p>Para o usuário, é fantástico. Não é necessário programar o neurônio artificial nem os complexos algoritmos de treinamento e arquitetura da rede neuronal, e sim, utilizar o conhecimento best in class do mundo. Grande parte das startups que vemos hoje utilizam pacotes como os citados.</p>
+<p></p>
+<p>O resultado é o que conhecemos hoje: algoritmos diversos reconhecendo padrões em imagens, sons e vídeos, em carros autônomos, fazendo forecast de falhas, batendo o ser humano em diversas áreas do conhecimento.</p>
+<p></p>
+<h2>3 – Dados</h2>
+<p>Tão importante quanto software e hardware, são os próprios dados.</p>
+<p></p>
+<p>Hoje em dia, há uma quantidade praticamente ilimitada de dados digitais: fotos, vídeos, áudio.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/07/imagenet.jpg">
+
+<p>Em 2006, as câmeras digitais já existiam, porém não eram onipresentes como é hoje. Eu me lembro de possuir uma câmera analógica na época, pois ainda eram mais baratas e melhores do que as digitais. A internet, idem. A minha era conexão discada. Eu esperava dar meia-noite, para me conectar e pagar apenas um pulso de telefone.</p>
+<p></p>
+<p>O grande gargalo dos métodos de IA da atualidade são os dados. Eles têm que ter quantidade e qualidade suficientes.</p>
+<p></p>
+<p>Hoje em dia, bancos de dados como ImageNet tem mais de um milhão de imagens rotuladas. Não consigo nem imaginar a quantidade de dados que o Google ou a Amazon têm à sua disposição.</p>
+<p></p>
+<p></p>
+<p>Menção honrosa ao Mechanical Turk da Amazon. Ela é uma “inteligência artificial artificial”. São seres humanos fazendo trabalhos simples, como reconhecer objetos em imagens e transcrever palavras num áudio (e sendo parcamente remunerados).</p>
+<p></p>
+<p>O Mechanical Turk permitiu que aos cientistas da computação obterem informações cruciais: dados rotulados. Alguém tem que ensinar o computador que um gato é um gato, e não um copo ou um elefante.</p>
+<p></p>
+<p></p>
+<p>No futuro, teremos mais dados ainda. A Internet das Coisas está chegando. Deve demorar um tempo para se consolidar, mas vai chegar forte um dia.</p>
+<p></p>
+<h2>E qual o futuro da IA?</h2>
+<p>Houve um avanço extraordinário no campo da inteligência artificial, impulsionada principalmente pelas redes neurais.</p>
+<p></p>
+<p>Estamos hoje na primavera da IA, com uma miríade de possibilidades surgindo.</p>
+<p></p>
+<p>A curva S da inovação, olhada a longo prazo, parece mais com a “espiral da inovação”: picos e vales sempre crescentes.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/07/vale03-1.jpg?w=768">
+
+<p></p>
+<p>Vale citar a Lei de Amara: “Tendemos a superestimar as inovações a curto prazo, e subestimar a longo prazo.”</p>
+<p></p>
+<p>Nos primórdios das redes neurais, já se sonhava com dispositivos inteligentes, algoritmos que bateriam a bolsa de valores, robôs que conversariam com o ser humano e dominariam a Terra.</p>
+<p></p>
+<p>Grande parte dos sonhos dos anos 70 não ocorreram nas décadas seguintes ao previsto. Estão ocorrendo hoje, 50 anos depois!</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/07/hal-9000-im-sorry-dave-i-cant-do-that-com-14978728.png">
+<p></p>
+<p>Vale notar que, embora as conquistas tenham sido extraordinárias, a IA ainda é restrita para casos bastante específicos: automatizar rotinas simples, reconhecer objetos em imagens, transcrever a linguagem falada, criar música nova rearranjando músicas pré-existentes.</p>
+<p></p>
+<p>Ainda não chegamos na IA geral, aí sim, uma inteligência que realmente competiria com o ser humano em tarefas difíceis: gerenciar, tomar decisões abstratas, programar a si mesmo, criar novos algoritmos, novos jogos.</p>
+<p></p>
+<p>Provavelmente, a Lei de Amara ocorrerá novamente. O conhecimento atual não será suficiente para chegar na IA geral. Será necessária a evolução de outros campos: hardware, software, dados, computação quântica, computação biológica, chips em 3D, e outros conceitos que não existem ainda.</p>
+<p></p>
+<p>Passaremos pelo verão, outono, um novo inverno, para alcançar uma nova primavera, daqui a algumas décadas.</p>
+<p></p>
+<p>Trilha sonora: Vivaldi – Primavera</p>
+<p><a href="https://www.youtube.com/watch?v=l-dYNttdgl0">https://www.youtube.com/watch?v=l-dYNttdgl0</a></p>
+<p></p>
+<p>Vivaldi – Inverno</p>
+<p><a href="https://www.youtube.com/watch?v=ZPdk5GaIDjo">https://www.youtube.com/watch?v=ZPdk5GaIDjo</a></p>
+
+<p></p>
+<p></p>
+
+
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+</body>
+</html>

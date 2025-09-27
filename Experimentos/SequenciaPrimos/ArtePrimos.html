@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://unpkg.com/mathjs/lib/browser/math.js"></script>
+
+<link rel="stylesheet" type="text/css"  href="estilo_menu.css" />
+
+
+<style>
+#crivo {
+  font-size: 30px;
+  text-align: justify;
+  text-justify: inter-word;
+  color: #ccccb3; 
+  margin: 50px;
+}
+
+.primos{
+  color: #063970;
+}
+	
+</style>
+</head>
+
+
+<body>
+
+<div w3-include-html="content.html"></div>
+
+<a hef = "../index.html"> <p id="Logo"></p> </a>
+
+<form>
+	N max:
+	<input type="text" id="idA" onchange="Rodar()" value="800">
+	<p> </p>
+
+	<button type = "button"  onclick="Rodar()" tabindex = "0">Rodar</button>  
+		
+</form>
+
+
+
+<h1>Arte com crivo de primos</h1>
+
+<p id= "crivo"> </p>
+
+
+<hr>
+<p>Veja também: <a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a> </p>
+
+<script>
+
+
+Rodar();
+
+
+function Rodar()
+{
+	let i;
+	let str1 = "";
+	let Nmax;
+	var result;
+	
+	//Busca Nmax números
+
+	Nmax = parseInt(d3.select("#idA").property("value"));
+	result = crivo(Nmax);
+	
+	for (i=1;i<Nmax; i++)
+	{	
+	
+		if (result.includes(i))
+		{
+		str1 += '<b class = "primos"> ' + parseInt(i) + '</b> ';
+		}
+		else
+		{
+		str1 += parseInt(i) + " ";
+		}
+
+	}
+	
+    d3.select("#crivo")
+      .html(str1)
+
+}	
+	
+	function crivo(N)
+	{
+	//Retorna lista com números primos até N
+	let p;
+	let j;
+	let primos=[];
+	let controle = new Array(N).fill(0);
+
+	for (p = 2; p<N; p++)
+	{
+		if (controle[p] ==0)
+		{	j =p;
+			primos.push(p);
+			while (j < N)
+			{
+				j+=p;
+				controle[j]=1;				
+			}		
+		}
+	}
+	
+	return(primos);
+	}
+	
+	  </script>
+
+<script src = '../../LogoMath.js'>		</script>
+
+</body>
+</html>

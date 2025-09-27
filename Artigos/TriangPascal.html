@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+<h1>O Triângulo de Pascal</h1>
+<br>
+<p>“O binômio de Newton é tão belo como a Vênus de Milo.</p>
+<p>O que há é pouca gente para dar por isso.”</p>
+<p>Fernando Pessoa</p>
+<br>
+
+<p></p>
+<p>Os coeficientes do binômio de Newton vêm da expansão de (a+b)^n.</p>
+<br>
+<p>Veja só:</p>
+<p>(a + b) = (a + b)</p>
+<p>(Coeficientes 1 e 1)</p>
+<br>
+<p></p>
+<p>(a + b)² = a² + 2ab + b²</p>
+<p>(Coeficientes 1, 2, 1)</p>
+<p></p>
+<br>
+<p>(a + b)³ = a³ + 3a²b + 3ab² + b³</p>
+<p>(Coeficientes 1, 3, 3, 1)</p>
+<p></p>
+<br>
+<p>Na mesma linha, o matemático francês Blaise Pascal descobriu um padrão fascinante para a expansão desses coeficientes, no que é conhecido hoje como o “Triângulo de Pascal”:</p>
+<p></p>
+<p> </p>
+<p>1</p>
+<p>1 1</p>
+<p>1 2 1</p>
+<p>1 3 3 1</p>
+<p>1 4 6 4 1</p>
+<p>…</p>
+<p></p>
+<p>Para cada linha, cada número é a soma dos dois números imediatamente acima.</p>
+<p></p>
+<p>Há bela representações possíveis deste triângulo.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/02/triangulopascal.png">
+<p></p>
+<p>Vide implementação <a href ="../ArteMatematica/FerramentaTrianPascal.html"> aqui,</a> para brincar com um número variável de camadas:</p>
+<p></p>
+
+	  <form>
+		  <select onchange = "Desenhar()" name="Pontos" id="SelectPontos">
+		    
+		    <option value="1" >1</option>
+		    <option value="2">2</option>
+		    <option value="3">3</option>
+		    <option value="4">4</option>
+		    <option value="5" selected>5</option>
+		    <option value="6">6</option>
+		    <option value="7">7</option>
+		    <option value="8">8</option>			
+			<option value="9">9</option>			
+			    <option value="10">10</option>			
+		  </select>		  
+		</form>
+
+<p id="triangsvg"></p>
+
+<p></p>
+<p>Este pacote foi escrito com o belo pacote D3 do Javascript.</p>
+<p></p>
+<p>Caso alguém tenha a curiosidade, segue o código fonte no Github:</p>
+<p></p>
+<p><a href = "https://github.com/asgunzi/TrianguloPascalD3"> https://github.com/asgunzi/TrianguloPascalD3</a></p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/02/triangulo-pascal-4-camadas.png">
+<p></p>
+<p>Recomendação adicional:</p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/02/ideiasgeniaismatematica.jpg">
+
+<p>“Ideias geniais na matemática” contém histórias curiosas e divertidas na Matemática. No meu caso, não precisei comprar, pois ele foi cedido pelo amigo Marcos Gomes de Melo.</p>
+
+
+<p>Para quem não tem esse privilégio, segue link da Amazon: <a href="https://amzn.to/36l2SDn"> https://amzn.to/36l2SDn</a></p>
+
+
+
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../ArteMatematica/TriangPascalJS.js"></script>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+
+<style>
+  </style>
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+<h1>Como interpretar a regra de Bayes? E o “Paradoxo da Ferrari”</h1> 
+
+<p>Eu gosto de entender o que as f&oacute;rmulas querem dizer. Ir al&eacute;m de decorar sua defini&ccedil;&atilde;o.</p>
+
+<p>A regra de Bayes &eacute; uma dessas que &eacute; bem chata de decorar, confusa, e ningu&eacute;m sabe muito bem para que serve.</p>
+
+<img src="https://ideiasesquecidas.files.wordpress.com/2023/01/bayes.png">
+
+<p>Primeiro, o contexto.</p>
+
+<p>Digamos que eu tenha que dar uma probabilidade de um evento ocorrer. Na falta de dados, vou dar um chute qualquer.</p>
+
+<p>Em termos simples, a regra de Bayes serve para melhorar o seu chute atrav&eacute;s de novas informa&ccedil;&otilde;es.</p>
+
+<p>Algo assim:</p>
+
+<p>PROB_POSTERIOR = PROB_ANTERIOR X (CHANCE SOBRE PROB_MARGINAL)</p>
+
+<br>
+
+
+<p>Vamos detalhar, a seguir, utilizando como apoio o &ldquo;Paradoxo da Ferrari&rdquo;.</p>
+
+<h2>O paradoxo da Ferrari</h2>
+
+<p>Uma vez, um colega veio com uma hist&oacute;ria bem esquisita.</p>
+
+
+
+<p>Digamos que eu veja um homem com uma Ferrari na rua. Se eu chegar para ele, e perguntar, &ldquo;Cara, voc&ecirc; empresta sua Ferrari para eu dar uma volta?&rdquo;, qual a chance dele deixar?</p>
+
+<img src="https://ideiasesquecidas.files.wordpress.com/2023/01/ferrari.png">
+
+<p>(Ferrari ao estilo Van Gogh, imaginada pelo Dall-E)</p>
+
+<br>
+
+<p>Esse meu colega argumentava que existiam duas op&ccedil;&otilde;es: ou ele deixava ou n&atilde;o deixava. Ent&atilde;o a chance era de 50%.</p>
+
+<p>Nessa &eacute;poca, eu n&atilde;o conhecia a regra de Bayes e n&atilde;o muito de probabilidades, e n&atilde;o argumentei. Por&eacute;m, mesmo assim, soou bem esquisito.</p>
+
+<p>Se eu chegar aleatoriamente para uma pessoa e pedir a Ferrari, muito provavelmente a resposta ser&aacute; &ldquo;n&atilde;o&rdquo;.</p>
+
+<p>Se ao inv&eacute;s de uma Ferrari, fosse um Gol 1.0, provavelmente a chance seria maior, embora ainda assim tenha mais &ldquo;n&atilde;os&rdquo; do que &ldquo;sims&rdquo;.</p>
+
+<p>A princ&iacute;pio, sem dados alguns, &eacute; dif&iacute;cil dar um chute para estimar essas probabilidades.</p>
+
+<p>De forma mais rigorosa, podemos mensurar as probabilidades fazendo pesquisas: vou a campo, pergunto para 1000 pessoas com Ferraris se eles a emprestariam para dar uma volta, e vejo quais as chances. Digamos que o estudo aponte que 1 em 1000 me empreste seu carr&atilde;o. A partir da&iacute;, meu melhor chute vai ser esse:</p>
+
+<p>Prob (sim) = 1/1000.</p>
+
+<p>A&iacute; sim, bem menos do que 50% e mais pr&oacute;ximo da realidade.</p>
+
+
+<h2>O paradoxo da Ferrari com mais informa&ccedil;&otilde;es</h2>
+
+<p>Agora, suponha que eu seja uma celebridade. Um Leonardo de Caprio, uma Gal Gadot, um Neymar. Se a Gal Gadot fizer a mesma pergunta &ldquo;Cara, voc&ecirc; empresta sua Ferrari para eu dar uma volta?&rdquo;, as chances de um &ldquo;sim&rdquo; seriam extremamente maiores.</p>
+
+<p>Digamos que eu tamb&eacute;m tenha feito uma pesquisa, e esta aponte 70% de chances de &ldquo;sim&rdquo;, sendo celebridade pedindo (suspeito que, no caso do Gol 1.0 com a Gal Gadot pedindo, as chances seriam pr&oacute;ximas de 100%!).</p>
+
+<img src="https://ideiasesquecidas.files.wordpress.com/2023/01/gal-gadot.png">
+
+<p>
+A&iacute;, o meu colega chato volta e diz: &ldquo;Viu, eu n&atilde;o falei que, na m&eacute;dia, as chances eram de 50%?&rdquo; &ndash; o que tamb&eacute;m soa muito estranho, porque n&atilde;o sou uma celebridade e tomaria &ldquo;n&atilde;o&rdquo; at&eacute; no Gol 1.0.</p>
+
+<p>A regra de Bayes vem nos salvar, para que possamos fazer a conta com m&eacute;todo.</p>
+
+
+<h2>Exemplificando a Regra de Bayes.</h2>
+
+<p>Vamos pegar um universo de 100 mil pessoas.</p>
+
+<p>Digamos que a chance de uma pessoa ser uma celebridade &eacute; 1 em 5000.</p>
+
+<p>Portanto, de 100 mil pessoas, h&aacute; 20 celebridades, e 99.980 pessoas comuns.</p>
+
+<p>Agora, uma pessoa normal tem 1 chance em 1000 de obter um &ldquo;Sim&rdquo;. Portanto, das 99.980 pessoas, aproximadamente 100 conseguiriam, caso cada um tentasse uma vez, e 99.880 n&atilde;o conseguiriam.</p>
+
+<p>E, sendo celebridade, 70% conseguiriam. Das 20 celebridades, 14 obteriam &ldquo;sim&rdquo;, e 6 obteriam &ldquo;n&atilde;o&rdquo;.</p>
+
+<p>A tabela abaixo sumariza todos esses n&uacute;meros.</p>
+
+<img src="https://ideiasesquecidas.files.wordpress.com/2023/01/tabela-bayes.png">
+
+
+<p>
+Agora, dadas as informa&ccedil;&otilde;es acima, qual a chance de eu obter um &ldquo;sim&rdquo;, dado que sou comum?</p>
+
+<p>Vamos usar a f&oacute;rmula:</p>
+
+<img src="https://ideiasesquecidas.files.wordpress.com/2023/01/bayes.png">
+
+<p>
+Prob (Sim | Comum) = Prob (Comum | Sim ) * Prob (Sim) / Prob(Comum)</p>
+
+<p>Se n&atilde;o errei nenhuma conta:</p>
+
+<p>Prob (Comum | Sim ) = 100 / 114 (&eacute; a probabilidade de eu ser comum, dados todos os &ldquo;sims&rdquo;)</p>
+
+<p>Prob ( Sim ) = 114 / 100000 (&eacute; a probabilidade de sim, diante do total)</p>
+
+<p>Prob(Comum) = 99980 / 100000 (&eacute; a probabilidade de eu ser pessoa comum, no todo)</p>
+
+<p>Portanto:</p>
+
+<p>Prob (Sim | Comum) = (100/114) * (114/100000) / (99980/100000) = 0,001</p>
+
+<p>Ou seja, como a chance do pedinte ser celebridade &eacute; rara, isso n&atilde;o afeta em nada as chances. Bate com a intui&ccedil;&atilde;o, tirando da frente o &ldquo;paradoxo da Ferrari&rdquo;. Que me adianta saber que o Cristiano Ronaldo tem muito mais chances de obter um &ldquo;sim&rdquo;?</p>
+
+<p>Este &eacute; um caso ilustrativo, por&eacute;m a regra de Bayes pode ser utilizada para condi&ccedil;&otilde;es bem mais complexas.</p>
+
+<p>Portanto, a interpreta&ccedil;&atilde;o &eacute; que a regra de Bayes serve para melhorar um c&aacute;lculo de probabilidade, a partir de informa&ccedil;&otilde;es obtidas a priori. A cada nova informa&ccedil;&atilde;o, melhoro a minha estimativa.</p>
+
+<p>A regra de Bayes &eacute; utilizada em modelos estat&iacute;sticos, problemas matem&aacute;ticos (como em pesquisa m&eacute;dica), modelos de machine learning e forecast, para citar alguns casos.</p>
+
+
+<p>Publicado originalmente em <a href = "https://ideiasesquecidas.com/2023/01/15/como-interpretar-a-regra-de-bayes-e-o-paradoxo-da-ferrari/"> https://ideiasesquecidas.com/2023/01/15/como-interpretar-a-regra-de-bayes-e-o-paradoxo-da-ferrari/ </a></p> 
+
+<hr>
+
+<p>Veja tamb&eacute;m:</p>
+
+<a href = "https://amzn.to/3W6Xubm"> <img src="https://ideiasesquecidas.files.wordpress.com/2023/01/teoria-nao-morreria.jpg"> </a>
+
+<p><a href = "https://amzn.to/3W6Xubm"> https://amzn.to/3W6Xubm</a></p>
+
+
+<p>
+A teoria que n&atilde;o morreria: como a lei de Bayes decifrou o c&oacute;digo enigma, perseguiu submarinos russos e emergiu triunfante de dois s&eacute;culos de controv&eacute;rsias</p>
+
+<p><a href ="https://www.mathsisfun.com/data/bayes-theorem.html">https://www.mathsisfun.com/data/bayes-theorem.html</a></p>
+
+
+
+
+
+<br>
+<p>Arnaldo S. Gunzi.</p>
+
+
+
+<hr>
+
+<p>Veja também: <a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a> </p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+</body>
+</html>

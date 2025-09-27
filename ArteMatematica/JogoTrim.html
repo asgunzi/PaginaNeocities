@@ -1,0 +1,395 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+ <title>O Jogo do Trim</title>
+ 
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>
+</style>	
+</head>
+
+
+<body>
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+
+<h1>O Jogo do Trim</h1>
+
+<p>Você tem uma quantidade de bobinas de papel a ser produzida numa máquina de papel. A máquina de papel tem uma largura fixa máxima.</p>
+
+<p>Encaixe as bobinas a serem produzidas, de modo a maximizar a produção. Isso equivale a diminuir o waste (largura não útil para a produção de bobinas).</p>
+
+<p> <button onclick="reiniciar()">Reiniciar</button> </p>
+<p id = "svgConteiner"> </p>
+
+<script type = "text/javascript">
+	function reiniciar()
+	{
+	location.reload();
+	}
+
+	function randomInteger(min, max) {
+	  return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
+	
+	function largEscolhidas()
+	{
+		//Escolhe aleatoriamente as larguras iniciais
+		var lista =[];
+		var listaApoio =[100,150, 200,250];
+		var soma;
+		var idx;
+		var resto;
+		for (j=0;j<3;j++)
+		{
+			soma=0;
+			for (i=0; i<2; i++)
+			{
+				idx = randomInteger(0,3);
+				soma =soma+listaApoio[idx];
+				lista.push(listaApoio[idx]);
+			}
+			resto = 500-soma;
+			if (resto>0)
+			{
+			lista.push(resto);
+			}			
+		}		
+		return lista.sort();
+	}
+	
+    var svg = d3.select("#svgConteiner")
+        .append("svg")
+        .attr("width", 1520)
+        .attr("height", 1100);
+
+	svg.selectAll("*").remove();
+
+	var Larg; //	=[100, 150, 200, 250, 250, 250,300];
+	Larg = largEscolhidas();
+	
+	var x0 = [];
+	var y0 = [];
+	var larg0 = [];
+	var altura = 50;
+	var tirada1 =[];
+	var tirada2 =[];
+	var tirada3 =[];
+	var xini=0;
+	var yini=0;
+	var bobId=0;
+	var auxIdx =0;
+	
+	//Larguras
+	for (i=0; i<Larg.length;i++)
+		{
+			x0.push(20);
+			y0.push((altura+10)*i+100);
+			larg0.push(Larg[i]);
+		}
+
+	//Linha separadora
+	svg.append("line").attr("x1", 20).attr("y1", 10).attr("x2", 900).attr("y2", 10).attr("stroke", "black").attr("stroke-width", 1).attr("stroke-dasharray","2")
+
+	//Insere o espaço para colocar as tiradas
+	svg.append("text")
+			.attr("x", 400)
+			.attr("y", 60)
+			.text("Máquina de Papel")
+			.attr("font-size",25)
+	
+	svg.append("text")
+			.attr("x", 400)
+			.attr("y", 90)
+			.text("Tirada 1")
+			.attr("font-size",20)
+	
+	svg.append("rect")
+		  .attr("x", 400)
+		  .attr("y", 100)
+		  .attr("width", 500)
+		  .attr("height", altura)
+		  .attr("stroke", "black")
+		  .attr("fill", "transparent")
+
+	svg.append("text")
+			.attr("x", 400)
+			.attr("y", 190)
+			.text("Tirada 2")
+			.attr("font-size",20)
+	
+	svg.append("rect")
+		  .attr("x", 400)
+		  .attr("y", 200)
+		  .attr("width", 500)
+		  .attr("height", altura)
+		  .attr("stroke", "black")
+		  .attr("fill", "transparent")
+
+	svg.append("text")
+			.attr("x", 400)
+			.attr("y", 290)
+			.text("Tirada 3")
+			.attr("font-size",20)
+	
+	svg.append("rect")
+		  .attr("x", 400)
+		  .attr("y", 300)
+		  .attr("width", 500)
+		  .attr("height", altura)
+		  .attr("stroke", "black")
+		  .attr("fill", "transparent")
+
+//Insere as bobinas			
+	svg.append("text")
+			.attr("x", 20)
+			.attr("y", 60)
+			.text("Bobinas")
+			.attr("font-size",25)
+			
+	svg.append("text")
+			.attr("x", 20)
+			.attr("y", 88)
+			.text("(Arraste as bobinas)")
+			.attr("font-size",20)
+				
+	var escolhacor  = "hsl(" + (Math.random() * 360+0) + ",100%,50%)";
+	svg.selectAll("circle")
+			.data(x0)
+			.enter()
+			.append("rect")
+		  .attr("x", function(d,i){return x0[i]})
+		  .attr("y", function(d,i){return y0[i]})
+		  .attr("width", function(d,i){return larg0[i]})
+		  .attr("height", altura)
+		  .attr("stroke", "black")
+		  .attr("stroke-width", 1)
+		  .attr("fill", escolhacor)
+		  .attr("id", function(d,i){return "bob" + i})
+
+		
+var dragHandler = d3.drag()
+	.on("start",function(){
+		//Encontra o id da bobina
+		var swap;
+		swap = d3.select(this).attr("id")
+		bobId = parseInt(swap.substring(3,swap.length));
+		
+		xini = 20;
+		yini = (altura+10)*bobId+100;
+		
+	 })
+    .on("drag", function () {
+        d3.select(this)
+            .attr("x", d3.event.x)
+            .attr("y", d3.event.y-25)
+			//.attr("width",d3.event.x);
+    })
+	.on("end", function () {
+        d3.select(this)
+            .attr("x", d3.event.x)
+            .attr("y", d3.event.y-25)
+		
+		//Verifica se está dentro de alguma tirada
+		var x1 = d3.event.x;
+		var y1 = d3.event.y;
+				
+		//Se estiver, update posição
+		if (x1 >= (400-20) && x1 <= (900+20) && y1 >= (100-20) && y1 <= (150+20))
+		{
+			//Está na Tirada 1
+			//window.alert(d3.select(this).attr("width"));
+			auxIdx = tirada1.indexOf(bobId);
+			if (auxIdx == -1) {
+						tirada1.push(bobId); }//Armazena ID da bobina
+			
+			//retira idx das outras tiradas se tiver
+			auxIdx = tirada2.indexOf(bobId);
+			if (auxIdx > -1) { // only splice array when item is found
+			  tirada2.splice(auxIdx, 1);
+			  } // 2nd parameter means remove one item only
+			
+			auxIdx = tirada3.indexOf(bobId);
+			if (auxIdx > -1) { // only splice array when item is found
+			  tirada3.splice(auxIdx, 1);
+			  } // 2nd parameter means remove one item only
+
+		}
+		
+		else if (x1 >= (400-20) && x1 <= (900+20) && y1 >= (200 -20) && y1 <= (250+20))
+		{	//window.alert("Tirada2");
+			auxIdx = tirada2.indexOf(bobId);
+			if (auxIdx == -1) { 
+				tirada2.push(bobId);} //Armazena ID da bobina
+
+			//retira idx das outras tiradas se tiver
+			auxIdx = tirada1.indexOf(bobId);
+			if (auxIdx > -1) { // only splice array when item is found
+			  tirada1.splice(auxIdx, 1);
+			  } // 2nd parameter means remove one item only	
+			auxIdx = tirada3.indexOf(bobId);
+			if (auxIdx > -1) { // only splice array when item is found
+			  tirada3.splice(auxIdx, 1);
+			  } // 2nd parameter means remove one item only
+		}
+		else if (x1 >= (400-20) && x1 <= (900+20) && y1 >= (300-20) && y1 <= (350+20))
+		{	
+			//window.alert("Tirada3");
+			auxIdx = tirada3.indexOf(bobId);
+			if (auxIdx == -1) { 
+			tirada3.push(bobId);} //Armazena ID da bobina
+			
+			//retira idx das outras tiradas se tiver
+			auxIdx = tirada1.indexOf(bobId);
+			if (auxIdx > -1) { // only splice array when item is found
+			  tirada1.splice(auxIdx, 1);
+			  } // 2nd parameter means remove one item only
+			
+			auxIdx = tirada2.indexOf(bobId);
+			if (auxIdx > -1) { // only splice array when item is found
+			  tirada2.splice(auxIdx, 1);
+			 } // 2nd parameter means remove one item only
+		}
+		//Se não, retorna ao início
+		else
+		{
+			d3.select(this).attr("x", xini).attr("y", yini);	
+			
+			//Verifica se o id está em alguma tirada, se estiver, retira
+			auxIdx = tirada1.indexOf(bobId);
+			if (auxIdx > -1) { // only splice array when item is found
+			  tirada1.splice(auxIdx, 1);
+			 }
+			
+			auxIdx = tirada2.indexOf(bobId);
+			if (auxIdx > -1) { // only splice array when item is found
+			  tirada2.splice(auxIdx, 1);
+			  } 
+			
+			
+			auxIdx = tirada3.indexOf(bobId);
+			if (auxIdx > -1) { // only splice array when item is found
+			  tirada3.splice(auxIdx, 1);
+			  } 
+			
+		}
+		
+		//Update posiçao de todo mundo
+		var swapId;
+		var x1;
+		var y1;
+
+		xini = 400;
+		yini = 100;
+		var soma =0;
+		for (i=0;i<tirada1.length;i++)
+		{
+		    soma = soma+Larg[tirada1[i]];
+			if ( soma<= 500)
+			{
+				swapId = "#bob" + tirada1[i];
+				//window.alert(swapId + " " + d3.select("#bob1").attr("width"));
+				d3.select(swapId).attr("x", xini).attr("y", yini);
+				xini = xini + Larg[tirada1[i]];	
+			}
+			else
+			{
+				xini = 20;
+				yini = (altura+10)*tirada1[i]+100;
+				
+				swapId = "#bob" + tirada1[i];
+				tirada1.pop();								
+				d3.select(swapId).attr("x", xini).attr("y", yini);
+			}
+		}
+
+		xini = 400;
+		yini = 200;
+		soma =0;
+		for (i=0;i<tirada2.length;i++)
+		{
+		    soma = soma+Larg[tirada2[i]];
+			if ( soma<= 500)	
+			{
+				swapId = "#bob" + tirada2[i];		
+				d3.select(swapId).attr("x", xini).attr("y", yini);
+				xini = xini + Larg[tirada2[i]];	
+			}
+			else
+			{
+				xini = 20;
+				yini = (altura+10)*tirada2[i]+100;
+				swapId = "#bob" + tirada2[i];
+				tirada2.pop();				
+				d3.select(swapId).attr("x", xini).attr("y", yini);
+			}
+		}
+
+		xini = 400;
+		yini = 300;
+		soma =0;
+		for (i=0;i<tirada3.length;i++)
+		{
+		    soma = soma+Larg[tirada3[i]];
+			if ( soma<= 500)
+			{
+				swapId = "#bob" + tirada3[i];		
+				d3.select(swapId).attr("x", xini).attr("y", yini);
+				xini = xini + Larg[tirada3[i]];	
+			}
+			else
+			{
+				xini = 20;
+				yini = (altura+10)*tirada3[i]+100;
+				swapId = "#bob" + tirada3[i];
+				tirada3.pop();				
+				d3.select(swapId).attr("x", xini).attr("y", yini);
+			}
+		}		
+    
+		//Mensagem de êxito se completou a missão
+		soma= 0;
+		
+		for (i=0;i<tirada1.length;i++)
+		{soma = soma+Larg[tirada1[i]];}
+		for (i=0;i<tirada2.length;i++)
+		{soma = soma+Larg[tirada2[i]];}
+		for (i=0;i<tirada3.length;i++)
+		{soma = soma+Larg[tirada3[i]];}
+	
+		if (soma==1500)
+		{ window.alert("Parabéns, você conseguiu!")};
+	});
+
+	
+//dragHandler(svg.selectAll("use"));
+
+for (i=0; i< Larg.length; i++)
+{
+	dragHandler(svg.select("#bob" + i));
+}
+
+</script>
+
+
+<br>
+<hr>
+
+<p>Veja também: <a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a> </p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+	
+</body>   
+</html>  
+
+
+
+	

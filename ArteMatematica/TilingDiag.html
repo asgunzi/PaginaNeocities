@@ -1,0 +1,204 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+<div class="slidecontainer" onchange= "Desenhar()">
+<form>
+
+Raio: 
+  <input type="range" min="50" max="200" value="80" class="slider" id="myRange">
+
+	N. Cores:
+		  <select onchange = "Desenhar()" id="SelectCores">
+		    
+		    <option value="1"  >1</option>
+		    <option value="2">2</option>
+		    <option value="3">3</option>
+		    <option value="4">4</option>
+		    <option value="5" selected>5</option>
+			<option value="10">10</option>			
+			<option value="20">20</option>			
+		  </select>		  
+</form>
+
+</div>
+
+<p id="svgRef"></p>
+
+
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+<script>
+// Defina as propriedades do hexágono
+var width = 1000; // largura do contêiner SVG
+var height = 800; // altura do contêiner SVG
+
+
+// Crie um contêiner SVG
+var svg = d3.select("#svgRef")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+
+function Desenhar()
+{
+	var x;
+	var y;
+	var R;
+	var dx0;
+	var arrRnd=[];
+	var idxi;
+	var idxj;
+	var delayInMilliseconds =0;
+	var par1;
+	var par2;
+	var ncolors;
+	
+	R = parseInt(d3.select("#myRange").property("value"));
+	ncolors = parseInt(d3.select("#SelectCores").property("value"));
+	x=100;
+	y=100;
+
+	svg.selectAll("*").remove();
+
+	for (i=0; i< 50; i++)
+		for (j=0; j< 50; j++)
+			arrRnd.push(i + 50*j);
+		
+	shuffle(arrRnd);
+	var cor1 =d3.schemeCategory20c[Math.floor(Math.random() * ncolors)];
+	
+	for (i =0; i<50;i++)
+		{for (j=0; j<50; j++)
+			{
+					idxi = arrRnd[i +50*j] % 50;
+					idxj = Math.floor(arrRnd[i +50*j] / 50);
+
+
+					delayInMilliseconds +=1.5;
+					par1 = idxi*R;
+					par2 = idxj*R;
+					
+					setTimeout(DiagTil.bind(null,par1,par2,R,ncolors,cor1), delayInMilliseconds,par1,par2,R,ncolors);	  
+					
+				}	
+				
+			}
+		
+}
+
+function shuffle(array) {
+	for (let i = array.length - 1; i > 0; i--) {
+		let j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
+		[array[i], array[j]] = [array[j], array[i]];
+	}
+}
+
+function DiagTil(xi,yi,Ri,ncolors,cor1)
+	{
+		//Posicao xi, yi
+		//Raio Ri
+		//Número de pontos n
+
+		svg.append("rect")
+		  .attr("x", xi)
+		  .attr("y", yi)
+		  .attr("width", Ri)
+		  .attr("height", Ri)
+		  .attr("stroke", "white")
+		  .attr("fill", cor1)
+		
+		var pi = Math.PI;
+		
+		var cor2 = d3.schemeCategory20b[Math.floor(Math.random() * ncolors)];
+		var boolRnd = false;
+		Math.random() < 0.5 ? boolRnd =false :  boolRnd =true;
+	
+	
+		if (boolRnd)
+		{
+		
+		triangDiag(xi,yi,Ri/2, 0,cor2);
+
+		triangDiag(xi+Ri,yi+Ri,Ri/2, 180,cor2);
+
+		}
+		else
+		{
+		
+		triangDiag(xi+Ri,yi,Ri/2, 90,cor2);
+
+		triangDiag(xi,yi+Ri,Ri/2, 270,cor2);
+
+		};
+		
+		}
+
+
+function triangDiag(x,y,L, theta0, cor0)
+	{
+		//Posicao x, y
+		//Lado L
+		var pontos;
+		var i;
+		var angulo;
+
+		angulo=0;
+		pontos="";
+		var co = 3.14159/180;
+		theta =theta0*co;
+		var boolRnd = false;
+		Math.random() < 0.5 ? boolRnd =false :  boolRnd =true;
+
+			pontos += (x) + ", " + (y) + ", ";			 
+			pontos += (x+L*Math.cos(theta)) + ", " + (y+L*Math.sin(theta)) + ", ";			 
+			//pontos += (x+L*4/5*Math.cos(theta+22*co)) + ", " + (y+L*4/5*Math.sin(theta+22*co)) + ", ";	
+			//pontos += (x+L*Math.cos(theta+45*co)) + ", " + (y+L*Math.sin(theta+45*co)) + ", ";			 
+			//pontos += (x+L*4/5*Math.cos(theta+67*co)) + ", " + (y+L*4/5*Math.sin(theta+67*co)) + ", ";	 
+			pontos += (x+L*Math.cos(theta+90*co)) + ", " + (y+L*Math.sin(theta+90*co)) + ", ";			 
+			pontos += (x) + ", " + (y);			 
+
+		svg.append("polygon")
+		  .attr("points", pontos)		  
+		  .attr("stroke", "white")
+		  .attr("fill", cor0)		      
+	}
+
+Desenhar();
+       		 
+		 
+</script>
+
+</body>
+</html>

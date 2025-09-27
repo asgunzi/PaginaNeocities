@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Calculadora Visual Soma</title>
+ 
+<script src="https://d3js.org/d3.v4.min.js"></script>
+
+<style>
+input[type=text] {
+  width: 5%;
+}
+</style>	
+</head>
+
+<body>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+<hr>
+
+<h1> Calculadora Visual - Soma / Subtração</h1>
+
+<form>
+	a:
+	<input type="text" id="idSomaA" onchange="DesenharSoma()" value="6">
+	<p> </p>
+
+	b:
+	<input type="text" id="idSomaB" onchange="DesenharSoma()" value="8">
+
+	<button type = "button"  onclick="DesenharSoma()">Rodar</button>  
+				
+</form>
+<p></p>
+
+<form>
+	Operação: <select onchange = "DesenharSoma()" id="SelectOper">
+		    <option value="+" selected >+</option>
+		    <option value="-">-</option>		    
+		  </select>		  
+</form>
+<p id= "conteinerSoma"</p>
+
+<script type = "text/javascript" src = "CalcSoma.js"> </script>
+
+<script src = "../LogoMath.js">		</script>
+
+</body>   
+</html>  
+
+
+
+	

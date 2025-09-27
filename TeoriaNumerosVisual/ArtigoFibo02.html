@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+<h1>Prova visual de teoremas sobre Fibonacci</h1>
+
+
+<p>A famosa série de Fibonacci funciona assim: comece com 1, 1, e o próximo termo é a soma dos dois anteriores:</p>
+<p>1, 1, 2, 3, 5, 8, 13, 21, 34, …</p>
+
+<p></p>
+<p>É possível visualizar essa bela sequência na forma retangular, aproveitando o fato de que o próximo termo será igual ao lado dos dois anteriores.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/11/fibonacci-retangular.png?w=460&zoom=2">
+
+<p>Note o sentido da espiral: começa do 1. Direita, para cima, esquerda, para baixo, direita, etc…</p>
+<p></p>
+<p>Seja Fn o n-ésimo termo da sequência. F1 = 1, F2 =1, F3 = 2, etc…</p>
+<p></p>
+<hr>
+<h2>Teorema: F1 + F3 + F5 + F_(2*n-1) = F_2n</h2>
+
+<p>A prova visual consiste em olhar para o eixo y (dos quadrados marcados em vermelho).</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2023/01/fiboimpar.png">
+<p>Note que F1 + F3 + F5 = F6. E o padrão vale para os próximos itens. Digamos, com F7, também adicionará um valor no eixo y, e que será igual ao tamanho do F8, e assim sucessivamente, para os próximos quadrados que surgirem.</p>
+<p></p>
+<p>Exemplo: F1 + F3 + F5 = 1 + 2 + 5 = 8</p>
+<p></p>
+<p>F6 = 8</p>
+<p></p>
+<hr>
+<h2>Teorema: F2 + F4 + F6 + F_(2*n) = F_(2n+1) — 1</h2>
+<p>Este teorema é muito similar, porém, na horizontal.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2023/01/fibopar.png">
+
+<p>Note que F2 + F4 + F6, olhando para a contribuição no eixo x, são iguais ao próximo item (F7), a menos do primeiro valor (1).</p>
+<p></p>
+<p>Exemplo:</p>
+<p>F2 + F4 + F6 = 1 + 3 + 8 = 12</p>
+<p></p>
+<p>F7–1 = 13–1 = 12</p>
+<p></p>
+<hr>
+<h2>Teorema: F1 + F2 + F3 + F4 + F_n = F_(n+2) — 1</h2>
+<p>Este é a soma dos dois teoremas anteriores.</p>
+<p></p>
+<p>Se somar só os ímpares, dá F_n.</p>
+<p>Se somar só os pares, dá F_(n+1) — 1.</p>
+<p></p>
+<p>Então,</p>
+<p>Soma = F_n + F_(n+1) — 1</p>
+<p></p>
+<p>Mas a soma de dois termos Fibonacci consecutivos é o próximo termo Fibonacci:</p>
+<p></p>
+<p>Soma = F_(n+2) — 1</p>
+<p></p>
+<p>Exemplo:</p>
+<p>F1 + … + F6 = 1 + 1 + 2 + 3 + 5 + 8 = 20</p>
+<p></p>
+<p>F8–1 = 21–1 = 20</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/11/fibonacci-espiral.png?w=411&zoom=2">
+<p>Gif animado da espiral de Fibonacci.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2023/01/fibogif.gif">
+<p>Arnaldo Gunzi, jan 2023.</p>
+
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+</body>
+</html>

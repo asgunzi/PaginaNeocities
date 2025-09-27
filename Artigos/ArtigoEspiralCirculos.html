@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+<h1>Espiral Interativa de Círculos</h1>
+<p></p>
+<p>Segue, a seguir, uma página interativa para criar espirais de círculos.</p>
+<p></p>
+
+N. círculos
+<div class="slidecontainer1" onchange= "Desenhar()">
+  <input type="range" min="5" max="20" value="10" class="slider" id="rangeNum">
+</div>
+
+Ângulo
+<div class="slidecontainer" onchange= "Desenhar()">
+  <input type="range" min="-45" max="45" value="30" class="slider" id="rangeAngle">
+</div>
+
+<p id="svgEspCirc"></p>
+
+
+<p></p>
+<p></p>
+<p>Alguns prints.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/07/screenshot-2022-07-03-022032.png">
+<p></p>
+<p>É possível mudar o ângulo de cada ramo.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/07/screenshot-2022-07-03-022043.png">
+<p></p>
+<p>E também é possível mudar o número de círculos por camada.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/07/screenshot-2022-07-03-022056.png">
+<p></p>
+<p>A biblioteca D3 do Javascript é muito boa para este tipo de visualização. No final das contas, são apenas alguns plots de círculos bem posicionados, matemática simples e bela.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/07/screenshot-2022-07-03-022043-1.png">
+<p></p>
+<p>Também fiz alguns gifs animados, para ilustrar o movimento.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/07/espiralcirculos01.gif">
+<p></p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/07/espiralcirculos02.gif?w=525&zoom=2">
+<p></p>
+<p></p>
+
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../ArteMatematica/espiralCirculos.js"></script>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+</body>
+</html>

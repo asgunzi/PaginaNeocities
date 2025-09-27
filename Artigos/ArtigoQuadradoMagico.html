@@ -1,0 +1,206 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+<h1>Como criar um quadrado mágico de qualquer tamanho</h1>
+<p></p>
+<p>Quadrados mágicos são números arranjados numa grade, de tal forma que a soma das linhas, colunas e diagonais seja igual.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/05/quadrado01.png">
+<p></p>
+<p>A questão de como criar diversos tipos de quadrados mágicos vem intrigado os matemáticos há séculos.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/05/quadradoancient.jpg">
+
+<p>Veremos neste tutorial, como criar um quadrado mágico de qualquer tamanho. Implementação em VBA e em Python disponível no <a href="https://github.com/asgunzi/QuadradoMagico"> Github</a>.</p>
+<p></p>
+<p>Há três casos diferentes:</p>
+<p></p>
+<p>– quadrados mágicos ímpares,</p>
+<p></p>
+<p>– do tipo 4*n</p>
+<p></p>
+<p>– do tipo 4*n+2</p>
+<p></p>
+<p>Para cada caso, há um algoritmo diferente.</p>
+<p></p>
+
+<hr>
+<p></p>
+<h2>Caso 1: Quadrados mágicos ímpares</h2>
+<p></p>
+<p>São os que têm número de lado ímpar (3, 5, 7, etc).</p>
+<p></p>
+<p>Começar colocando o 1 na célula superior do meio. Andar uma casa para a esquerda e uma para cima, para colocar o próximo número. Como o tabuleiro acaba, é como se ele desse a volta e colocasse o número no canto inferior.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/05/quadrado02.png">
+<p></p>
+<p>Ir repetindo o passo acima, do número 2 para o 3.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/05/quadrado03.png">
+<p></p>
+<p>Quando a casa em questão já estiver ocupada, como no caso abaixo,</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/05/quadrado04.png">
+<p></p>
+<p>… colocar o próximo número imediatamente abaixo da casa de referência.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/05/quadrado05.png">
+<p></p>
+<p>Isso é suficiente para gerar qualquer quadrado mágico ímpar.</p>
+<p></p>
+<p>Ex. quadrado mágico 3×3:</p>
+<p></p>
+<p>Obs. Devido à simetria, tanto faz ir para a direita ou para a esquerda, no primeiro passo acima.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/05/quadrado06.png">
+<p></p>
+<p>Padrão de cores: mais claro -> número maior, mais escuro, número menor.</p>
+<p></p>
+<p>Ex. Quadrado mágico 15×15:</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/05/quadrado07-1.png">
+<p></p>
+<hr>
+<h2>Caso 2: Quadrados de ordem 4*n</h2>
+<p></p>
+<p>Ou seja, quadrados de lado 4, 8, 12, 16, etc.</p>
+<p></p>
+<p>Colocar os números de 1 a 16 sequencialmente na grade.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/05/quadrado08.png">
+<p></p>
+<p>Apagar os números da diagonal principal e da diagonal secundária:</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/05/quadrado09.png">
+<p></p>
+<p>Agora, imagine o grid preenchido sequencialmente, mas na ordem inversa:</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/05/quadrado10.png">
+<p></p>
+<p>Neste grid inverso, apagar todos os números que NÃO são das diagonais principal e secundária.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/05/quadrado11.png">
+<p></p>
+<p>Juntar ambos os quadrados semi-preenchidos, e voilá, temos um quadrado mágico!</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/05/quadrado12.png">
+<p></p>
+<p>Para ordem 8, 12, é similar. É só imaginar um quadrado 8×8 sendo dividido em 4 quadrados 4×4, e para cada quadrado 4×4, aplicar o padrão acima.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/05/quadrado13-1.png">
+<p></p>
+<hr>
+<h2>Caso 3: Ordem 4*n+2</h2>
+<p></p>
+<p>São quadrados com casas 6, 10, 14, etc, em que os algoritmos acima não funcionam.</p>
+<p></p>
+<p>Este caso é mais complicado.</p>
+<p></p>
+<p>A regra utilizada aqui é a LUX, desenvolvida por John Conway (o mesmo do Jogo da Vida).</p>
+<p></p>
+<p>Dividir o quadrado em grupos de quadrados 2×2.</p>
+<p></p>
+<p>Exemplo, um quadrado 6×6 pode ser visto como um grupo de 3×3 quadrados 2×2.</p>
+<p></p>
+
+<p>Para o grupo de quadrados, dividir assim:</p>
+<p></p>
+<p>Até a metade de linhas L</p>
+<p>1 linha de U</p>
+<p>O restante de X</p>
+<p>No exemplo de lado 6, não “cabe” a linha X, mas para casos maiores, sim.</p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/05/quadrado14-1.png">
+
+<p></p>
+<p></p>
+<p>Depois, inverter o L central com o U abaixo:</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/05/quadrado15.png">
+<p></p>
+<p>Note que o grupo de quadrados torna-se um quadrado de ordem ímpar (o primeiro algoritmo descrito).</p>
+<p></p>
+<p>L, U e X referem-se à padrões de preenchimento:</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/05/quadrado16.png">
+<p></p>
+<p>Portanto, o algoritmo é:</p>
+<p></p>
+<p>– A ordem de preenchimento é como no caso ímpar, para grupos de quadrados 2×2</p>
+<p></p>
+<p>– Dentro do quadrado 2×2, usar a regra LUX correspondente ao quadrado.</p>
+<p></p>
+<p>Exemplo: cubo 6×6</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/05/quadrado17.png">
+
+<p></p>
+<p>No exemplo acima, começo com 1 no meio na linha superior, que é padrão L:</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/05/quadrado18.png">
+<p></p>
+<p>O próximo número é 5, e o local dele é à direita e acima, conforme o algoritmo de lado ímpar. Esta casa corresponde ao padrão U.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/05/quadrado19.png">
+<p></p>
+<p>O próximo número é o 9, à direita e acima. Agora, é o padrão L.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/05/quadrado20.png">
+<p></p>
+<p>E assim sucessivamente.</p>
+<p></p>
+<p>Ex. Quadrado 10×10.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2020/05/quadrado21.png">
+<p></p>
+<p>Utilizando os três algoritmos acima, é possível criar quadrados mágicos de qualquer tamanho, digamos 1000 x 1000.</p>
+<p></p>
+<p>Implementação em D3: <a href="https://asgunzi.github.io/QuadradoMagicoD3/index.html">https://asgunzi.github.io/QuadradoMagicoD3/index.html</a></p>
+<p></p>
+<p>Implementação em VBA e em Python disponível no Github.</p>
+<p></p>
+<p>Links:</p>
+<p></p>
+<p>https://en.wikipedia.org/wiki/Conway%27s_LUX_method_for_magic_squares</p>
+<p></p>
+<p>https://en.wikipedia.org/wiki/Siamese_method</p>
+<p></p>
+<p>https://ideiasesquecidas.com/laboratorio-de-matematica/</p>
+<p></p>
+<p>https://ideiasesquecidas.com/2016/03/09/quadrados-magicos-impares/</p>
+
+
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+</body>
+</html>

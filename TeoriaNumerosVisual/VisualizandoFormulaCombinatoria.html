@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+<h1>Visualizando combinações</h1>
+<p></p>
+<p>A combinação de n elemento em k pode ser descrita pela fórmula abaixo:</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/12/comb00.png">
+<p></p>
+<p>Um jeito de visualizar é pensar em n elementos, que devem entrar em k casas. Há quantas formas diferentes possíveis?</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/12/comb01.png">
+<p></p>
+<p>Pela fórmula, chegamos ao mesmo número do exemplo:</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/12/comb02.png">
+<p></p>
+<p>Esse mesmo raciocínio pode ajudar em desenvolvimentos mais complexos.</p>
+<p></p>
+<p>Existe uma fórmula em teoria combinatória que é assim:</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/12/comb03.png">
+<p></p>
+<p>Sempre achei a mesma muito abstrata. Combinação de n+1 elementos em k formas = Combinação de n elementos em k formas + Combinação de n elementos em k-1 formas.</p>
+<p></p>
+<p>Exemplo numérico:</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/12/comb04.png">
+<p></p>
+<p>Numericamente, é só fazer a conta:</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/12/comb05.png">
+<p></p>
+<p>Há uma forma simples de visualizar. Imagine que n+1 elementos devem caber em k espaços. O de vermelho é o elemento número n+1.</p>
+<p></p>
+<p>Deixei visualmente 6 elementos e 3 casas para ficar igual ao exemplo numérico.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/12/comb06.png">
+<p></p>
+<p>Se eu desconsiderar momentaneamente o elemento n+1, terei a combinação de n elementos em k espaços.</p>
+<p></p>
+<p>Com o elemento n+1, imagine este preenchendo uma das casas. Sobrará a combinação dos n elementos restantes nas k-1 casas restantes.</p>
+<p></p>
+<p>Somando ambos, terei exatamente a combinação de n+1 elementos em k espaços.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/12/comb07.png">
+<p></p>
+<p>Sumário em um slide:</p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/12/prova-visual-combinatoria-01-arnaldo-gunzi.png">
+
+
+
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+</body>
+</html>

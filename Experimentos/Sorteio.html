@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+<h1> Sorteador aleatório</h1>
+
+<form>
+Mínimo e Máximo a sortear (ambos inclusivos):
+<input type="text" id="idA" value="1" size = 4>
+<input type="text" id="idB" value="10" size = 4>
+
+<button type = "button" onclick="Rodar()" tabindex = "0">Rodar</button>  
+</form>
+
+<p id = "svg01"></p>
+
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+</body>
+
+<script>
+
+    var svg = d3.select("#svg01")
+        .append("svg")
+        .attr("width", 800)
+        .attr("height", 400)
+		.style("background", "ghostwhite");
+
+
+function Rodar()
+{
+	svg.selectAll("*").remove();
+	
+	let duracao = 200;
+	
+	let Nmin = parseInt(d3.select("#idA").property("value"));
+	let Nmax = parseInt(d3.select("#idB").property("value"));
+	
+	let sorteio;
+	
+	sorteio = getRandomInt(Nmin	,Nmax);
+
+	svg.append("text")
+	.attr("x", 350)
+	.attr("y", 200)
+	.transition()
+	.duration(duracao)
+	.text(sorteio)
+	.attr("font-size",140)
+	.transition()
+	.duration(duracao)
+	.text("")
+	.transition()
+	.duration(duracao)
+	.text(sorteio)
+	.transition()
+	.duration(duracao)
+	.text("")
+	.transition()
+	.duration(duracao)
+	.text(sorteio)
+	;
+	
+}
+
+	function getRandomInt(min, max) {
+		min = Math.ceil(min);
+		max = Math.floor(max);
+		return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
+
+
+</script>
+
+</html>

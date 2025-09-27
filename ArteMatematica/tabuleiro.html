@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Tabuleiro de Xadrez em JS D3</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+
+<style>  
+table {
+            border-collapse: collapse;
+            width: 80%;
+        }
+        th, td {
+            text-align: center;
+        }
+		
+p, div {
+	font-size: 18px;
+}
+</style>
+
+</head>
+
+
+<body>
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+
+<h1>Tabuleiro de Xadrez em JS D3</h1>
+
+<p>Apoio para decorar as posiões do tabuleiro de Xadrez</p>
+
+<p id = "svgConteiner"> </p>
+
+<button type = "button" onclick="Rodar()" tabindex = "0">Rodar</button>  
+
+<p id = "resposta"> </p>
+
+
+<script>
+    var svg = d3.select("#svgConteiner")
+        .append("svg")
+        .attr("width", 800)
+        .attr("height", 600);
+
+	svg.selectAll("*").remove();
+var h = 60;
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min);
+}
+
+function quadrado(x,y,cor)
+{
+svg.append("rect")
+  .attr("x", x)
+  .attr("y", y)
+  .attr("width", h)
+  .attr("height", h)
+  .attr("fill", cor)
+  .attr("stroke", "black")
+  .attr("stroke-width", 1);
+}
+
+let n=0;
+
+for (let i = 0; i<8; i++)
+{
+	for (let j = 0; j<8; j++)
+	{
+	    n = i+j;
+		if (n % 2 ==0)
+		{
+			quadrado(i*h+100,j*h+100,"white");
+		}
+		else	
+	{			
+			quadrado(i*h+100,j*h+100,"gray");
+	}
+	}
+}
+
+function Rodar()
+{
+let divResults = document.getElementById('resposta');
+
+divResults.innerHTML= "";
+//Escolhe aleatoriamente uma linha e coluna
+let row = getRandomInt(0, 8);
+let col = getRandomInt(0, 8);
+
+//Faz piscar  a posição
+let x0 = row*h+100;
+let y0 = col*h+100;
+
+svg.append("rect").attr("x", x0) .attr("y", y0).attr("width", h).attr("height", h)
+  .attr("fill", "yellow")
+  .attr("stroke", "black")
+  .attr("stroke-width", 1)
+  .transition()
+  .duration(100)    
+  .delay(0)
+  .transition()
+ .ease(d3.easeCubic)
+ .duration(500)    
+ .attr("width", 0).attr("height", 0);
+
+//Espera um pouco e dá a resposta
+
+dictPos ={ 
+     "0": "A", "1": "B", "2": "C", "3": "D", "4": "E", "5": "F", "6": "G","7": "H"    
+};
+let strRow = dictPos[row];
+
+let strOut = strRow + (8-col);
+
+
+divResults.innerHTML = strOut;
+
+}
+</script>
+
+
+<br>
+<hr>
+
+<p>Veja também: <a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a> </p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+	
+</body>
+</html>

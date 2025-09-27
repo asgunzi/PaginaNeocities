@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+<h1>O Teorema de Eudoxo e Algoritmo da Divisão</h1>
+<p></p>
+<p></p>
+<p>O clássico Teorema de Eudoxo diz: dados a e b inteiros com b <> 0 então a é um múltiplo de b ou se encontra</p> entre dois múltiplos consecutivos de b.
+<p></p>
+<p>Ou seja, existe um inteiro q tal que:</p>
+<p></p>
+<p>q*b <= a <= (q +1)*b, para b>0.</p>
+<p></p>
+<p>O teorema de Eudoxo segue a mesma lógica das pedrinhas já mostrada anteriormente.</p>
+<p></p>
+<p>No caso a = 13 e b =3, as pedrinhas vão estar dispostas em 3 colunas, com uma pedrinha de resto.</p>
+<p></p>
+<p>Existe q = 4 tal que q*b = 12 menor do que 13 (basta tirar a linha do resto), e (q+1)*b = 15, maior do que 13</p> (basta completar a linha do resto com outras bolinhas.
+
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/02/eudoxo.png">
+<p></p>
+<p>O Teorema de Eudoxo não é muito famoso, porém, ele é base para mostrar o bem mais interessante Algoritmo</p> da Divisão.
+<p></p>
+<br>
+<h2>O Algoritmo da Divisão</h2>
+<p></p>
+<p>Dados a e b inteiros com b <> 0, existe um inteiro q e um resto r tal que:</p>
+<p></p>
+<p>a = q*b + r, com 0 <= r <b</p>
+<p></p>
+<p>A visualização é exatamente a mesma, é como pegar a bolinhas e ir distribuindo em b colunas. Ou as últimas pedrinhas vão completar exatamente todas as colunas ou vai sobrar um resto, que vai cobrir apenas algumas colunas.</p>
+
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/02/eudoxo01.png">
+
+<p>O livro de referência abaixo divide a prova mais formal em existência e unicidade. A parte de existência parte do Teorema de Eudoxo, dado acima. A de unicidade, começa assumindo que há duas soluções, e a seguir, mostrar que são iguais.</p>
+
+<p>Para uma prova mais formal, vide referência abaixo.</p>
+
+<p>Referência: Introdução à Teoria dos Números, José Plínio de Oliveira Santos, Instituto Nacional de Matemática Pura e Aplicada.</p>
+
+
+
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+</body>
+</html>

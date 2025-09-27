@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+
+<br>
+<hr>
+
+<p id = "svgFractal"></p>
+
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+<script>
+
+    var svgFrac = d3.select("#svgFractal")
+        .append("svg")
+        .attr("width", 1500)
+        .attr("height", 800);
+   
+	Desenhar();
+
+	function Desenhar()
+	{
+	
+	svgFrac.selectAll("*").remove();
+
+
+	pitag(300,300,  150, 0*3.14159/180, 0);
+
+	}
+
+function pitag( x, y, lado, angulo, iteracao)
+{
+	if (iteracao<2)
+	{
+	RegularPol(x,y, lado, 4,angulo);
+
+	ang1 = angulo +  Math.acos(.5/.8);
+	
+	x1 = x + lado/4*Math.cos(angulo)+ (lado/2+0.3122*lado)*Math.sin(angulo) + .4*lado*Math.sin(ang1);
+	y1 = y + lado/4*Math.sin(angulo)	- (lado/2+0.3122*lado)*Math.cos(angulo) - .4*lado *Math.cos(ang1);
+
+	
+	pitag(x1, y1, lado*0.8, ang1, iteracao+1);
+
+	ang2 = angulo + Math.acos(.5/.8);
+
+	x2 = x -1*(lado/4*Math.cos(angulo)+ (lado/2+0.3122*lado)*Math.sin(angulo) + .4*lado*Math.sin(ang2));
+	y2 = y - lado/4*Math.sin(angulo)- (lado/2+0.3122*lado)*Math.cos(angulo)	- .4*lado *Math.cos(ang2) ;
+
+
+	pitag(x2, y2, lado*0.8, ang2, iteracao+1);
+	}
+	
+}
+
+function RegularPol(x,y,Lado, n, ang0)
+	{
+		//Posicao x, y
+		//Raio R
+		//Número de pontos n
+		var pontos;
+		var i;
+		var angulo;
+		var R;
+		
+		R = Lado*.7071
+		angulo=0;
+		pontos="";
+		for (i=0;i<n-1;i++)
+		{		
+			angulo = i*2*3.14159/n +3.14159/4 + ang0;
+			pontos += (x + Math.sin(angulo)*R)+ ", " + (y+Math.cos(angulo)*R) + ", ";			 
+		}
+		//Ultimo ponto
+		i = n-1;
+		angulo = i*2*3.14159/n +3.14159/4 + ang0;		
+		pontos += (x + Math.sin(angulo)*R)+ ", " + (y+Math.cos(angulo)*R);
+
+		svgFrac.append("polygon")
+		  .attr("points", pontos)		  
+		  .attr("stroke", "black")
+		  .attr("fill", "blue");
+	}
+
+</script>
+</body>
+</html>

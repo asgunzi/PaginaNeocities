@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+<h1>Aprenda a usar o método de Monte Carlo para estimar o valor de Pi</h1>
+<p></p>
+<p>O método de Monte Carlo foi criado por Stanislaw Ulam e John Von Neumann, no esforço de criar a bomba de Hidrogênio, na época da Segunda Guerra.</p>
+<p></p>
+<p>Consiste em fazer amostras aleatórias do que queremos simular, segundo propriedades e restrições desejadas, e mensurar os resultados. Surgiu numa época em que os computadores também estavam sendo inventados, o que foi uma boa combinação: computadores são excelentes em tarefas simples e repetitivas, como esse tipo de simulação.</p>
+
+<button type = "button"  onclick="Desenhar()" tabindex = "0">Rodar</button>  
+
+<p id = "Dentro"></p>
+<p id = "Fora"></p>
+
+<p id="svgMonteCarlo"></p>
+
+
+<p></p>
+<p>Vamos fazer um pequeno exercício.</p>
+<p></p>
+<p>Imagine um círculo de raio 1, que tem área pi*r^2. Este círculo, inscrito num quadrado de lado 2 (área 4).</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/09/montecarlo01.png">
+<p></p>
+<p>A razão entre a área do círculo e a área do quadrado é de pi/4 = 0,78539…</p>
+<p></p>
+<p>Se eu “disparar” um número de tiros aleatórios neste alvo, e contar quantos pontos ficaram dentro do círculo versus o total de pontos, a proporção tem que ir convergindo para a fórmula calculada. Assim, com um número infinito de tiros, consigo estimar o valor de Pi.</p>
+<p></p>
+<p>Computacionalmente é fácil fazer a conta. Basta um gerador de número aleatórios.</p>
+<p></p>
+<p>No Excel, a função “=ALEATÓRIO()” dá um valor entre 0 e 1. Quero um valor entre -1 e 1, então faço apenas uma continha para reparametrizar o resultado: “=2*(ALEATÓRIO ()-0,5)”.</p>
+<p></p>
+<p>Sorteio os valores x e y, utilizando a fórmula acima.</p>
+<p></p>
+<p></p>
+<p>A seguir, calcular se x e y são menores do que 1 ou não.</p>
+<p></p>
+<p>A fórmula do círculo é x^2 + y^2 = 1; se x^2 + y^2 for menor que 1, está dentro do círculo, senão, está fora.</p>
+<p></p>
+<p>=SE(RAIZ(B4^2+C4^2<=1);”Sim”;”Não”)</p>
+<p></p>
+<p>Conto quantos pontos ficaram dentro e quantos ficaram fora, e vejo a proporção.</p>
+<p></p>
+<p>Quanto maior o número de amostras, mais próximo de pi/4  = 0,78539 devo chegar.</p>
+<p></p>
+<img src="../Figuras/MonteCarloPi.gif">
+<p></p>
+<p></p>
+<p>O Método de Monte Carlo e derivados tem aplicações práticas extremamente valiosas para a indústria, nos dias de hoje. Simulação de eventos discretos, em geral, ajudam a dimensionar o número ótimo de atendentes de um help desk, o tamanho de pátios de armazenagem, número de empilhadeiras de um armazém, e assim sucessivamente.</p>
+<p></p>
+
+<img src="../Figuras/MonteCarloPi02.png">
+
+<p>Lição de casa.</p>
+<p></p>
+<p>Ao invés de um círculo, aplicar o mesmo método para um losango.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/09/montecarlo05.png">
+
+<p>Dica: para um losango como o mostrado, abs(x) + abs(y) <=1.</p>
+<p></p>
+<p></p>
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+<script src="../ArteMatematica/MonteCarloPi.js"></script>
+
+</body>
+</html>

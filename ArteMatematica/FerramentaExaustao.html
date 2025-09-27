@@ -1,0 +1,240 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+
+
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 40%;
+  padding: 10px;
+}
+
+.column img {
+  margin-top: 12px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+
+</style>
+</head>
+
+
+<body>
+
+
+<div class="menu" id="top"></div>
+
+
+<a href = "index.html"> <p id="Logo"></p> </a>
+
+
+<h1>O método da exaustão para encontrar a área do círculo</h1>
+
+
+	
+<form>
+		  <label for="SelectLados">N. lados do polígono:</label><br>
+		  <select onchange = "Desenhar()" id="SelectLados"  name="Lados" id="SelectPontos">
+		    
+		    <option value="3" >3</option>
+		    <option value="4"  selected>4</option>
+		    <option value="5">5</option>
+		    <option value="6">6</option>
+		    <option value="7">7</option>
+		    <option value="8">8</option>
+		    <option value="9">9</option>
+		    <option value="10">10</option>			
+			<option value="11">11</option>			
+			<option value="12">12</option>			
+			<option value="13">13</option>			
+			<option value="14">14</option>
+			<option value="20">20</option>			
+			<option value="50">50</option>
+			<option value="100">100</option>
+		  </select>		  
+</form>
+
+
+
+<p id ="svgExaustao"></p>
+
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+        <script type = "text/javascript">
+
+        var svg = d3.select("#svgExaustao").append("svg");
+
+        var limX = 800;
+        var limY = 800;
+        
+        //Define dimensions of svg
+        svg.attr("width", limX)
+        .attr("height",limY);
+        Desenhar();
+
+
+	function Desenhar()
+        {
+        
+        //Clear svg
+		svg.selectAll("*").remove();
+
+        //dados e definicoes macro
+        var N = parseInt(d3.select("#SelectLados").property("value"));
+		
+
+		var cx0 = 300;
+		var cy0 = 250;
+		var raio = 170;
+		
+        //Traça SVG
+        var i;
+        var cx1 =[];
+        var cy1 =[];
+		var cx2 =[];
+        var cy2 =[];
+        var theta;
+		var circ =[1];
+		
+        var dx1 =[];
+        var dy1 =[];
+		var dx2 =[];
+        var dy2 =[];
+		var raio2;
+		var theta0 = Math.PI/4;
+
+        //Cria o array de dados inscrito
+        for (i = 0; i< N; i++)
+        {
+			theta = i*2*Math.PI/N +theta0;			
+			cx1.push(cx0 + raio*Math.sin(theta));
+			cy1.push(cy0 + raio*Math.cos(theta));
+
+			theta = (i+1)*2*Math.PI/N+theta0;			
+			cx2.push(cx0 + raio*Math.sin(theta));
+			cy2.push(cy0 + raio*Math.cos(theta));
+			
+        }
+
+        //Cria o array de dados circunscrita
+		raio2 = raio/Math.cos(Math.PI/N);
+        for (i = 0; i< N; i++)
+        {
+			theta = i*2*Math.PI/N+theta0;			
+			cx1.push(cx0 + raio2*Math.sin(theta));
+			cy1.push(cy0 + raio2*Math.cos(theta));
+
+			theta = (i+1)*2*Math.PI/N+theta0;			
+			cx2.push(cx0 + raio2*Math.sin(theta));
+			cy2.push(cy0 + raio2*Math.cos(theta));			
+        }
+
+		<!-- //Cria as formas -->		
+       var line1 = svg.selectAll("line")
+        	.data(cx1)
+        	.enter()
+        	.append("line");
+
+        line1.attr("x1", function(d,i){
+        			return cx1[i];
+        		})
+        		.attr("y1", function(d,i){
+        			return cy1[i];
+        		})
+        		.attr("x2", function(d,i){
+					return cx2[i];
+        		})
+        		.attr("y2", function(d,i){				
+					return cy2[i];
+        		})
+        		.attr("stroke","darkblue")
+        		.attr("stroke-width","1.5")
+        		;
+			
+			 var line2 = svg.selectAll("line")
+        	.data(dx1)
+        	.enter()
+        	.append("line");
+
+			line2.attr("x1", function(d,i){
+        			return dx1[i];
+        		})
+        		.attr("y1", function(d,i){
+        			return dy1[i];
+        		})
+        		.attr("x2", function(d,i){
+					return dx2[i];
+        		})
+        		.attr("y2", function(d,i){				
+					return dy2[i];
+        		})
+				.attr("fill","transparent")				
+        		.attr("stroke","darkblue")
+        		.attr("stroke-width","1.5")
+        		;
+				
+		 	//Cria círculo
+			var circle1 = svg.selectAll("circle")
+			.data(circ)
+			.enter()
+        	.append("circle");
+
+			circle1.attr("cx", cx0)
+        		.attr("cy", cy0)
+        		.attr("r", raio)        		
+				.attr("fill-opacity","0.3")
+				.attr("fill","gold")
+        		.attr("stroke","rgb(" + 10 + "," + 10 + "," + 10 + ")")
+        		.attr("stroke-width","1.5"); 
+		
+		var txtArea =[]
+		txtArea.push("Área inscrita: " + Math.round(100*N*Math.sin(2*Math.PI/N)/2)/100);
+		txtArea.push("Área circunsc.: " + Math.round(100*N*Math.tan(Math.PI/N))/100);
+
+		var text1 = svg.selectAll("text")
+        	.data(txtArea)
+        	.enter()
+        	.append("text");
+			
+		text1.attr('x', cx0 - 60)
+             .attr('y', function(d,i){return cy0 -10+ 15*i;})
+             .attr('fill', 'black')
+			 .attr('font-size','18')
+			 .text(function(d,i){return txtArea[i];});
+
+        }
+
+		</script>
+
+
+</body>
+</html>

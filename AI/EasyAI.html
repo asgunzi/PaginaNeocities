@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+<h1>Easy AI e Explainable AI</h1>
+<p></p>
+<p>“Não há benefício em ter modelos complicados”</p>
+<p></p>
+<p>Baseado em palestra de Cynthia Rudin, Duke University, na Informs 2022.</p>
+<p></p>
+<p>A Inteligência Artificial (IA) tradicional é uma caixa-preta: entramos com dados (digamos, um milhão de fotos diversas) e com os outputs desejados (quais das fotos são rotuladas como gatinhos ou não), e o circuito interno é uma caixa-preta a ser treinada (uma rede neural de dezenas de camadas e milhares de neurônios por camada). O grande poder da IA dos últimos 10 anos derivou de conseguirmos melhorar essa caixa-preta cada vez mais.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/11/caixa-preta.png">
+
+<p></p>
+<p>Uma grande desvantagem desse tipo de método é como a rede neural vai se comportar com input totalmente desconhecido? Com algum caso nunca antes visto? Pode ser que ela classifique corretamente, pode ser que dê um resultado totalmente esdrúxulo.</p>
+<p></p>
+<p>Exemplos abundam, de como “enganar” uma IA.</p>
+<p></p>
+<p>Em métodos tradicionais de modelagem, entramos com inputs, as regras de decisão, e saímos com os resultados. Pode ser extremamente complicado deduzir ou criar tais regras de decisão.</p>
+<p></p>
+<p>Como unir o poder da IA moderna e ainda assim termos controle das decisões? Essa é a linha de pesquisa da “IA Explicável”, ou “Explanable AI”.</p>
+<p></p>
+<p>Na mesma linha, o “Easy AI” baseia-se na noção de que modelos simples podem ser quase tão poderosos quanto modelos complexos, com vantagens de serem mais robustas e validáveis junto ao usuário final.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/11/rashomon.png">
+<p></p>
+<p>Aqui, vale introduzir a definição de “Rashomon set”: conjunto de soluções quase iguais. Dentre todas as soluções possíveis para um problema (digamos, criar um classificador), há uma gama de soluções com desempenho quase igual (dentro de uma margem de erro).</p>
+<p></p>
+<p>Dentre as soluções quase iguais, haverá aquelas que serão mais simples e as que serão extremamente complexas – a recomendação aqui é pegar a mais simples.</p>
+<p></p>
+<p>Nota: a inspiração do nome é o filme Rashomon, de Akira Kurosawa, onde 4 testemunhas contam 4 histórias diferentes para o mesmo episódio (um crime ocorrido). Por sua vez, o filme foi inspirado em alguns contos de um dos maiores escritores do Japão de todos os tempos, Akutagawa Ryunosuke – notadamente os contos “Rashomon” e “Into the groove”.</p>
+<p></p>
+<p>Exemplo. Em desafio realizado pela palestrante, uma árvore de decisão com pouquíssimas linhas conseguiu replicar o que uma rede neural bem mais complexa faria.</p>
+<p></p>
+<p>Uma árvore de decisão é uma regra simples, como ilustrado abaixo, de ir classificando o resultado através de parâmetros nas entradas de dados.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/11/arvore-de-decisao.png">
+<p></p>
+<p>Um modelo simples, como a árvore de decisão, tem diversas vantagens. Vai gastar menos energia em implementação, vai ter transparência para mostrar o funcionamento e tem comportamento generalizável para casos nunca antes vistos.</p>
+<p></p>
+<p>Com as regras de decisão expostas, fica mais simples levar o modelo para as pessoas que entendem o processo em questão criticarem, auditarem o mesmo. E sempre é bom ter validação de especialistas humanos nos modelos. Não devemos ter a arrogância de achar que um algoritmo vai sempre superar a lógica e intuição humana.</p>
+<p></p>
+<h2>Conclusões</h2>
+<p>Explainable AI é uma das linhas de pesquisa mais ativas do mundo atual. Vantagens: double check, simplicidade, avaliação de riscos, validação do processo.</p>
+<p></p>
+<p>Uma IA caixa-preta pode ser útil para uma máquina de lavar. Porém, quem será responsável por um bug no sistema elétrico? Ou um acidente com carro autônomo? Daí a importância de entendermos minimamente os modelos.</p>
+<p></p>
+<p>O Rashomon set é o conjunto de soluções quase iguais.</p>
+<p></p>
+<p>Modelos simples podem ser extremamente efetivos, com vantagens de robustez, transparência e facilidade de validação com especialistas da área.</p>
+<p></p>
+<p>Note que é um problema difícil chegar numa árvore de decisão simples e efetiva – ou, como diria Steve Jobs, “A simplicidade é a maior das sofisticações”.</p>
+<p></p>
+<p></p>
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+</body>
+</html>

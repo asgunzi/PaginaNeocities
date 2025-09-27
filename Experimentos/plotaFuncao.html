@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+<p id = "svg01"></p>
+
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+</body>
+
+<script>
+
+    var svg = d3.select("#svg01")
+        .append("svg")
+        .attr("width", 1200)
+        .attr("height", 800);
+
+Rodar();
+
+
+function Rodar()
+{
+	svg.selectAll("*").remove();
+	
+	//Linha apoio
+	svg.append("line")
+			  .attr("x1", 30)
+			  .attr("y1", 150)
+			  .attr("x2", 900)
+			  .attr("y2", 150)
+			  .attr("stroke", "black")
+			  .attr("stroke-width", 1)
+
+	//Eixo X
+	svg.append("line")
+			  .attr("x1", 30)
+			  .attr("y1", 400)
+			  .attr("x2", 900)
+			  .attr("y2", 400)
+			  .attr("stroke", "black")
+			  .attr("stroke-width", 1)
+	//Eixo Y
+	svg.append("line")
+			  .attr("x1", 50)
+			  .attr("y1", 30)
+			  .attr("x2", 50)
+			  .attr("y2", 430)
+			  .attr("stroke", "black")
+			  .attr("stroke-width", 1)
+	
+	var px1;
+	var px2;
+	var py1;
+	var py2;
+	var dx;
+	var dy;
+	var scale;
+	
+	px1 = 50;
+	py1 = 400;
+	
+	//Plota a função 1/(1+exp(-z))
+	for (var z=0; z <200; z++)
+	{	
+		scale =5;
+		dx = scale;
+		dy = 1/(1+Math.exp(-z/scale));
+		
+		px2 = px1 + dx;
+		py2 = py1 - dy;
+		
+		plotDeriv(px1,py1, px2, py2);
+		
+		px1 = px2;
+		py1 = py2;
+	}
+	
+			  
+}
+
+function plotDeriv(x1, y1, x2,y2)
+{
+	svg.append("line")
+			  .attr("x1", x1)
+			  .attr("y1", y1)
+			  .attr("x2", x2)
+			  .attr("y2", y2)
+			  .attr("stroke", "darkblue")
+			  .attr("stroke-width", 2)
+
+}
+</script>
+
+</html>

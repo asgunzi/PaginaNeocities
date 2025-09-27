@@ -1,0 +1,272 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Bandido Múltiplos Braços JS D3</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+
+<style>  
+table {
+            border-collapse: collapse;
+            width: 80%;
+        }
+        th, td {
+            text-align: center;
+        }
+		
+p, div {
+	font-size: 18px;
+}
+</style>
+
+</head>
+
+
+<body>
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+
+<h1>O Bandido Múltiplos Braços</h1>
+
+<p>Há 4 máquinas caça-níqueis, cada qual com uma probabilidade p diferente de acertar o prêmio.</p>
+
+<p>Você tem 12 fichas por rodada, e um total de 5 rodadas, para encontrar a melhor máquina e extrair o máximo possível de resultados.</p>
+
+<p>Divida 12 fichas nas máquinas e rode.</p>
+<hr>
+
+
+
+<table id = "maquinas">
+  <tr>
+    <th><img src="../Figuras/bandido.png" alt="Bandido de um braço"></th>
+    <th><img src="../Figuras/bandido.png" alt="Bandido de um braço"></th>
+    <th><img src="../Figuras/bandido.png" alt="Bandido de um braço"></th>
+	<th><img src="../Figuras/bandido.png" alt="Bandido de um braço"></th>
+  </tr>
+  <tr>
+    <th>Máq. 1</th>
+    <th>Máq. 2</th>
+    <th>Máq. 3</th>
+	<th>Máq. 4</th>
+  </tr>
+  <tr>
+    <td>
+	 <form>
+    <select onchange = "Checagem()" id="maq1">
+      <option value="0" selected>0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+	  <option value="9">9</option>
+	  <option value="10">10</option>
+	  <option value="11">11</option>
+	  <option value="12">12</option>
+    </select>
+    <br><br>
+  </form>
+  </td>
+    <td>
+	<select onchange = "Checagem()" id="maq2">
+      <option value="0" selected>0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+	  <option value="9">9</option>
+	  <option value="10">10</option>
+	  <option value="11">11</option>
+	  <option value="12">12</option>
+    </select>
+	</td>
+	<td>
+	<select onchange = "Checagem()" id="maq3">
+      <option value="0" selected>0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+	  <option value="9">9</option>
+	  <option value="10">10</option>
+	  <option value="11">11</option>
+	  <option value="12">12</option>
+    </select>
+	</td>
+	<td>
+	<select onchange = "Checagem()" id="maq4">
+      <option value="0" selected>0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+	  <option value="9">9</option>
+	  <option value="10">10</option>
+	  <option value="11">11</option>
+	  <option value="12">12</option>
+    </select>
+	</td>
+	<td>
+	<button type = "button" onclick="Rodar()" tabindex = "0">Rodar</button>  
+	</td>
+	
+  </tr>
+</table>
+
+
+
+<br>
+<hr>
+
+<p>Resultados:</p>
+<div id="idResults"></div>
+
+<script>
+
+var p1;
+var p2; 
+var p3;
+var p4;
+var Total =0;
+var rodada =0;
+var fimJogo = false;
+
+//Sorteia probabilidades
+p1 = Math.random()*0.7;
+p2 = Math.random()*0.7;
+p3 = Math.random()*0.7;
+p4 = Math.random()*0.7;
+
+function Checagem()
+{
+let fichas1 = parseInt(d3.select("#maq1").property("value"));
+let fichas2 = parseInt(d3.select("#maq2").property("value"));
+let fichas3 = parseInt(d3.select("#maq3").property("value"));
+let fichas4 = parseInt(d3.select("#maq4").property("value"));
+
+
+if (fichas1+fichas2+fichas3+fichas4 > 12)
+{
+alert("A soma das fichas excede 12");
+d3.select("#maq1").property("value", 0);
+d3.select("#maq2").property("value", 0);
+d3.select("#maq3").property("value", 0);
+d3.select("#maq4").property("value", 0);
+}
+}
+
+function Rodar()
+{
+
+if (fimJogo)
+{
+	return(0);
+}
+
+rodada++;
+let fichas1 = parseInt(d3.select("#maq1").property("value"));
+let fichas2 = parseInt(d3.select("#maq2").property("value"));
+let fichas3 = parseInt(d3.select("#maq3").property("value"));
+let fichas4 = parseInt(d3.select("#maq4").property("value"));
+
+//Para cada máquina e para cada ficha, sorteia
+
+let wins1 = 0;
+let wins2 = 0;
+let wins3 = 0;
+let wins4 = 0;
+let i;
+
+for (i = 0; i < fichas1; i++) {
+	if (Math.random() <p1)
+	{
+	wins1++;
+	}
+}
+for (i = 0; i < fichas2; i++) {
+	if (Math.random() <p2)
+	{
+	wins2++;
+	}
+}
+for (i = 0; i < fichas3; i++) {
+	if (Math.random() <p3)
+	{
+	wins3++;
+	}
+}
+for (i = 0; i < fichas4; i++) {
+	if (Math.random() <p4)
+	{
+	wins4++;
+	}
+}
+
+Total += wins1+wins2+wins3+wins4;
+let strResults;
+strResults = "<b> Rodada " + rodada+ ": </b>";
+strResults += "Maq1 = " + wins1 + " de " + fichas1;
+strResults += ", Maq2 = " + wins2 + " de " + fichas2;
+strResults += ", Maq3 = " + wins3 + " de " + fichas3;
+strResults += ", Maq4 = " + wins4 + " de " + fichas4;
+
+let divResults = document.getElementById('idResults');
+
+// Append text using innerHTML
+
+divResults.innerHTML += strResults;
+divResults.innerHTML += ", Total parcial: " + Total;
+divResults.innerHTML += "<br>";
+
+d3.select("#maq1").property("value", 0);
+d3.select("#maq2").property("value", 0);
+d3.select("#maq3").property("value", 0);
+d3.select("#maq4").property("value", 0);
+
+if (rodada ==5)
+{
+ divResults.innerHTML += "Fim de jogo. Você teve " + Total + " acertos!";
+
+ let ProbReais = Math.round(p1*100,2) + "%, " + Math.round(p2*100,2) + "%, " + Math.round(p3*100,2) + "%, " +Math.round(p4*100,2) + "%";
+ divResults.innerHTML += "<br>";
+ divResults.innerHTML += "Probabilidades reais:  " + ProbReais;
+
+ fimJogo = true;
+}
+}
+</script>
+
+
+<br>
+<hr>
+
+<p>Veja também: <a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a> </p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+	
+</body>
+</html>

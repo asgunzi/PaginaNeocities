@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+
+<style>  
+   .alvo {            
+            margin-left: 40px;
+        }  
+</style>
+</head>
+
+
+<body>
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+<h1>A Calculadora de Collatz</h1>
+
+<form>
+	<p>Digite um número:</p>
+	<input type="text" id="Num" onchange="Desenhar()" value="20">
+	<button type = "button"  onclick="Desenhar()" tabindex = "0">Rodar</button>  
+		
+</form>
+
+<p id ="Passos"></p>
+
+
+<p id="Inicio"> </p>
+
+
+<hr>
+
+<p> Para teoria, vide <a href="https://medium.com/ideias-anal%C3%ADticas-avan%C3%A7adas/conjectura-de-collatz-visualiza%C3%A7%C3%B5es-utilizando-python-5d7858538c88">A Calculadora de Collatz </a></p>
+
+
+<script type = "text/javascript">
+    Desenhar();
+	
+	function Desenhar()
+	{
+	
+	var N =parseInt(d3.select("#Num").property("value"));
+	var passos =0;
+	
+	d3.selectAll(".alvo").remove();
+	
+	while (N>1)
+	{
+	if (N % 2 ==0)
+	{
+		N = N/2;
+	}
+	else
+	{ 	N = 3*N+1;
+	
+	}
+	passos+=1;
+	d3.select("#Inicio").append("p").attr("class","alvo").text(N);	
+	}
+	
+	d3.select("#Passos").text("Número de passos: " + passos);
+
+		
+	}
+	
+</script>
+
+<br>
+<hr>
+
+<p>Veja também: <a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a> </p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+</body>
+</html>

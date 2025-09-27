@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+<h1>Divisão (parte 2)</h1>
+
+<p>Dando continuidade à Teoria dos Números via “álgebra de pedrinhas”, vamos provar alguns teoremas iniciais.</p>
+<p></p>
+<h2>Teorema:</h2>
+
+<p>Se a | b e n é inteiro, a | b*n</p>
+<p></p>
+<p>Relembrando, a divisão é como se o numerador b fosse o número de bolinhas, e o denominador, a, o número de colunas. Ex. 8 / 4: distribua 8 bolinhas em 4 colunas, e temos o diagrama a seguir.</p>
+<p></p>
+
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/01/teonum01.png">
+
+<p>Se eu multiplicar o número por b um inteiro, digamos n = 2, é só copiar a quantidade de bolinhas anterior e colar em cima. As pedrinhas vão continuar sendo dispostas em a colunas. E o padrão se repete, para qualquer número n inteiro (inclusive negativo).</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/01/teonumeros02.png">
+
+
+<h2>Teorema:</h2>
+<p></p>
+<p> Se a | b e a | c, a | b + c</p>
+<p></p>
+<p>A ideia aqui é similar. Se b consegue ser colocada em exatamente a colunas, e idem para c, é só empilhar os resultados para concluirmos que (b + c) podem ser colocados em a colunas.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/01/teonumeros03.png">
+
+<p>No exemplo acima, 3 | 6 e 3 | 9, então 3 | (6 + 9)</p>
+<p></p>
+
+<h2>Teorema:</h2>
+<p> Se a | b e a | c, m e n são inteiros, a | b*m + c*n</p>
+<p></p>
+<p>Observe como a composição de afirmações simples vai gradativamente se tornando mais complexa.</p>
+<p></p>
+<p>Este teorema é basicamente a combinação dos dois anteriores.</p>
+
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/01/teonumeros04.png">
+<p></p>
+<p>Partindo para um exemplo, se 3 | 6 e 3 | 9, então 3 | (6*2 + 9).</p>
+<p></p>
+
+<h2>Teorema: </h2>
+<p>n | n</p>
+<p></p>
+<p>Este teorema é bem simples. Se tenho n pedrinhas, elas podem ser dispostas em n colunas, basta colocar uma do lado da outra.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/01/teonumeros05.png">
+
+<p>Exemplo: 6 | 6.</p>
+<p></p>
+
+<h2>Teorema:</h2>
+<p>n | 0</p>
+<p></p>
+<p>Infelizmente, não há representação visual, porque tenho zero pedrinhas na mão. Se tenho 0 pedrinhas, coloco 0 delas em cada uma das n colunas, mostrando que n | 0.</p>
+<p></p>
+<p>No próximo artigo sobre o tema, vamos continuar provando teoremas básicos de Teoria dos Nùmeros, usando a “álgebra de pedrinhas”. Fiquem ligados na página!</p>
+<p></p>
+<p>Mexa interativamente na <a href="../TeoriaNumerosVisual/CalcVisual.html">calculadora visual de multiplicação</a></p>
+
+
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+</body>
+</html>

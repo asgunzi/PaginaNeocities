@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://unpkg.com/mathjs/lib/browser/math.js"></script>
+
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>
+#normal {
+  font-size: 35px;
+  text-align: justify;
+  text-justify: inter-word;
+  color: #f5f5f0; 
+  margin: 50px;
+}
+	
+</style>
+</head>
+
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+<form>
+	Insira um número de 0 a 100:
+	<input type="text" id="idA" onchange="Rodar()" value="30">
+	<p> </p>
+
+	<button type = "button"  onclick="Rodar()" tabindex = "0">Rodar</button>  
+		
+</form>
+
+
+
+<h1>Gráfico de porcentagens</h1>
+
+<p id= "svg01"> </p>
+
+
+<hr>
+<p>Veja também: <a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a> </p>
+
+<script>
+
+    var svg = d3.select("#svg01")
+        .append("svg")
+        .attr("width", 800)
+        .attr("height", 500);
+   
+	svg.selectAll("*").remove();
+
+
+Rodar();
+
+
+function Rodar()
+{
+	let R = 150;
+	let r;
+	let n;
+	let nProb;
+	
+	n= parseInt(d3.select("#idA").property("value"));
+	nProb = parseFloat(n/100);
+
+	//Insere o circulo maior
+		svg.append("circle")
+		.transition()
+		.duration(200)    
+		.delay(200)
+		.attr("cx", 200)
+		.attr("cy", 200)
+		.attr("r", R)
+		.attr("stroke", "black")
+		.attr("stroke-width", 1)
+		.attr("fill", 'lightgray');
+
+	//Calcula r menor
+	r = Math.sqrt(R**2 * nProb);
+
+	//Insere o circulo menor
+		svg.append("circle")
+		.transition()
+		.duration(200)    
+		.delay(400)
+		.attr("cx", 200)
+		.attr("cy", 200)
+		.attr("r", r)
+		.attr("stroke", "black")
+		.attr("stroke-width", .5)
+		.attr("fill", 'darkblue');
+
+	//Insere quadrados
+	let lado = 30;
+	let i;
+	let j;
+	let soma=0;
+	let corRef ="";
+	
+	
+	for  (i =1;i<=10;i++)
+		for (j=1; j<=10;j++)
+		{
+			soma =soma+	1;
+			if (soma<=n)
+			{
+				corRef ='darkblue';
+			}
+			else
+			{
+				corRef ='lightgray';
+			}
+			
+			svg.append("rect")
+			.attr("x", 450 +i*lado)
+			.attr("y", 350 -j*lado)
+			.attr("width", lado)
+			.attr("height", lado)
+			.attr("stroke", "black")
+			.attr("stroke-width", .5)
+			.attr("fill", corRef);							
+		}
+	
+}	
+	
+</script>
+
+<script src="../criaMenuL1.js"></script>
+
+<script src = '../LogoMath.js'>		</script>
+
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+
+<h1>A colmeia dos números primos</h1>
+<h3> Núm. camadas: </h3>
+<form>
+		  <select onchange = "Desenhar()" name="Camadas" id="SelectCamadas">
+		    
+		    <option value="1">1</option>
+		    <option value="2" >2</option>
+		    <option value="3" selected>3</option>
+		    <option value="4">4</option>
+		    <option value="5">5</option>
+		    <option value="6">6</option>
+		    <option value="7">7</option>
+		    <option value="8">8</option>			
+		    <option value="9">9</option>			
+		    <option value="10">10</option>			
+			<option value="11">11</option>			
+			<option value="12">12</option>			
+			<option value="13">13</option>								
+			<option value="14">14</option>			
+			<option value="15">15</option>	
+		  </select>		  
+</form>
+		
+<p id= "svgColmeia"></p>
+
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+<script type = "text/javascript">
+    var svg = d3.select("#svgColmeia")
+        .append("svg")
+        .attr("width", 1800)
+        .attr("height", 1500);
+   
+	Desenhar();
+	
+	function RegularPol(x,y,R, n, strColor)
+	{
+		//Posicao x, y
+		//Raio R
+		//Número de pontos n
+		var pontos;
+		var i;
+		var angulo;
+		angulo=0;
+		pontos="";
+		for (i=0;i<n-1;i++)
+		{		
+			angulo = i*2*3.14159/n;
+			pontos += (x + Math.sin(angulo)*R)+ ", " + (y+Math.cos(angulo)*R) + ", ";			 
+		}
+		//Ultimo ponto
+		i = n-1;
+		angulo = i*2*3.14159/n;		
+		pontos += (x + Math.sin(angulo)*R)+ ", " + (y+Math.cos(angulo)*R);
+
+		svg.append("polygon")
+		  .attr("points", pontos)		  
+		  .attr("stroke", "black")
+		  .attr("fill", strColor)		  
+	}
+
+    function sieve(n)
+    {
+    var arrSieve = [];
+	nmax = Math.floor(Math.sqrt(n));
+	
+	//Preenche tudo com 1
+	  for (i=1; i <= n;i++)
+	{
+	arrSieve.push(1);
+	}
+    
+    for (i=2; i <= nmax+1;i++)
+	{
+        if (arrSieve[i] ==1)
+		{
+            imax = Math.ceil(n/i);
+            for (k=2; k< imax; k++)
+			{
+                arrSieve[k*i] = 0;
+			}
+		}
+    }
+
+		
+	return(arrSieve);
+    }
+
+
+	function Desenhar()
+	{
+	svg.selectAll("*").remove();
+
+	//---------------------------------------------------------------
+	
+	var raio = 25;
+	var x;
+	var y;
+	var x0 = 700;
+	var y0 = 600;
+	var camada;
+	var numCamadas;
+	var raiz3 = 1.73205;
+	var theta;
+	var raioExterno;
+	var xa;
+	var ya;
+	var xb;
+	var yb;
+	var z; 
+	var count =0;
+	var delayInMilliseconds =0;
+	
+	//Plot initial hexagon
+	RegularPol(x0,y0, raio, 6,'gray');
+	count +=1;
+	
+	arrSieve = sieve(2048); //Numero suficientemente grande
+	
+	numCamadas =d3.select("#SelectCamadas").property("value");
+	
+	for (i = 1; i <numCamadas; i++)
+		{
+				raioExterno  = (i)*raio*raiz3;
+				for (k = 0; k <6; k++)
+				{				
+					theta =2*Math.PI*(k)/6;
+				
+					//Plota os hexágonos
+					xa = x0 + raioExterno*Math.cos(theta);
+					ya = y0 + raioExterno*Math.sin(theta);
+					count +=1;
+					if (arrSieve[count] ==0)
+					{
+						RegularPol(xa,ya, raio, 6,'gray');
+					}
+					else
+					{
+						RegularPol(xa,ya, raio, 6,'goldenrod');
+					}
+
+					//Plota os hexágonos intermediarios
+					theta =2*Math.PI*(k+1)/6;
+
+					xb = x0 + raioExterno*Math.cos(theta);
+					yb = y0 + raioExterno*Math.sin(theta);		
+					
+					for (z =0; z<i-1;z++)
+						{//Interpola xa e xb
+						 x = xa + (xb-xa)*(z+1)/(i-1+1);
+						 y = ya + (yb-ya)*(z+1)/(i-1+1);
+						count +=1;
+
+						if (arrSieve[count] ==0)
+							{
+								RegularPol(x,y, raio, 6,'gray');
+							}
+							else
+							{
+								RegularPol(x,y, raio, 6,'goldenrod');
+							}
+
+						} //z
+				} //k
+			}//i
+			
+		}//Desenhar
+	
+  </script>
+
+
+</body>
+</html>

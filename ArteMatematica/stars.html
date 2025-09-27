@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+
+<form>
+Estrelas que surgem e desaparecem...  
+	<button type = "button"  onclick="Desenhar()" tabindex = "0">Rodar</button>  
+</form>
+<p id = "svg01"></p>
+
+
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+<script>
+    var svg = d3.select("#svg01")
+        .append("svg")
+        .attr("width", 1500)
+        .attr("height", 800);
+   
+	svg.selectAll("*").remove();
+
+	var i;
+	var j;
+	
+	function getRndInt(min, max) {
+		min = Math.ceil(min);
+		max = Math.floor(max);
+		return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
+	
+	Desenhar();
+	
+	
+	function Desenhar()
+	{
+		for (i =0;i <1000; i++)
+		{
+					svg.append("circle")
+					.transition()
+					.duration(1000)    
+					.delay(i*5)
+				  .attr("cx", 1500*Math.random() +5)
+				  .attr("cy", 800*Math.random()+5)
+				  .attr("r", getRndInt(5,20))
+				  .attr("stroke", "black")
+				  .attr("stroke-width", 1)
+				  .attr("fill", d3.schemeCategory10[Math.floor(Math.random() * 10)])
+				.transition()
+				.ease(d3.easeCubicOut)
+				.duration(500)    
+				.attr("r", 0);
+			}
+	}
+
+</script>
+
+</body>
+</html>

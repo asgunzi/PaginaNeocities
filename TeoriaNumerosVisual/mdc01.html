@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+<h1>Máximo Divisor Comum Visual – parte 1</h1>
+
+<p></p>
+<p>Continuando a série de <a href = "../teorianumeros.html">Teoria dos Números Visual</a>, o tópico agora é o MDC.</p>
+<p></p>
+<p>O máximo divisor de comum de dois números a e b é o maior inteiro que divide a e b, sendo ambos diferentes de zero. Denota-se o mdc por (a,b).</p>
+<p></p>
+<p>Exemplo visual. Sejam a = 16 e b = 12. O mdc será d = 4, pois é o máximo de colunas que a base da composição pode ter para dividir tanto as pedrinhas de a quanto de b. </p>
+
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/02/mdc01.png">
+
+<p>Utilizando o mesmo exemplo, 8 não é o mdc (12, 16), pois embora divida 16, vai deixar resto ao dividir 12 – é como se não conseguíssimos colocar todas as pedrinhas igualmente distribuídas em 8 colunas.</p>
+<p></p>
+
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/02/mdc02.png?w=768">
+<p></p>
+
+<h2>Teorema.</h2>
+<p> Seja d = mdc(a,b), então existem inteiros n e m tais que d = n*a + m*b.</p>
+<p></p>
+<br>
+<p>Uma prova informal: se d|a e d|b, d|(m*a + n*b), conforme resultado já mostrado anteriormente, isso para qualquer m e n inteiros (positivo, negativo, zero). Ou seja, algum caso particular m0 e n0 vai dar a menor soma positiva possível c = m0*a + n0*b, e como d|( m0*a + n0*b), então d|c. Além disso, como c é a menor soma positiva possível, c = d.</p>
+<br>
+<p>Exemplo: 4 = 16*1 + 12*(-1)</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/02/mdc03.png">
+
+<p></p>
+<p>Para uma prova mais formal, vide referência no final do texto.</p>
+<p></p>
+<br>
+<h2>Teorema:</h2>
+<p>O máximo divisor comum d de a e b é o divisor positivo de a e b o qual é divisível por todo divisor comum.</p>
+<p></p>
+<p>O mdc é o maior divisor comum, porém, isso não quer dizer que não haja outros divisores comuns. Se houver, esse divisor vai dividir o mdc.</p>
+<p></p>
+<p>Ex. 2 é divisor comum de 16 e 12, porém, não é o maior divisor comum.</p>
+<p></p>
+<p>E notar que 2 | 4, ou seja, um divisor comum de 16 e 12 vai dividir o mdc.</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/02/mdc04.png">
+<p></p>
+
+<h2>Proposição:</h2>
+<p>Para todo inteiro positivo t, (ta,tb) = t(a,b).</p>
+<p></p>
+<p>Exemplo visual:</p>
+<p></p>
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/02/mdc05.png">
+<p></p>
+<br>
+<h2>Proposição:</h2>
+<p>Se c>0 e a e b são divisíveis por c, então, (a/c,b/c) = (a,b)/c.</p>
+<p></p>
+<p>É basicamente similar à proposição anterior, porém dividindo ao invés de multiplicar.</p>
+<p></p>
+<p>Exemplo visual:</p>
+<p></p>
+<p>mdc(12,16) =4</p>
+<p></p>
+<p>2|12 e 2|16</p>
+<p></p>
+<p>mdc(12/2,16/2) =4/2 =2</p>
+<p></p>
+
+<img src="https://ideiasesquecidas.files.wordpress.com/2022/02/mdc06.png">
+
+
+<p></p>
+<p>Para uma prova mais formal, vide referência abaixo.</p>
+<p></p>
+<p>Referência: Introdução à Teoria dos Números, José Plínio de Oliveira Santos, Instituto Nacional de Matemática Pura e Aplicada.</p>
+
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+</body>
+</html>

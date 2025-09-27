@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+<h1> Retângulos de Fibonacci </h1>
+
+Selecione: 	
+ <form>
+    <select onchange = "Desenhar()" id="Nelem">
+      <option value="3">3</option>
+      <option value="4" selected>4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+    </select>
+    <br><br>
+  </form>
+
+<p id="destino"></p>
+
+
+<br>
+<hr>
+
+<p>Veja também: <a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a> </p>
+
+<script type = "text/javascript">
+    var svg = d3.select("#destino")
+        .append("svg")
+        .attr("width", 1520)
+        .attr("height", 800)
+
+
+	Desenhar();
+	
+	function rect(x0, y0, w, h)
+	{		svg.append("rect")
+			  .attr("x", x0)
+			  .attr("y", y0)
+			  .attr("width", w)
+			  .attr("height", h)
+			  .attr("stroke", "black")
+			  .attr("fill", "darkblue")
+			  .attr("opacity", 0.7)
+	}
+
+
+	function Desenhar()
+	{
+	svg.selectAll("*").remove();
+
+	//---------------------------------------------------------------
+	var i;
+	var j;
+	var esp = 1;
+	var ini = 5;
+	var fib    = [1, 2, 3, 5, 8, 13, 21];
+	var fibAcc = [0, 1, 3, 6, 11, 19, 32];
+
+	let N = parseInt(d3.select("#Nelem").property("value"));
+	var fator = 100/N;
+
+
+	for (i=0; i<N;i++)
+	{
+		for (j=0; j<N;j++)
+		{		
+			rect((ini +fibAcc[i]+esp*i)*fator, (fibAcc[j]+esp*j)*fator, fib[i]*fator, fib[j]*fator);
+		}
+	}
+	
+	}
+	
+  </script>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+</body>
+</html>
