@@ -8,9 +8,7 @@ This amazing page refers to
 
 
 
-
-
-(novo update)
+(Update simples)
 
 
 
