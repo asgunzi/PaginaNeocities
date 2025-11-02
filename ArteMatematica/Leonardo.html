@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+        table {
+            width: 30%;
+            border-collapse: collapse;
+         }
+</style>
+
+</head>
+
+
+<body>
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+<h1> Pitágoras por Leonardo da Vinci </h1>
+
+<p id="destino"></p>
+
+<br>
+<hr>
+
+<p>Veja também: <a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a> </p>
+
+<script type = "text/javascript">
+    var svg = d3.select("#destino")
+        .append("svg")
+        .attr("width", 1520)
+        .attr("height", 800)
+
+
+	Desenhar();
+	
+	function rect(x0, y0, w, h, icor)
+	{	
+    let strCor = 	"transparent";
+
+	if (icor == 1)
+	{strCor = 	"black";
+	}
+	svg.append("rect")
+			  .attr("x", x0)
+			  .attr("y", y0)
+			  .attr("width", w)
+			  .attr("height", h)
+			  .attr("stroke", "black")
+			  .attr("fill", strCor)
+			  .attr("opacity", 0.7)
+	}
+
+
+	function Desenhar()
+	{
+	svg.selectAll("*").remove();
+
+	//---------------------------------------------------------------
+	
+	const x0 = 100;
+	const y0 = 200;
+	const fat = 30;
+
+    const polygonData = [
+        [[x0+ 0*fat, y0+0*fat], [x0+ 1.8*fat, y0-2.4*fat], [x0+ 5*fat, y0+0*fat]], // ABC
+        [[x0+ 1.8*fat, y0-2.4*fat], [x0+ 5*fat, y0+0*fat],[x0+ 7.4*fat, y0-3.2*fat], [x0+ 4.2*fat, y0-5.6*fat]], // BCDE
+		[[x0+ 1.8*fat, y0-2.4*fat],[x0+ 4.2*fat, y0-5.6*fat], [x0 -0.6*fat, y0-4*fat]], //BEF
+		[[x0+ 0*fat, y0+0*fat],[x0+ 1.8*fat, y0-2.4*fat],[x0 -0.6*fat, y0-4*fat], [x0 -2.4*fat, y0-1.8*fat]], //ABFG
+		[[x0+ 0*fat, y0+0*fat], [x0+ 5*fat, y0+0*fat], [x0 +5*fat, y0+5*fat],[x0+ 0*fat, y0+5*fat]], // ACIH
+  		[[x0 +5*fat, y0+5*fat],[x0+ 0*fat, y0+5*fat],[x0+ 3.2*fat, y0+7.4*fat]] // HIJ 
+    ];
+
+	//Polilinhas
+    svg.selectAll("polygon")
+        .data(polygonData)
+        .enter()
+        .append("polygon")
+        .attr("points", function(d) {
+            return d.map(p => p.join(",")).join(" ");
+        })
+        .attr("fill", "transparent")
+		 .attr("stroke", "black")
+		 .attr("stroke-width", 2);		
+	
+	//Linha DG
+    svg.append("line")          
+    .style("stroke", "black") 
+    .attr("x1", x0+ 7.4*fat)     
+    .attr("y1", y0-3.2*fat)      
+    .attr("x2", x0 -2.4*fat)    
+    .attr("y2", y0-1.8*fat)
+	.attr("stroke-dasharray", "5 5") ;
+
+	//Linha BJ
+    svg.append("line")          
+    .style("stroke", "black") 
+    .attr("x1", x0+ 1.8*fat)     
+    .attr("y1", y0-2.4*fat)      
+    .attr("x2", x0+ 3.2*fat)    
+    .attr("y2", y0+7.4*fat)
+	.attr("stroke-dasharray", "5 5") ;
+	
+	//ABC
+	svg.append("text").attr("x", x0+ 0*fat-15).attr("y", y0+0*fat+15).text("A");
+	svg.append("text").attr("x", x0+ 1.8*fat-10).attr("y", y0-2.4*fat-8).text("B");
+	svg.append("text").attr("x", x0+ 5*fat+8).attr("y", y0+0*fat+5).text("C");
+	svg.append("text").attr("x", x0+ 7.4*fat+5).attr("y", y0-3.2*fat+5).text("D");
+	svg.append("text").attr("x", x0+ 4.2*fat).attr("y", y0-5.6*fat-5).text("E");
+	svg.append("text").attr("x", x0 -0.6*fat).attr("y", y0-4*fat-5).text("F");
+	svg.append("text").attr("x", x0 -2.4*fat-12).attr("y", y0-1.8*fat-5).text("G");
+	svg.append("text").attr("x", x0 +0*fat-15).attr("y", y0+5*fat-5).text("H");
+	svg.append("text").attr("x", x0 +5*fat+5).attr("y", y0+5*fat-5).text("I");
+	svg.append("text").attr("x", x0 +3.2*fat+5).attr("y", y0+7.4*fat+15).text("J");
+	}
+  </script>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+</body>
+</html>
