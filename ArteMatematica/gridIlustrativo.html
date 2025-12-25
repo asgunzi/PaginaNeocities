@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+
+<h1>Apoio - colorir grids</h1>
+
+
+<form>
+Escolha x:
+<select onchange = "Desenhar()" id="select_x">
+    <option value="0">0</option>
+    <option value="1">1</option>
+    <option value="2">2</option>    
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+
+</select>   
+Escolha y:
+<select onchange = "Desenhar()" id="select_y">
+    <option value="0">0</option>
+    <option value="1">1</option>
+    <option value="2">2</option>    
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+
+</select>   
+</form>
+
+<p id = "svg01"></p>
+
+
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+<script>
+    var svg = d3.select("#svg01")
+        .append("svg")
+        .attr("width", 1500)
+        .attr("height", 800);
+      
+	Desenhar();
+	
+	function rect(x0, y0, w, h, cor)
+	{		svg.append("rect")
+			  .attr("x", x0)
+			  .attr("y", y0)
+			  .attr("width", w)
+			  .attr("height", h)
+			  .attr("stroke", "black")
+			  .attr("fill", cor)
+			  .attr("opacity", 0.7)
+	}
+	
+	function Desenhar()
+	{
+	svg.selectAll("*").remove();
+
+	//---------------------------------------------------------------
+	var n_lados;
+	
+	n_lados = 6;
+		
+		
+	var x0 = 0;
+	var y0 = 0;
+	var lado = 50;
+	var select_x;
+	var select_y;
+		
+	select_x = parseInt(d3.select("#select_x").property("value"));
+	select_y = parseInt(d3.select("#select_y").property("value"));
+		
+		
+	
+	for (i=0; i<n_lados; i++)
+		{ 
+			for (j=0; j<n_lados; j++)
+			{ 
+					rect(x0+i*lado, y0+j*lado, lado, lado,"transparent");
+			}
+		}
+
+	for (i=select_x; i<select_x+2; i++)
+		{ 
+			for (j=select_y; j<select_y+2; j++)
+			{ 
+					rect(x0+i*lado, y0+j*lado, lado, lado,"darkgreen");
+			}
+		}
+	
+	}
+	
+</script>
+
+</body>
+</html>

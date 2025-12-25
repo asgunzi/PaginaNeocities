@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+
+<h1>Puzzle com Triângulos</h1>
+
+
+
+<form>
+Tamanho do lado
+ 
+<select onchange = "Desenhar()" id="SelectProfund">
+    
+    <option value="3" selected >3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+	<option value="9">9</option>
+    <option value="10">10</option>
+	<option value="11">11</option>
+	<option value="12">12</option>
+
+  </select>   
+</form>
+
+<p id = "svg01"></p>
+
+
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+<script>
+    var svg = d3.select("#svg01")
+        .append("svg")
+        .attr("width", 1500)
+        .attr("height", 800);
+      
+	Desenhar();
+
+	function Triangulo(x,y,h, isUp)
+	{
+		//Posicao x, y do ponto superior
+		//Altura h
+
+		var pontos;
+		var i;
+		var angulo;
+		
+		angulo=30*Math.PI/180;
+		
+		pontos= x + "," + y + " ";
+		
+		if (isUp)
+		{
+		pontos += (x + Math.tan(angulo)*h)+ "," + (y+h) + " "; 
+		pontos += (x - Math.tan(angulo)*h)+ "," + (y+h) + " "; 
+		}
+		else
+		{
+		pontos += (x + Math.tan(angulo)*h)+ "," + (y-h) + " "; 
+		pontos += (x - Math.tan(angulo)*h)+ "," + (y-h) + " "; 
+		
+		}
+		svg.append("polygon")
+		  .attr("points", pontos)   
+		  .attr("stroke", "black")
+		  .attr("fill", "darkblue");       
+	}
+
+	
+	function Desenhar()
+	{
+	svg.selectAll("*").remove();
+
+	//---------------------------------------------------------------
+	var n_lados;
+	
+	n_lados = parseInt(d3.select("#SelectProfund").property("value"));
+		
+		
+	var x0 = 400;
+	var y0 = 0;
+	var lado = 40;
+	var h = lado*0.866;
+	
+	
+	for (i=0; i<n_lados; i++)
+		{ //Cada linha
+			for (j=0; j<i; j++)
+			{ //Cada Triangulo
+					Triangulo(x0 -lado/2*i +lado*j ,y0 +h*i, h, true);
+			}
+		}
+	
+	}
+	
+</script>
+
+</body>
+</html>
