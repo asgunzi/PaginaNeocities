@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+
+<form>
+Linhas que formam um círculo...  
+	<button type = "button"  onclick="Desenhar()" tabindex = "0">Rodar</button>  
+</form>
+<p id = "svg01"></p>
+
+
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js">		</script>
+
+<script>
+    var svg = d3.select("#svg01")
+        .append("svg")
+        .attr("width", 1500)
+        .attr("height", 800);
+   
+	
+	Desenhar();
+	
+	
+	function Desenhar()
+	{
+    
+	svg.selectAll("*").remove();
+
+    var i;
+    var diam;
+    var x0;
+    var y0;
+
+    diam = 100;
+	x0 =50;
+    y0 = 250;
+    maxN = 50;
+
+		for (i =0;i <maxN; i++)
+		{
+            svg.append("line")
+                .transition()
+                .duration(1000)    
+                .delay(i*5)
+                .attr("x1", x0)
+				  .attr("y1", y0+diam*(1+i/5))
+				  .attr("x2", x0+diam*2)
+				  .attr("y2", y0+diam*1/(1+i/5))
+				  .attr("stroke", "darkgray")
+				  .attr("stroke-width", 1)
+
+            svg.append("line")
+               .transition()
+                .duration(1000)    
+                .delay(maxN +i*50)
+ 				  .attr("x1", x0)
+				  .attr("y1", y0+diam*1/(1+i/5))
+				  .attr("x2", x0+diam*2)
+				  .attr("y2", y0+diam*(1+i/5))
+				  .attr("stroke", "darkblue")
+				  .attr("stroke-width", 1)
+
+    
+            svg.append("line")
+               .transition()
+                .duration(1000)    
+                .delay(2*maxN+i*50)
+ 				  .attr("x1", x0)
+				  .attr("y1", y0-diam*(1+i/5))
+				  .attr("x2", x0+diam*2)
+				  .attr("y2", y0-diam*1/(1+i/5))
+				  .attr("stroke", "darkblue")
+				  .attr("stroke-width", 1)
+
+    
+            svg.append("line")
+               .transition()
+                .duration(1000)    
+                .delay(3*maxN +i*50)
+ 				  .attr("x1", x0)
+				  .attr("y1", y0-diam*1/(1+i/5))
+				  .attr("x2", x0+diam*2)
+				  .attr("y2", y0-diam*(1+i/5))
+				  .attr("stroke", "darkgray")
+				  .attr("stroke-width", 1)
+        }
+    }
+
+</script>
+
+</body>
+</html>
