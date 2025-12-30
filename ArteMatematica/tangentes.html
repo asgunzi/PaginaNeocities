@@ -65,7 +65,25 @@ Linhas que formam um círculo...
     diam = 100;
 	x0 =50;
     y0 = 250;
-    maxN = 50;
+    maxN = 30;
+
+     svg.append("line")
+                .attr("x1", x0)
+				  .attr("y1", 0)
+				  .attr("x2", x0)
+				  .attr("y2", 800)
+				  .attr("stroke", "darkgray")
+				  .attr("stroke-width", 1);
+
+    svg.append("line")
+                .attr("x1", x0+2*diam)
+				  .attr("y1", 0)
+				  .attr("x2", x0+2*diam)
+				  .attr("y2", 800)
+				  .attr("stroke", "darkgray")
+				  .attr("stroke-width", 1);
+
+
 
 		for (i =0;i <maxN; i++)
 		{
