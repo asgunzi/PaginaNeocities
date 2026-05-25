@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Forgotten Math</title>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../estilo_menu.css" />
+
+<style>  
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="menu"></div>
+
+<a href = "../index.html"> <p id="Logo"></p> </a>
+
+
+<form>
+Yin Yang 
+	<button type = "button"  onclick="Desenhar()" tabindex = "0">Rodar</button>  
+</form>
+<div id = "svg01"></div>
+
+<br>
+<hr>
+
+<p>Veja também:</p>
+
+<p><a href="https://asgunzi.neocities.org">Forgotten Math</a></p>
+
+
+<p><a href = "https://ideiasesquecidas.com/"> Forgotten Lore - Ideias Técnicas com uma pitada de filosofia. </a></p>
+
+<script src="../criaMenuL1.js"></script>
+<script src = "../LogoMath.js"></script>
+
+<script>
+var svg = d3.select("#svg01")
+	.append("svg")
+	.attr("width", 800)
+	.attr("height", 500);
+   
+	
+Desenhar();
+
+function Desenhar()
+{
+    
+	svg.selectAll("*").remove();
+
+    var raio;
+    var x0;
+    var y0;
+
+    raio = 100;
+	x0 =150;
+    y0 = 150;
+	
+	svg.append("circle")
+	.attr("cx", x0)
+    .attr("cy", y0)
+    .attr("r", raio)
+	.attr("fill","white")
+	.attr("stroke","black");
+
+	//Circulo grande 1
+	const arc3 = d3.arc()
+		.innerRadius(0)           // Use 0 for a solid semicircle
+		.outerRadius(raio)         // The radius of your semicircle
+		.startAngle(3.1415/2) // Start at -90 degrees (left side)
+		.endAngle(3*3.1415/2);   // End at 90 degrees (right side)
+
+	// 2. Append the path to your SVG
+	    svg.append("path")
+        .attr("d", arc3())
+        .attr("transform", "translate(" + (x0) + "," + y0 + ")")
+		.attr("fill", "black");
+
+
+
+
+	//Circulo grande 2
+	const arc4 = d3.arc()
+		.innerRadius(0)           // Use 0 for a solid semicircle
+		.outerRadius(raio)         // The radius of your semicircle
+		.startAngle(-3.1415/2) // Start at -90 degrees (left side)
+		.endAngle(3.1415/2);   // End at 90 degrees (right side)
+
+	// 2. Append the path to your SVG
+	    svg.append("path")
+        .attr("d", arc4())
+        .attr("transform", "translate(" + (x0) + "," + y0 + ")")
+        .attr("fill", "lightgray");
+
+
+	//Circulo pequeno 1
+	const arc1 = d3.arc()
+		.innerRadius(0)           // Use 0 for a solid semicircle
+		.outerRadius(raio/2)         // The radius of your semicircle
+		.startAngle(-3.1415 / 2) // Start at -90 degrees (left side)
+		.endAngle(3.1415 / 2);   // End at 90 degrees (right side)
+
+	    svg.append("path")
+        .attr("d", arc1())
+        .attr("transform", "translate(" + (x0 +raio/2) + "," + y0 + ")")
+        .attr("fill", "black");
+
+
+	const arc2 = d3.arc()
+		.innerRadius(0)           // Use 0 for a solid semicircle
+		.outerRadius(raio/2)         // The radius of your semicircle
+		.startAngle(3.1415/2) // Start at -90 degrees (left side)
+		.endAngle(3*3.1415/2);   // End at 90 degrees (right side)
+
+	// 2. Append the path to your SVG
+	    svg.append("path")
+        .attr("d", arc2())
+        .attr("transform", "translate(" + (x0 -raio/2) + "," + y0 + ")")
+        
+        .attr("fill", "lightgray");
+
+
+}
+
+</script>
+
+</body>
+</html>
